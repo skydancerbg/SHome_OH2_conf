@@ -45,6 +45,7 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
         }
 
         Frame label="ОТОПЛЕНИЕ/ОХЛАЖДАНЕ" icon="radiator" {
+            // UNCOMMENT TO INITIALLY SET THE SWITCH POSITION !!!
             // Switch item=HeatingCoolingSwitch icon="off_button"  mappings=[0.0="ИЗКЛЮЧЕНО",1.0="ОТОПЛЕНИЕ",2.0="ОХЛАЖДАНЕ"]   
             Switch item=HeatingCoolingSwitch icon="off_button" visibility=[HeatingCoolingSwitch==0.0] mappings=[0.0="ИЗКЛЮЧЕНО",1.0="ОТОПЛЕНИЕ",2.0="ОХЛАЖДАНЕ"]   
             Switch item=HeatingCoolingSwitch icon="mode_heating" visibility=[HeatingCoolingSwitch==1.0] mappings=[0.0="ИЗКЛЮЧЕНО",1.0="ОТОПЛЕНИЕ",2.0="ОХЛАЖДАНЕ"]   
