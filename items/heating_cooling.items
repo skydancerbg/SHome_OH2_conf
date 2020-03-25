@@ -15,8 +15,8 @@ Group Gr_HS_UF_ALL // Home Office
 Group:Number:AVG Gr_HS_AVERAGE_HEATING_COOLING_Temperature "Home Office Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
 Group:Switch:OR(ON, OFF)  Gr_HS_UF_ACTUATORS   "ВСИЧКИ РЕЛЕТА ПОДОВО  [%d ВКЛЮЧЕН(И)]"
 
-Switch HOUSE_UF_All_Heating_Enable "Under floor heating all" (Gr_Persist_State_On_Statup) [ "Switchable" ] 
-Number HOUSE_UF_All_Heating_Setpoint (Gr_Persist_State_On_Statup) //,Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
+Switch HOUSE_UF_All_Heating_Enable "Under floor heating all" (Gr_Persist_On_Change_Startup) [ "Switchable" ] 
+Number HOUSE_UF_All_Heating_Setpoint (Gr_Persist_On_Change_Startup) //,Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
 Switch HOUSE_UF_All_Heating 
 
 
@@ -25,8 +25,8 @@ Switch HOUSE_UF_All_Heating
 Group Gr_GF_OF // Home Office
 Group:Number:AVG GF_OF_Temperature "Home Office Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
 
-Switch GF_OF_Heating_Enable "Home office heating" (Gr_Persist_State_On_Statup) [ "Switchable" ] 
-Number GF_OF_Heating_Setpoint (Gr_Persist_State_On_Statup) //,Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
+Switch GF_OF_Heating_Enable "Home office heating" (Gr_Persist_On_Change_Startup) [ "Switchable" ] 
+Number GF_OF_Heating_Setpoint (Gr_Persist_On_Change_Startup) //,Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
 Switch GF_OF_Heating 
 
 // Switch Heating_ON_OFF (Gr_ALL_POWER)

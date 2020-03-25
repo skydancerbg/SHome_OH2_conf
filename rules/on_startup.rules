@@ -1,7 +1,7 @@
 rule "Init virtual Items" 
 when System started 
-then logInfo("home.rules","System started")
-logInfo("system_started", "testtttttttttt")
+then //logInfo("home.rules","System started")
+logInfo("system_started", "on_startup.rules executed")
       // if not yet initialized or restored
 
          // TotalCostWaterHeater.postUpdate(0.0)   // send a default value

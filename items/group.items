@@ -2,7 +2,10 @@
 // !!! All ITEMS IN THIS GROUP WILL BE PERSISTED ON EVERY CHANGE AND ON STARTUP
 
 
-Group Gr_Persist_State_On_Statup
+// Group Gr_Persist_On_Statup
+Group Gr_Persist_On_Change
+Group Gr_Persist_On_Change_Startup
+Group Gr_Persist_On_Change_1minute
 
 //// SECURITY SYSTEM
 // !!! All Group items for the security system are located in security_system.rules file
