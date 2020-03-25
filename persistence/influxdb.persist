@@ -14,9 +14,9 @@ default = everyChange
 }
 
 Items {
-HeatingCoolingSwitch, GF_OF_Heating_Setpoint : strategy = everyChange, restoreOnStartup
+Gr_Persist_On_Change_Startup*, HeatingCoolingSwitch, GF_OF_Heating_Setpoint : strategy = everyChange, restoreOnStartup
 Gr_HR_ACTIVE_POWER : strategy = everyChange, every30seconds
-Gr_HR_ACTIVE_POWER*, Gr_Temperature_measurments* : strategy = everyChange, every1Minutes
+Gr_Persist_On_Change_1minute*,  Gr_Temperature_measurments*, Gr_HR_ACTIVE_POWER* : strategy = everyChange, every1Minutes
 
 // Gr_Persist_State_On_Statup*, gAllBatteryLevel* , gAllPower*, Gr_ALL_POWER*, Alarm_Arm_Disarm_Switch, Heating_ON_OFF, Heating_AT_ON_OFF, GF_OF_Heating_Setpoint, AT_BR_Heating_Setpoint, AT_KN_Heating_Setpoint : strategy = everyChange, restoreOnStartup
 // Gr_Temperature_measurments*, Gr_Sequrity_System_Motion*, Pir_4_Motion, Pir_5_Motion, Gr_AT_KN_Temperature, GF_Sonoff_TH16_1_Power, GF_Sonoff_TH16_2_Power, GF_Sonoff_TH16_2_Grafana_0_1_Power, GF_Sonoff_S20_2_Power, AT_BR_Heating_Status, AT_KN_Heating_Status, MIGW_XA_THP_Temperature_3, MIGW_XA_THP_Temperature_4 : strategy = everyChange, every1Minutes

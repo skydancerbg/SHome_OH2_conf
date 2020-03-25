@@ -2,7 +2,7 @@
 // Thing <binding_id>:<type_id>:<thing_id> "Label" @ "Location" [ <parameters> ]
 
 // Bridge mqtt:broker:mosquitto "Mosquitto" [ host="localhost", port=1883, secure=false, username="openhabian", password="Cessna152", clientID="openHAB2" ]
-Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secure=false, username="openhabian", password="Cessna152", clientID="oh2" ]
+Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secure=false, username="openhabian", password="Cessna152", clientID="oh2benkovski" ]
 
 {
     Thing topic ardu_mega_heating_ctrl_1 "Ardunino Mega Heating room Control 1" @ "House" {
