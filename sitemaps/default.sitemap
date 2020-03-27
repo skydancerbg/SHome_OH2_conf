@@ -1,8 +1,9 @@
 sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
         Frame label="ДАТА/ЧАС, ИЗГРЕВ И ЗАЛЕЗ СЛЪНЦЕ:" {
+            Text item=Date //label="Livingroom"
+            Text item=none
             Text item=Sunrise_Time
             Text item=Sunset_Time
-            Text item=Date //label="Livingroom"
             //ФОРМАТ С PM, БЕЗ ДЕН:
             //Text item=DateDiffFormat //label="Livingroo"
         }    
@@ -11,8 +12,14 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
         Frame label="ТЕМПЕРАТУРИ:" icon="temperature" {
                 Group item=Gr_House_Outside_Temperature label="ВЪНШНА (средно измерена) [%.1f °C]" icon="temperature"
                 Group item=Gr_House_Inside_Temperature label="ВЪТРЕШНА (средно измерена) [%.1f °C]" icon="temperature"
-                Text item= GF_Sonoff_TH16_2_Temperature label="ТЕМПЕРАТУРА БОЙЛЕР [%.1f °C]" icon="temperature"
-                Text item= GF_Sonoff_TH16_2_Reachable   label="ДАТЧИК БОЙЛЕР: [%s]" icon="presence"
+                Text item= GF_Sonoff_TH16_2_Temperature label="СПАЛНЯ ЕТ.2 [%.1f °C]" icon="temperature"
+                Text item= XGW2_XA_THP_6_Temperature label="КОРИДОР ЕТ.3 [%.1f °C]" icon="temperature"
+                    // Text item=none
+                    // Text item=none
+                Text item= GF_HR_SENSORS_TEMP_hw_tank_top label="БОЙЛЕР ГОРЕ [%.1f °C]" icon="temperature"
+                Text item= GF_HR_SENSORS_TEMP_hw_tank_top label="БОЙЛЕР СРЕДА [%.1f °C]" icon="temperature"
+                
+                // Text item= GF_Sonoff_TH16_2_Reachable   label="ДАТЧИК БОЙЛЕР: [%s]" icon="presence"
                 // Group item=GF_Sonoff_TH16_2
 
 
@@ -71,6 +78,21 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
                 }
             } 
         }   
+        Frame label="УПРАВЛЕНИЕ ПОМПИ И НАГРЕВАТЕЛ:" icon="water_heater" {    
+            Switch  item=GF_HR_Relay_Ctrl_hw_electric_heater icon="water_heater"  label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР"
+            Switch  item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="ПОМПА РЕЦИРКУЛАЦИЯ БГВ"
+            Switch  item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="ПОМПА ДЕСУПЕРХИИТЪР"
+            Switch  item=GF_HR_Relay_Ctrl_solar_3way_sw icon="3way_valve" label="ТРИПЪТНА ЗАДВИЖКА СОЛАР"    
+        }
+
+        Frame label="УПРАВЛЕНИЕ ЗАДВИЖКИ ПОДОВО:" icon="groundfloor" {    
+            Switch  item=Gr_UF_ALL_ACTUATORS icon="presence"  label="ВСИЧКИ ЗАДВИЖКИ"
+            Group   item=Gr_UF_ALL_ACTUATORS
+            Switch  item=Gr_UF_FF_ACTUATORS icon="groundfloor" label="ЗАДВИЖКИ ЕТАЖ 1 И ГАРАЖ"
+            Group   item=Gr_UF_FF_ACTUATORS
+            Switch  item=Gr_UF_SF_ACTUATORS icon="firstfloor" label="ЗАДВИЖКИ ЕТАЖ 2 И 3"
+            Group   item=Gr_UF_SF_ACTUATORS
+        }
 
         Frame label="КОНТРОЛЕР СЕНЗОРИ КОТЕЛНО:" icon="water" {
 

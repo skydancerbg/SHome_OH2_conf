@@ -60,34 +60,55 @@ Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secu
 
     Thing topic ardu_m_heating_temp_hum "Ardunino Mega Heating room Sensors controler" @ "House" {
     Channels:
-        Type string : reachable             "Reachable"                         [ stateTopic="tele/ardu_m_heating_temp_hum/LWT"]
-        Type number : temp_solar_col        "TEMPERATURE_SOLAR_COLLECTOR"       [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_288A03949708035C"]
-        Type number : temp_outside_roof     "TEMPERATURE_OUTSIDE_ROOF"          [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28FB0E5F060000A5"]
-        // Type number : temp_1                "TEMPERATURE_1"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_288A03949708035C"]
-        // Type number : temp_2                "TEMPERATURE_2"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_2828229497120350"]
-        // Type number : temp_3                "TEMPERATURE_3"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_281E5894970E037E"]
-        Type number : temp_4                "TEMPERATURE_4"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28382194970C0375"]
-        Type number : temp_5                "TEMPERATURE_5"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_2863479497080315"]
-        Type number : temp_6                "TEMPERATURE_6"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_286B1394970C0305"]
-        Type number : temp_7                "TEMPERATURE_7"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_287BA6255F14018D"]
-        Type number : temp_8                "TEMPERATURE_8"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_287B0A94970803EA"]
+        Type string : reachable                 "Reachable"                         [ stateTopic="tele/ardu_m_heating_temp_hum/LWT"]
+        Type number : temp_solar_col            "TEMPERATURE_SOLAR_COLLECTOR 3"     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28382194970C0375"]
+        Type number : temp_from_solar_col       "TEMPERATURE_FROM_COLECTOR 1"       [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_288A03949708035C"]
+        Type number : temp_to_solar_col         "TEMPERATURE_TO_COLECTOR 9"         [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_2863479497080315"]
+        Type number : temp_outside_roof         "TEMPERATURE_OUTSIDE_ROOF 16"       [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28FB0E5F060000A5"]
+        Type number : temp_recirc_workshop      "temp_recirc_workshop 6"            [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_287B0A94970803EA"]
+        Type number : temp_recirc_1st_floor      "temp_recirc_1st_floor 4"          [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28D54894970C03F4"]
+        Type number : temp_recirc_second_floor  "temp_recirc_second_floor 17"       [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28300894970803E4"]
+        Type number : temp_recirc_back          "temp_recirc_back 18"               [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28793F9497020335"]
+        Type number : temp_hot_water_out        "temp_hot_water_out 11"             [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28E918235F1401B6"]
+        Type number : temp_hw_tank_top          "temp_hw_tank_top 12"               [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_281E5894970E037E"]
+        Type number : temp_hw_tank_middle       "temp_hw_tank_middle 25"            [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28C4D3FE0A000043"]
+        Type number : temp_hw_tank_botom        "temp_hw_tankbotom 10"              [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28B906235F140146"]
+        Type number : temp_cold_water_in        "temp_cold_water_in 2"              [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_286BC6235F1401CE"]
+        Type number : temp_hp_well_in           "temp_hp_well_in 8"                 [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_286B1394970C0305"]
+        Type number : temp_hp_well_out          "temp_hp_well_out 20"               [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_289B2F94970803E9"]
+        Type number : temp_hp_uf_out            "temp_hp_uf_out 19"                 [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_283A2894970C03E8"]
+        Type number : temp_hp_uf_in             "temp_hp_uf_out 21"                 [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28E7319497020335"]
+        Type number : temp_desuperheater_out    "temp_desuperheater_out 22"         [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28F64D94970803F2"]
+        Type number : temp_desuperheater_in      "temp_desuperheater_in 23"         [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_284C4894970C03D3"]
 
-        Type number : recirc_workshop       "RECIRCULATION WORKSHOP BATHROOM"   [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28B906235F140146"]
-        Type number : recirc_sec_fl         "RECIRCULATION SECOND FLOOR"        [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28E918235F1401B6"]
-        Type number : solar_col             "t solar colector"                  [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28642594970E03A8"]
-        Type number : roof                  "t roof"                            [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28192D94970E0344"]
+        // Type number : temp_4                "TEMPERATURE_4"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28382194970C0375"]
+        // Type number : temp_5                "TEMPERATURE_5"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_2863479497080315"]
+        // Type number : temp_6                "TEMPERATURE_6"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_286B1394970C0305"]
+        // Type number : temp_7                "TEMPERATURE_7"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_287BA6255F14018D"]
+        // Type number : temp_8                "TEMPERATURE_8"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_287B0A94970803EA"]
+
+        // Type number : recirc_workshop       "RECIRCULATION WORKSHOP BATHROOM"   [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28B906235F140146"]
+        // Type number : recirc_sec_fl         "RECIRCULATION SECOND FLOOR"        [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28E918235F1401B6"]
+        // Type number : solar_col             "t solar colector"                  [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28642594970E03A8"]
+        // Type number : roof                  "t roof"                            [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28192D94970E0344"]
 
 
-        Type number : dht_1_temp                "ROOF DHT TEMPERATURE_"         [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DHT_1.Temperature"]
-        Type number : dht_1_hum                 "ROOF DHT HUMIDITY_1"           [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DHT_1.Humidity"]
-        Type number : dht_2_temp                "HEATING ROOM DHT TEMPERATURE"  [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DHT_2.Temperature"]
-        Type number : dht_2_hum                 "HEATING ROOM DHT HUMIDITY"     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DHT_2.Humidity"]
+        // Type number : dht_1_temp                "ROOF DHT TEMPERATURE_"         [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DHT_1.Temperature"]
+        // Type number : dht_1_hum                 "ROOF DHT HUMIDITY_1"           [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DHT_1.Humidity"]
+        // Type number : dht_2_temp                "HEATING ROOM DHT TEMPERATURE"  [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DHT_2.Temperature"]
+        // Type number : dht_2_hum                 "HEATING ROOM DHT HUMIDITY"     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DHT_2.Humidity"]
         // Type number : dht_2                "DHT TEMPERATURE_2"                  [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DHT_2"]
 
         Type switch : pwr_detect_1              "Power detect 1"                [ stateTopic="cmnd/ardu_m_heating_temp_hum/POWERDETECT", transformationPattern="JSONPATH:$.PWR_1.PWRdetected"]        
 
     }
-
+// 13 - 28642594970E03A8 ' ---
+// 14 - 28CC67949710030F '  2--
+// 15 - 28C44894970C0398 +++ намерен
+// 19 - 283A2894970C03E8 ' ---
+// 21 - 28E7319497020335 ' --
+// 24 - 2857249497120370 ' ---
+// 
     //    // SONOF DEVICES //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  // // SONOFF DUAL   
