@@ -223,14 +223,14 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
 
     Frame label="ПОКАЗАНИЯ НА ЕЛЕКТРОМЕРИТЕ:" icon="light" {    
     
-        Text item=Gr_HR_ACTIVE_POWER //icon="light" //label="КЪЩА"
+        Text item=Gr_HR_ACTIVE_POWER //label="ТЕРМОПОМПА"//icon="light" //label="КЪЩА"
+        Text item=Gr_HR_Total_KWh //label="ТЕРМОПОМПА"//icon="light" //label="КЪЩА"
         Text item=Meter_Total_Active_Power_heat_pump label="ТЕРМОПОМПА"
         Text item=Meter_Power_well_pump label="СОНДАЖНА ПОМПА"
         Text item=Meter_Power_soalar_and_hw_recirculation label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
         Text item=Meter_Power_water_heater label="НАГРЕВАТЕЛ НА БОЙЛЕРА"
         Text item=Meter_Power_recuperator label="РЕКУПЕРАТОР"
 
-        Text item=Gr_HR_Total_KWh //icon="light" //label="КЪЩА"
         // Group item=gAllLights
         // Group item=Gr_ALL_LIGHTS
     }
@@ -248,7 +248,8 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
 
     Frame label="МОМЕНТНА КОНСУМАЦИЯ НА ЕЛЕКТРО ЕНЕРГИЯ (W):" icon="electric_meter" {
 
-        Text item=Meter_Total_Active_Power_heat_pump label="ТЕРМОПОМПА ОБЩО (ТРИФАЗНО)"
+        Text item=Gr_HR_ACTIVE_POWER 
+        Text item=Meter_Total_Active_Power_heat_pump label="ТЕРМОПОМПА"
         Text item=Meter_Power_well_pump label="СОНДАЖНА ПОМПА"
         Text item=Meter_Power_soalar_and_hw_recirculation label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
         Text item=Meter_Power_water_heater label="НАГРЕВАТЕЛ НА БОЙЛЕРА"
@@ -264,7 +265,8 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
 
     Frame label="ПОТРЕБЕНА ЕЛЕКТРО ЕНЕРГИЯ ДО МОМЕНТА (KWh):" icon="electric_meter" {
 
-        Text item=Meter_Total_KWh_heat_pump label="ТЕРМОПОМПА (ТРИФАЗНО)"
+        Text item=Gr_HR_Total_KWh //label="ТЕРМОПОМПА (ТРИФАЗНО)"
+        Text item=Meter_Total_KWh_heat_pump label="ТЕРМОПОМПА"
         Text item=Meter_TotalKWh_well_pump label="СОНДАЖНА ПОМПА"
         Text item=Meter_TotalKWh_soalar_and_hw_recirculation label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
         Text item=Meter_TotalKWh_water_heater label="НАГРЕВАТЕЛ НА БОЙЛЕРА"

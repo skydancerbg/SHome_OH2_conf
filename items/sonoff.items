@@ -14,7 +14,7 @@ Group:Switch:OR(ON, OFF)        Lights      "All Lights [(%d)]"
 Group  GF_Sonoff_TH16_2             "Sonoff TH16 2"                   <group>     (Sonoff_TH16_2)
 String GF_Sonoff_TH16_2_Reachable   "Reachable: [%s]"                 <presence>  (GF_Sonoff_TH16_2)                                { channel="mqtt:topic:MyMQTTthing:sonoff_th16_2:reachable" }
 Switch GF_Sonoff_TH16_2_Power       "Sonoff_TH16_2_Power"             <switch>    (GF_Sonoff_TH16_2, gAllPower, Gr_Persist_On_Change_Startup) ["Switchable"]      { channel="mqtt:topic:MyMQTTthing:sonoff_th16_2:power" }       
-Number GF_Sonoff_TH16_2_Temperature "HOT WATER TANK TOP [%.1f °C]"    <temperature> (GF_Sonoff_TH16_2, Gr_Temperature_measurments)  { channel="mqtt:topic:MyMQTTthing:sonoff_th16_2:temperature" }
+Number GF_Sonoff_TH16_2_Temperature "ГОЛЯМА СПАЛНЯ ЕТ.2 [%.1f °C]"    <temperature> (GF_Sonoff_TH16_2, Gr_Temperature_measurments,Gr_House_Inside_Temperature)  { channel="mqtt:topic:MyMQTTthing:sonoff_th16_2:temperature" }
 Number GF_Sonoff_TH16_2_RSSI        "WiFi Signal Strength [%d %%]"    <network>   (GF_Sonoff_TH16_2)                                { channel="mqtt:topic:MyMQTTthing:sonoff_th16_2:rssi" }
 
 // // TH16 with DS18B20 sensor

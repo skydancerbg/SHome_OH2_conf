@@ -783,7 +783,9 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 
         Bridge poller total_active_power [start = 28, length = 2, refresh = 10000, type = "holding"]
         {
-            Thing data aP [readStart = "28", readValueType = "uint32"]  
+                // multiply by 1000 to convert to WATT
+            Thing data aP [readStart = "28", readValueType = "float32", readTransform = "JS(multiply1000.js)"]  
+        //     Thing data aP [readStart = "28", readValueType = "uint32"]  
         }
 
 //        ACTIVE POWER BY PHASE
@@ -796,9 +798,10 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 
         Bridge poller active_power_by_phase [start = 30, length = 6, refresh = 10000, type = "holding"]
         {
-            Thing data aP_L1 [readStart = "30", readValueType = "float32"]
-            Thing data aP_L2 [readStart = "32", readValueType = "float32"]
-            Thing data aP_L3 [readStart = "34", readValueType = "float32"]
+                // multiply by 1000 to convert to WATT
+            Thing data aP_L1 [readStart = "30", readValueType = "float32", readTransform = "JS(multiply1000.js)"]
+            Thing data aP_L2 [readStart = "32", readValueType = "float32", readTransform = "JS(multiply1000.js)"]
+            Thing data aP_L3 [readStart = "34", readValueType = "float32", readTransform = "JS(multiply1000.js)"]
         }
 
 //        TOTAL ACTIVE ENERGY 
@@ -810,7 +813,8 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // CD E0	CRC	0xCDE0 (52704)
         Bridge poller total_active_energy [start = 256, length = 2, refresh = 10000, type = "holding"]
         {
-            Thing data aE [readStart = "256", readValueType = "uint32", readTransform = "JS(divide100.js)"]  
+            Thing data aE [readStart = "256", readValueType = "float32"]  
+        //     Thing data aE [readStart = "256", readValueType = "uint32", readTransform = "JS(divide100.js)"]  
         }
 
 //        ACTIVE ENERGY BY PHASE
@@ -823,9 +827,12 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 
         Bridge poller active_energy_by_phase [start = 258, length = 6, refresh = 10000, type = "holding"]
         {
-            Thing data aE_L1 [readStart = "258", readValueType = "float32", readTransform = "JS(divide100.js)"]
-            Thing data aE_L2 [readStart = "260", readValueType = "float32", readTransform = "JS(divide100.js)"]
-            Thing data aE_L3 [readStart = "262", readValueType = "float32", readTransform = "JS(divide100.js)"]
+            Thing data aE_L1 [readStart = "258", readValueType = "float32", readTransform = "JS(multiply1000.js)"]
+            Thing data aE_L2 [readStart = "260", readValueType = "float32", readTransform = "JS(multiply1000.js)"]
+            Thing data aE_L3 [readStart = "262", readValueType = "float32", readTransform = "JS(multiply1000.js)"]
+        //     Thing data aE_L1 [readStart = "258", readValueType = "float32", readTransform = "JS(divide100.js)"]
+        //     Thing data aE_L2 [readStart = "260", readValueType = "float32", readTransform = "JS(divide100.js)"]
+        //     Thing data aE_L3 [readStart = "262", readValueType = "float32", readTransform = "JS(divide100.js)"]
         }
 
 
