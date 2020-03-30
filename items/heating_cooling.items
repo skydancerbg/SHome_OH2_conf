@@ -1,5 +1,7 @@
+
+//  !!!!    3 POSITION HEATING/COOLING/OFF SWITCH !!!!!!!!!!!
 // https://community.openhab.org/t/multi-state-switches/10939/6
-Number HeatingCoolingSwitch "[MAP(heatingcooling_states.map):%s]" (Gr_Persist_State_On_Statup)
+Number HeatingCoolingSwitch "[MAP(heatingcooling_states.map):%s]" (Gr_Persist_On_Change_Startup)
 // Number HeatingCoolingSwitch "СЪСТОЯНИЕ: [MAP(heatingcooling_states.map):%s]"
 
 
@@ -9,18 +11,137 @@ Number HeatingCoolingSwitch "[MAP(heatingcooling_states.map):%s]" (Gr_Persist_St
 // Number Bathroom_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_Bathroom)
 
 
+// // // // // HVAC // // // // // // // // 
+
+Number HVAC_HeatingCooling_Switch "[MAP(heatingcooling_states.map):%s]" (Gr_Persist_On_Change_Startup)
+
+//ALL ROOM TEMPERATURE SENSORS:
+Group Gr_HVAC_Room_Temperatures
+//ALL ROOM TEMPERATURE SETPOINTS:
+Group Gr_HVAC_Virtual_Thermostat_SetPoints
+//ALL ROOM HEATING/COOLING ENABLE:
+Group Gr_HVAC_Room_HeatCool_Enable
+// Group:Switch:OR(ON, OFF) Gr_HVAC_Room_HeatCool_Enable
+
+//  LIVING ROOM (1)
+Switch HVAC_Room_Enable_1 "ХОЛ" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ]
+Group:Number:AVG Gr_HVAC_Room_Temperature_1 "СРЕДНА ТЕМПЕРАТУРА ХОЛ [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_1 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) //,Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_1   "ЗАДВИЖКИ ХОЛ [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_1  
+
+//  HOME OFFICE ROOM (2)
+Switch HVAC_Room_Enable_2 "ОФИС" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_2 "СРЕДНА ТЕМПЕРАТУРА ОФИС [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_2 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) //,Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_2   "ЗАДВИЖКИ ОФИС [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_2  
+
+//  CORRIDOR FLOOR 1  (3)
+Switch HVAC_Room_Enable_3 "КОРИДОР ЕТ.1" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_3 "СРЕДНА ТЕМПЕРАТУРА КОРИДОР ЕТ.1 [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_3 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_3   "ЗАДВИЖКИ КОРИДОР ЕТ.1 [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_3  
+
+//  HVAC WORKSHOP (4)
+Switch HVAC_Room_Enable_4 "РАБОТИЛНИЦА" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_4 "СРЕДНА ТЕМПЕРАТУРА РАБОТИЛНИЦА [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_4 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_4   "ЗАДВИЖКИ РАБОТИЛНИЦА [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_4  
+
+//  HVAC STAIRCASE AND BATHROOM GARRAGE (5)
+Switch HVAC_Room_Enable_5 "СТЪЛБИ И БАНЯ ГАРАЖ" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_5 "СРЕДНА ТЕМПЕРАТУРА СТЪЛБИ И БАНЯ ГАРАЖ [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_5 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_5   "ЗАДВИЖКИ СТЪЛБИ И БАНЯ ГАРАЖ [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_5  
+
+//  HVAC BATHROOM FLOOR 1  (6)
+Switch HVAC_Room_Enable_6 "БАНЯ ЕТ.1" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_6 "СРЕДНА ТЕМПЕРАТУРА БАНЯ ЕТ.1 [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_6 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_6   "ЗАДВИЖКИ БАНЯ ЕТ.1 [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_6 
+
+//  HVAC CORRIDOR GARRAGE   (7)
+Switch HVAC_Room_Enable_7 "КОРИДОР ГАРАЖ" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_7 "СРЕДНА ТЕМПЕРАТУРА КОРИДОР ГАРАЖ [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_7 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_7   "ЗАДВИЖКИ КОРИДОР ГАРАЖ [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_7 
+
+//  HVAC DRESSING ROOM   (8)
+Switch HVAC_Room_Enable_8 "ГАРДЕРОБНА" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_8 "СРЕДНА ТЕМПЕРАТУРА ГАРДЕРОБНА [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_8 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_8   "ЗАДВИЖКИ ГАРДЕРОБНА [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_8 
+
+//  HVAC MASTER BEDROOM   (9)
+Switch HVAC_Room_Enable_9 "ГОЛЯМА СПАЛНЯ" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_9 "СРЕДНА ТЕМПЕРАТУРА ГОЛЯМА СПАЛНЯ [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_9 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_9   "ЗАДВИЖКИ ГОЛЯМА СПАЛНЯ [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_9 
+
+//  HVAC MIDDLE BEDROOM   (10)
+Switch HVAC_Room_Enable_10 "СРЕДНА СПАЛНЯ" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_10 "СРЕДНА ТЕМПЕРАТУРА СРЕДНА СПАЛНЯ [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_10 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_10   "ЗАДВИЖКИ СРЕДНА СПАЛНЯ [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_10 
+
+//  HVAC EAST BEDROOM   (11)
+Switch HVAC_Room_Enable_11 "ИЗТОЧНА СПАЛНЯ" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_11 "СРЕДНА ТЕМПЕРАТУРА ИЗТОЧНА СПАЛНЯ [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_11 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_11   "ЗАДВИЖКИ ИЗТОЧНА СПАЛНЯ [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_11 
+
+//  HVAC LAUNDRY ROOM    (12)
+Switch HVAC_Room_Enable_12 "ПЕРАЛНО" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_12 "СРЕДНА ТЕМПЕРАТУРА ПЕРАЛНО [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_12 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_12   "ЗАДВИЖКИ ПЕРАЛНО [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_12 
+
+//  HVAC LARGE BATHROOM 2 FLOOR    (13)
+Switch HVAC_Room_Enable_13 "ГОЛЯМА БАНЯ ЕТ.2" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_13 "СРЕДНА ТЕМПЕРАТУРА ГОЛЯМА БАНЯ ЕТ.2 [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_13 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_13   "ЗАДВИЖКИ ГОЛЯМА БАНЯ ЕТ.2 [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_13 
+
+//  HVAC SMALL BATHROOM FLOOR 2    (14)
+Switch HVAC_Room_Enable_14 "МАЛКА БАНЯ ЕТ.2" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_14 "СРЕДНА ТЕМПЕРАТУРА МАЛКА БАНЯ ЕТ.2 [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_14 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_14   "ЗАДВИЖКИ МАЛКА БАНЯ ЕТ.2 [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_14 
+
+//  HVAC WINTER GARDEN FLOOR 3   (15)
+Switch HVAC_Room_Enable_15 "ЗИМНА ГРАДИНА" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+Group:Number:AVG Gr_HVAC_Room_Temperature_15 "СРЕДНА ТЕМПЕРАТУРА ЗИМНА ГРАДИНА [%.1f °C]" 
+Number HVAC_Room_Thermostat_Setpoint_15 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
+Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_15   "ЗАДВИЖКИ ЗИМНА ГРАДИНА [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Switch HVAC_Heating_OnOff_Visualizer_15 
+
+
+
 // // // // // WHOLE HOUSE UNDERFLOOR HEATING TEST // // // // // // // // 
 
 Group Gr_HS_UF_ALL // Home Office
+
 Group:Number:AVG Gr_HS_AVERAGE_HEATING_COOLING_Temperature "Home Office Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
-Group:Switch:OR(ON, OFF)  Gr_UF_ALL_ACTUATORS  "ВСИЧКИ  [%d ВКЛЮЧЕН(И)]" <heatingvalve>
-Group:Switch:OR(ON, OFF)  Gr_UF_FF_ACTUATORS   "ЕТАЖ 1 И ГАРАЖ [%d ВКЛЮЧЕН(И)]" <heatingvalve>
-Group:Switch:OR(ON, OFF)  Gr_UF_SF_ACTUATORS   "ЕТАЖ 2 И 3 [%d ВКЛЮЧЕН(И)]" <heatingvalve>
+Group:Switch:OR(ON, OFF)  Gr_UF_ALL_ACTUATORS  "ВСИЧКИ  [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Group:Switch:OR(ON, OFF)  Gr_UF_FF_ACTUATORS   "ЕТАЖ 1 И ГАРАЖ [%d ВКЛЮЧЕНИ]" <heatingvalve>
+Group:Switch:OR(ON, OFF)  Gr_UF_SF_ACTUATORS   "ЕТАЖ 2 И 3 [%d ВКЛЮЧЕНИ]" <heatingvalve>
 
 Switch HOUSE_UF_All_Heating_Enable "Under floor heating all" (Gr_Persist_On_Change_Startup) [ "Switchable" ] 
 Number HOUSE_UF_All_Heating_Setpoint (Gr_Persist_On_Change_Startup) //,Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
 Switch HOUSE_UF_All_Heating 
-
 
 // // // // // HOME OFFICE HEATING/COOLING // // // // // // // // 
 

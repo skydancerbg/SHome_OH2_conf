@@ -1,134 +1,887 @@
+var iterator = 1
 
-// HOME OFFICE HEATING RELATED:
-rule "Update ALL UNDERFLOOR HEATING TEST"
+
+// HVAC Heating, ventilation, and air conditioning
+
+// HVAC LIVINGROOM
+rule "Update HVAC LIVING ROOM UNDERFLOOR HEATING CONTROL"
 
 when
-	Item HeatingCoolingSwitch received update or 
-	Item HOUSE_UF_All_Heating_Setpoint received update or 
-	Item Gr_HS_AVERAGE_HEATING_COOLING_Temperature received update or 
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_1 received update or 
+	Item Gr_HVAC_Room_Temperature_1 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
     // Item Heating_ON_OFF changed or
-    Item HOUSE_UF_All_Heating_Enable changed
+    Item HVAC_Room_Enable_1 changed
 then
-            
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
-            // logInfo("heating_temp_minus_1", ((GF_OF_Heating_Setpoint.state as Number)-1.0).toString)
 
-        //    logInfo("heating_setpoint_temp prЕdi if!!!!!!!", HeatingCoolingSwitch.state.toString)
+    if(((Gr_HVAC_Room_Temperature_1.state as Number)< (HVAC_Room_Thermostat_Setpoint_1.state as Number)-1.0 ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_1.state == ON) {
+            // GF_HR_Relay_Ctrl_Power1.sendCommand(ON)
+            // Thread::sleep(500)
+            // GF_HR_Relay_Ctrl_Power2.sendCommand(ON)
+            // Thread::sleep(500) 
+            // GF_HR_Relay_Ctrl_Power3.sendCommand(ON)
+            // Thread::sleep(500) 
+            // GF_HR_Relay_Ctrl_Power4.sendCommand(ON) 
+            // Thread::sleep(500)
+            // GF_HR_Relay_Ctrl_Power5.sendCommand(ON) 
 
-
-    if(((Gr_HS_AVERAGE_HEATING_COOLING_Temperature.state as Number)< (HOUSE_UF_All_Heating_Setpoint.state as Number)-1.0 ) && (HeatingCoolingSwitch.state as Number) == 1.0  && HOUSE_UF_All_Heating_Enable.state == ON) {
-    // if(((GF_Sonoff_TH16_6_Temperature.state as Number)< (GF_OF_Heating_Setpoint.state as Number)-1.0 ) && Heating_ON_OFF.state == ON  && GF_OF_Heating_Enable.state == ON) {
-
-        logInfo("heating HOUSE", "temperaturata e po-malka ot setpointa ИЛИ КОМАНДА ВКЛ")
-            GF_HR_Relay_Ctrl_Power1.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power2.sendCommand(ON)
-            Thread::sleep(500) 
-            GF_HR_Relay_Ctrl_Power3.sendCommand(ON)
-            Thread::sleep(500) 
-            GF_HR_Relay_Ctrl_Power4.sendCommand(ON) 
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power5.sendCommand(ON) 
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power6.sendCommand(ON) 
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power7.sendCommand(ON)
-            Thread::sleep(500) 
-            GF_HR_Relay_Ctrl_Power8.sendCommand(ON)
-            Thread::sleep(500) 
-            GF_HR_Relay_Ctrl_Power9.sendCommand(ON) 
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power10.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power11.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power12.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power13.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power14.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power15.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power16.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power17.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power18.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power19.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power20.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power21.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power22.sendCommand(ON)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power23.sendCommand(ON)
-            // GF_HR_Relay_Ctrl_Power37.sendCommand(ON)
-            HOUSE_UF_All_Heating.sendCommand(ON)
+            HVAC_UF_Room_ACTUATORS_1.members.forEach[actuator|
+                    
+                        // actuator.sendCommand("1")
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        logInfo("HVAC_LIVING_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_1.sendCommand(ON)
+        // logInfo("HVAC_LIVING_ROOM", "LIVING ROOM UF ON")
         
-	}else if (((Gr_HS_AVERAGE_HEATING_COOLING_Temperature.state as Number) >= (HOUSE_UF_All_Heating_Setpoint.state as Number)) || (HeatingCoolingSwitch.state  as Number) == 0 || (HeatingCoolingSwitch.state  as Number) == 2.0 || HOUSE_UF_All_Heating_Enable.state == OFF)
-	// }else if (((GF_Sonoff_TH16_6_Temperature.state as Number) >= (GF_OF_Heating_Setpoint.state as Number)) || Heating_ON_OFF.state == OFF  || GF_OF_Heating_Enable.state == OFF)
-    {
-        logInfo("heating office", "temperaturata e po-goliama ot setpointa ИЛИ КОМАНДА OFF")
-            GF_HR_Relay_Ctrl_Power1.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power2.sendCommand(OFF)
-            Thread::sleep(500) 
-            GF_HR_Relay_Ctrl_Power3.sendCommand(OFF)
-            Thread::sleep(500) 
-            GF_HR_Relay_Ctrl_Power4.sendCommand(OFF) 
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power5.sendCommand(OFF) 
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power6.sendCommand(OFF) 
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power7.sendCommand(OFF)
-            Thread::sleep(500) 
-            GF_HR_Relay_Ctrl_Power8.sendCommand(OFF)
-            Thread::sleep(500) 
-            GF_HR_Relay_Ctrl_Power9.sendCommand(OFF) 
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power10.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power11.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power12.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power13.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power14.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power15.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power16.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power17.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power18.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power19.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power20.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power21.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power22.sendCommand(OFF)
-            Thread::sleep(500)
-            GF_HR_Relay_Ctrl_Power23.sendCommand(OFF)
-            Thread::sleep(500)     
-        // //
-          //          logInfo("Gr_HS_UF_ACTUATORS WHEN RECEIVED TURN OFF OR TEMP DIFFERENCE", "komanda OFF")
-        // GF_HR_Relay_Ctrl_Power37.sendCommand(OFF)
-        HOUSE_UF_All_Heating.sendCommand(OFF)
+	}else if (((Gr_HVAC_Room_Temperature_1.state as Number) >= (HVAC_Room_Thermostat_Setpoint_1.state as Number)) || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0 || HVAC_Room_Enable_1.state == OFF){
+            // GF_HR_Relay_Ctrl_Power1.sendCommand(OFF)
+            // Thread::sleep(500)
+            // GF_HR_Relay_Ctrl_Power2.sendCommand(OFF)
+            // Thread::sleep(500) 
+            // GF_HR_Relay_Ctrl_Power3.sendCommand(OFF)
+            // Thread::sleep(500) 
+            // GF_HR_Relay_Ctrl_Power4.sendCommand(OFF) 
+            // Thread::sleep(500)
+            // GF_HR_Relay_Ctrl_Power5.sendCommand(OFF) 
+
+            HVAC_UF_Room_ACTUATORS_1.members.forEach[actuator|
+                    
+                        // actuator.sendCommand("0")
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        logInfo("HVAC_LIVING_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_1.sendCommand(OFF)
+        // logInfo("HVAC_LIVING_ROOM", "LIVING ROOM UF OFF")
+    }
+
+end
+
+// HVAC OFFICE (2)
+rule "Update HVAC OFFICE UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_2 received update or 
+	Item Gr_HVAC_Room_Temperature_2 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_2 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_2.state as Number)< (HVAC_Room_Thermostat_Setpoint_2.state as Number)-1.0 ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_2.state == ON) {
+
+            HVAC_UF_Room_ACTUATORS_2.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_2.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_2.state as Number) >= (HVAC_Room_Thermostat_Setpoint_2.state as Number)) || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0 || HVAC_Room_Enable_2.state == OFF){
+
+            HVAC_UF_Room_ACTUATORS_2.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_2.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC CORRIDOR FLOOR 1 (3)
+rule "Update HVAC CORRIDOR FLOOR 1 UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_3 received update or 
+	Item Gr_HVAC_Room_Temperature_3 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_3 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_3.state as Number)< (HVAC_Room_Thermostat_Setpoint_3.state as Number)-1.0 ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_3.state == ON) {
+
+            HVAC_UF_Room_ACTUATORS_3.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_3.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_3.state as Number) >= (HVAC_Room_Thermostat_Setpoint_3.state as Number)) || HVAC_Room_Enable_3.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_3.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_3.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC WORKSHOP
+rule "Update HVAC WORKSHOP UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_4 received update or 
+	Item Gr_HVAC_Room_Temperature_4 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_4 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_4.state as Number)< (HVAC_Room_Thermostat_Setpoint_4.state as Number)-1.0 )  && HVAC_Room_Enable_4.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_4.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_4.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_4.state as Number) >= (HVAC_Room_Thermostat_Setpoint_4.state as Number)) || HVAC_Room_Enable_4.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_4.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_4.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC STAIRCASE AND BATHROOM GARRAGE
+rule "Update HVAC STAIRCASE AND BATHROOM GARRAGE UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_5 received update or 
+	Item Gr_HVAC_Room_Temperature_5 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_5 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_5.state as Number)< (HVAC_Room_Thermostat_Setpoint_5.state as Number)-1.0 )  && HVAC_Room_Enable_5.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_5.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_5.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_5.state as Number) >= (HVAC_Room_Thermostat_Setpoint_5.state as Number)) || HVAC_Room_Enable_5.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_5.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_5.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  BATHROOM FLOOR 1 
+rule "Update HVAC BATHROOM FLOOR 1 UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_6 received update or 
+	Item Gr_HVAC_Room_Temperature_6 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_6 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_6.state as Number)< (HVAC_Room_Thermostat_Setpoint_6.state as Number)-1.0 )  && HVAC_Room_Enable_6.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_6.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_6.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_6.state as Number) >= (HVAC_Room_Thermostat_Setpoint_6.state as Number)) || HVAC_Room_Enable_6.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_6.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_6.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  CORRIDOR GARRAGE 
+rule "Update HVAC CORRIDOR GARRAGE UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_7 received update or 
+	Item Gr_HVAC_Room_Temperature_7 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_7 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_7.state as Number)< (HVAC_Room_Thermostat_Setpoint_7.state as Number)-1.0 )  && HVAC_Room_Enable_7.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_7.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_7.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_7.state as Number) >= (HVAC_Room_Thermostat_Setpoint_7.state as Number)) || HVAC_Room_Enable_7.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_7.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_7.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  DRESSING ROOM 
+rule "Update HVAC DRESSING ROOM UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_8 received update or 
+	Item Gr_HVAC_Room_Temperature_8 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_8 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_8.state as Number)< (HVAC_Room_Thermostat_Setpoint_8.state as Number)-1.0 )  && HVAC_Room_Enable_8.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_8.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_8.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_8.state as Number) >= (HVAC_Room_Thermostat_Setpoint_8.state as Number)) || HVAC_Room_Enable_8.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_8.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_8.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  MASTER BEDROOM 
+rule "Update HVAC MASTER BEDROOM UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_9 received update or 
+	Item Gr_HVAC_Room_Temperature_9 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_9 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_9.state as Number)< (HVAC_Room_Thermostat_Setpoint_9.state as Number)-1.0 )  && HVAC_Room_Enable_9.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_9.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_9.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_9.state as Number) >= (HVAC_Room_Thermostat_Setpoint_9.state as Number)) || HVAC_Room_Enable_9.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_9.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_9.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  MIDDLE BEDROOM 
+rule "Update HVAC MIDDLE BEDROOM UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_10 received update or 
+	Item Gr_HVAC_Room_Temperature_10 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_10 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_10.state as Number)< (HVAC_Room_Thermostat_Setpoint_10.state as Number)-1.0 )  && HVAC_Room_Enable_10.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_10.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_10.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_10.state as Number) >= (HVAC_Room_Thermostat_Setpoint_10.state as Number)) || HVAC_Room_Enable_10.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_10.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_10.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  EAST BEDROOM 
+rule "Update HVAC EAST BEDROOM UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_11 received update or 
+	Item Gr_HVAC_Room_Temperature_11 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_11 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_11.state as Number)< (HVAC_Room_Thermostat_Setpoint_11.state as Number)-1.0 )  && HVAC_Room_Enable_11.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_11.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_11.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_11.state as Number) >= (HVAC_Room_Thermostat_Setpoint_11.state as Number)) || HVAC_Room_Enable_11.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_11.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_11.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  LAUNDRY ROOM 
+rule "Update HVAC LAUNDRY ROOM UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_12 received update or 
+	Item Gr_HVAC_Room_Temperature_12 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_12 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_12.state as Number)< (HVAC_Room_Thermostat_Setpoint_12.state as Number)-1.0 )  && HVAC_Room_Enable_12.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_12.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_12.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_12.state as Number) >= (HVAC_Room_Thermostat_Setpoint_12.state as Number)) || HVAC_Room_Enable_12.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_12.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_12.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  LARGE BATHROOM FLOOR 2
+rule "Update HVAC LARGE BATHROOM FLOOR 2 UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_13 received update or 
+	Item Gr_HVAC_Room_Temperature_13 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_13 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_13.state as Number)< (HVAC_Room_Thermostat_Setpoint_13.state as Number)-1.0 )  && HVAC_Room_Enable_13.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_13.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_13.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_13.state as Number) >= (HVAC_Room_Thermostat_Setpoint_13.state as Number)) || HVAC_Room_Enable_13.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_13.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_13.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  SMALL BATHROOM FLOOR 2
+rule "Update HVAC SMALL BATHROOM FLOOR 2 UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_14 received update or 
+	Item Gr_HVAC_Room_Temperature_14 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_14 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_14.state as Number)< (HVAC_Room_Thermostat_Setpoint_14.state as Number)-1.0 )  && HVAC_Room_Enable_14.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_14.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_14.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_14.state as Number) >= (HVAC_Room_Thermostat_Setpoint_14.state as Number)) || HVAC_Room_Enable_14.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_14.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_14.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
+    }
+
+end
+
+// HVAC  WINTER GARDEN FLOOR 3
+rule "Update HVAC WINTER GARDEN FLOOR 3 UNDERFLOOR HEATING CONTROL"
+
+when
+	Item HVAC_HeatingCooling_Switch received update or 
+	Item HVAC_Room_Thermostat_Setpoint_15 received update or 
+	Item Gr_HVAC_Room_Temperature_15 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
+    // Item Heating_ON_OFF changed or
+    Item HVAC_Room_Enable_15 changed
+then
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+
+    if(((Gr_HVAC_Room_Temperature_15.state as Number)< (HVAC_Room_Thermostat_Setpoint_15.state as Number)-1.0 )  && HVAC_Room_Enable_15.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+
+            HVAC_UF_Room_ACTUATORS_15.members.forEach[actuator|
+                    
+                        actuator.sendCommand(ON)
+                        // Thread::sleep(500)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+        HVAC_Heating_OnOff_Visualizer_15.sendCommand(ON)
+
+        // logInfo("HVAC_OFFICE", "OFFICE UF ON")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+	}else if (((Gr_HVAC_Room_Temperature_15.state as Number) >= (HVAC_Room_Thermostat_Setpoint_15.state as Number)) || HVAC_Room_Enable_15.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+
+            HVAC_UF_Room_ACTUATORS_15.members.forEach[actuator|
+                    
+                        actuator.sendCommand(OFF)
+                        // Thread::sleep(200)
+                        // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
+                        iterator ++
+                    ]
+        iterator = 1 // reset the iterator to 1
+
+        HVAC_Heating_OnOff_Visualizer_15.sendCommand(OFF)
+        // logInfo("HVAC_OFFICE", "OFFICE UF OFF")
+        // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
+
     }
 
 end
 
 
+
+
+// HEAT PUMP RELATED
+rule "Update GF_HR_hp_On_Off SWITCH BASED ON HEAT PUMP POWER CONSUMPTION"
+
+when
+	Item Meter_Total_Active_Power_heat_pump received update
+then
+// HEAT PUMP POWER CONSUMPTION IS OVER 3500 WATTS PLUS WELL PUMP CONSUMPTION OF 600 TO 800 WATTS USUAL TOTAL ACTIVE POWER IS ABOUT 4500 WATTS
+    if ((Meter_Total_Active_Power_heat_pump.state as Number) > 2500.0){
+        GF_HR_hp_On_Off.sendCommand(ON)
+        logInfo("heat_pump_onoff_rule", "GF_HR_hp_On_Off set to ON") 
+    }
+    else if ((Meter_Total_Active_Power_heat_pump.state as Number) < 2500.0) {
+        GF_HR_hp_On_Off.sendCommand(OFF)
+        logInfo("heat_pump_onoff_rule", "GF_HR_hp_On_Off set to OFF") 
+    }
+end
+
+// SOLAR PUMP RELATED
+rule "Update GF_HR_solar_pump_On_Off SWITCH BASED ON SOLAR AND HW RECIRCULATION POWER CONSUMPTION"
+
+when
+	Item Meter_Power_soalar_and_hw_recirculation received update
+then
+// HEAT PUMP POWER CONSUMPTION IS OVER 40 WATTS USUAL TOTAL ACTIVE POWER IS ABOUT 67 - 75 WATTS
+//! NB: The value includes the hot water recirculation pump power and UPS standby and charge power
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!! The 40 W threshold set here needs fine tuning based on more usage data !!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if ((Meter_Power_soalar_and_hw_recirculation.state as Number) > 40.0){
+        GF_HR_solar_pump_On_Off.sendCommand(ON)
+        logInfo("solar_pump_onoff_rule", "GF_HR_solar_pump_On_Off set to ON") 
+    }
+    else if ((Meter_Power_soalar_and_hw_recirculation.state as Number) < 40.0) {
+        GF_HR_solar_pump_On_Off.sendCommand(OFF)
+        logInfo("solar_pump_onoff_rule", "GF_HR_solar_pump_On_Off set to OFF") 
+    }
+end
+
+// DESUPERHEATER PUMP RELATED
+rule "CONTROL GF_HR_Relay_Ctrl_hw_hp_superheater_pump REALY BASED ON HEAT PUMP ON OFF VIRTUAL SWITCH GF_HR_hp_On_Off"
+
+when
+	Item GF_HR_hp_On_Off received update
+then
+    if (GF_HR_hp_On_Off.state == ON){
+        GF_HR_Relay_Ctrl_hw_hp_superheater_pump.sendCommand(ON)
+        logInfo("desuperheater_onoff", "GF_HR_Relay_Ctrl_hw_hp_superheater_pump set to ON") 
+    }
+    else if (GF_HR_hp_On_Off.state == OFF) {
+        GF_HR_Relay_Ctrl_hw_hp_superheater_pump.sendCommand(OFF)
+        logInfo("desuperheater_onoff", "GF_HR_Relay_Ctrl_hw_hp_superheater_pump set to OFF") 
+    }
+end
+
+
+// HOME ALL HEATING RELATED:
+// rule "Update ALL UNDERFLOOR HEATING TEST"
+
+// when
+// 	Item HeatingCoolingSwitch received update or 
+// 	Item HOUSE_UF_All_Heating_Setpoint received update or 
+// 	Item Gr_HS_AVERAGE_HEATING_COOLING_Temperature received update or 
+//     // Item Heating_ON_OFF changed or
+//     Item HOUSE_UF_All_Heating_Enable changed
+// then
+            
+//             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+//             // logInfo("heating_temp_minus_1", ((GF_OF_Heating_Setpoint.state as Number)-1.0).toString)
+
+//         //    logInfo("heating_setpoint_temp prЕdi if!!!!!!!", HeatingCoolingSwitch.state.toString)
+
+
+//     if(((Gr_HS_AVERAGE_HEATING_COOLING_Temperature.state as Number)< (HOUSE_UF_All_Heating_Setpoint.state as Number)-1.0 ) && (HeatingCoolingSwitch.state as Number) == 1.0  && HOUSE_UF_All_Heating_Enable.state == ON) {
+//     // if(((GF_Sonoff_TH16_6_Temperature.state as Number)< (GF_OF_Heating_Setpoint.state as Number)-1.0 ) && Heating_ON_OFF.state == ON  && GF_OF_Heating_Enable.state == ON) {
+
+//         logInfo("heating ALL", "temperaturata e po-malka ot setpointa ИЛИ КОМАНДА ВКЛ")
+//             GF_HR_Relay_Ctrl_Power1.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power2.sendCommand(ON)
+//             Thread::sleep(500) 
+//             GF_HR_Relay_Ctrl_Power3.sendCommand(ON)
+//             Thread::sleep(500) 
+//             GF_HR_Relay_Ctrl_Power4.sendCommand(ON) 
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power5.sendCommand(ON) 
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power6.sendCommand(ON) 
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power7.sendCommand(ON)
+//             Thread::sleep(500) 
+//             GF_HR_Relay_Ctrl_Power8.sendCommand(ON)
+//             Thread::sleep(500) 
+//             GF_HR_Relay_Ctrl_Power9.sendCommand(ON) 
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power10.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power11.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power12.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power13.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power14.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power15.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power16.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power17.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power18.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power19.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power20.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power21.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power22.sendCommand(ON)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power23.sendCommand(ON)
+//             // GF_HR_Relay_Ctrl_Power37.sendCommand(ON)
+//             HOUSE_UF_All_Heating.sendCommand(ON)
+        
+// 	}else if (((Gr_HS_AVERAGE_HEATING_COOLING_Temperature.state as Number) >= (HOUSE_UF_All_Heating_Setpoint.state as Number)) || (HeatingCoolingSwitch.state  as Number) == 0 || (HeatingCoolingSwitch.state  as Number) == 2.0 || HOUSE_UF_All_Heating_Enable.state == OFF)
+// 	// }else if (((GF_Sonoff_TH16_6_Temperature.state as Number) >= (GF_OF_Heating_Setpoint.state as Number)) || Heating_ON_OFF.state == OFF  || GF_OF_Heating_Enable.state == OFF)
+//     {
+//         logInfo("heating ALL", "temperaturata e po-goliama ot setpointa ИЛИ КОМАНДА OFF")
+//             GF_HR_Relay_Ctrl_Power1.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power2.sendCommand(OFF)
+//             Thread::sleep(500) 
+//             GF_HR_Relay_Ctrl_Power3.sendCommand(OFF)
+//             Thread::sleep(500) 
+//             GF_HR_Relay_Ctrl_Power4.sendCommand(OFF) 
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power5.sendCommand(OFF) 
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power6.sendCommand(OFF) 
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power7.sendCommand(OFF)
+//             Thread::sleep(500) 
+//             GF_HR_Relay_Ctrl_Power8.sendCommand(OFF)
+//             Thread::sleep(500) 
+//             GF_HR_Relay_Ctrl_Power9.sendCommand(OFF) 
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power10.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power11.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power12.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power13.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power14.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power15.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power16.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power17.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power18.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power19.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power20.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power21.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power22.sendCommand(OFF)
+//             Thread::sleep(500)
+//             GF_HR_Relay_Ctrl_Power23.sendCommand(OFF)
+//             Thread::sleep(500)     
+//         // //
+//           //          logInfo("Gr_HS_UF_ACTUATORS WHEN RECEIVED TURN OFF OR TEMP DIFFERENCE", "komanda OFF")
+//         // GF_HR_Relay_Ctrl_Power37.sendCommand(OFF)
+//         HOUSE_UF_All_Heating.sendCommand(OFF)
+//     }
+
+// end
+
+
 // HOME OFFICE HEATING RELATED:
-rule "Update Home office Heating"
+rule "Update HOME OFFICE ELECTRIC BLOWER Heating"
 
 when
 	Item HeatingCoolingSwitch received update or 
