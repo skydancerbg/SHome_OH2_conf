@@ -14,6 +14,7 @@ default = everyChange
 }
 
 Items {
+    Gr_Persist_On_Change* :  strategy = everyChange
     Gr_Persist_On_Change_Startup*, HeatingCoolingSwitch, GF_OF_Heating_Setpoint : strategy = everyChange, restoreOnStartup
     Gr_HR_ACTIVE_POWER,Gr_HR_HeatPump_And_WellPump_POWER : strategy = everyChange, every30seconds
     Gr_Persist_On_Change_1minute*,  Gr_Temperature_measurments*, Gr_HR_ACTIVE_POWER*, Gr_House_Inside_Temperature : strategy = everyChange, every1Minutes

@@ -1,0 +1,62 @@
+
+//Daily power usage:
+// https://community.openhab.org/t/solved-power-usage-daily/70614/4
+
+// cron-expression-generator
+// https://www.freeformatter.com/cron-expression-generator-quartz.html#
+
+// 0 0 6/1 ? * * *  -At second :00, at minute :00, every hour starting at 06am, of every day
+
+// var initial // !!!!!!!!ПЪРВИ ЗАПИС НА 31.3.2020!!!!!!!!!!!!!!
+
+// rule "initial persist"
+// when
+//     // Time cron "0 * * ? * * *" //every 1 minutes
+//     // Time cron "*/5 * * * *" //every 5 minutes
+//     Time cron "0 0 6/1 ? * * *"  //every hour
+// then
+//     postUpdate(Daily_Power_Usage_all_hvac_and_hot_water,268.35)
+//     postUpdate(Daily_Power_Usage_solar_hv_recirc_el_heater,10.59)
+//     Daily_Power_Usage_heat_pump_and_well_pump.postUpdate(256.85)
+//     Daily_Power_Usage_heat_pump.postUpdate(210.58)
+//     Daily_Power_Usage_well_pump.postUpdate(46.33)
+//     Daily_Power_Usage_soalar_and_hw_recirc.postUpdate(6.99)
+//     Daily_Power_Usage_water_heater.postUpdate(3.6)
+//     Daily_Power_Usage_recuperator.postUpdate(0.23)
+    
+//     logInfo("chron", "MINAAAAAAAAAAAAAAAAAAAA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+// end
+
+// .postUpdate(PowerMeterTotal.state)
+
+// https://community.openhab.org/t/rule-to-work-with-float/78041/5
+
+// rule "Save meter readings at midnight"
+// when
+//     Time is midnight
+// then
+//     Daily_Power_Usage_all_hvac_and_hot_water.postUpdate((Gr_HR_Total_KWh.state as Number).floatValue -(Daily_Power_Usage_all_hvac_and_hot_water.state as Number).floatValue) //Gr_HR_Total_KWh
+//     Daily_Power_Usage_solar_hv_recirc_el_heater.postUpdate((Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump.state as Number‬).floatValue -(Daily_Power_Usage_solar_hv_recirc_el_heater.state as Number).floatValue) //Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump
+//     Daily_Power_Usage_heat_pump_and_well_pump.postUpdate((Gr_HR_Total_KWh_HeatPump_And_WellPump.state as Number‬).floatValue -(Daily_Power_Usage_heat_pump_and_well_pump.state as Number).floatValue) //Gr_HR_Total_KWh_HeatPump_And_WellPump
+//     Daily_Power_Usage_heat_pump.postUpdate(Meter_Total_KWh_heat_pump.state as Number‬).floatValue -(Daily_Power_Usage_heat_pump.state as Number).floatValue) //Meter_Total_KWh_heat_pump
+//     Daily_Power_Usage_well_pump.postUpdate(Meter_TotalKWh_well_pump.state as Number‬).floatValue -(Daily_Power_Usage_well_pump.state as Number).floatValue) //Meter_TotalKWh_well_pump
+//     Daily_Power_Usage_soalar_and_hw_recirc.postUpdate(Meter_TotalKWh_soalar_and_hw_recirculation.state as Number‬).floatValue -(Daily_Power_Usage_soalar_and_hw_recirc.state as Number).floatValue) //Meter_TotalKWh_soalar_and_hw_recirculation
+//     Daily_Power_Usage_water_heater.postUpdate(Meter_TotalKWh_soalar_and_hw_recirculation.state as Number‬).floatValue -(Daily_Power_Usage_water_heater.state as Number).floatValue)//Meter_TotalKWh_soalar_and_hw_recirculation
+//     Daily_Power_Usage_recuperator.postUpdate(Meter_TotalKWh_recuperator.state as Number‬).floatValue -(Daily_Power_Usage_recuperator.state as Number).floatValue) //Meter_TotalKWh_recuperator
+// end
+
+// rule "power consumption min/max/range"
+// when
+//     Item Pump_Consumption changed
+// then
+//     val max = Pump_Consumption.maximumSince(now.withTimeAtStartOfDay)
+//     val min = Pump_Consumption.minimumSince(now.withTimeAtStartOfDay)    
+    
+//     if (max !== null && min !== null) {
+//         val range = (Pump_Consumption_Max.state as Number).intValue - (Pump_Consumption_Min.state as Number).intValue
+
+//         postUpdate(Pump_Consumption_Max, max.state)
+//         postUpdate(Pump_Consumption_Min, min.state)
+//         postUpdate(Pump_Consumption_Range, range)
+//     }

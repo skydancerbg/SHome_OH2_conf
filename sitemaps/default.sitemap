@@ -1,4 +1,5 @@
 sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
+
         Frame label="ДАТА/ЧАС, ИЗГРЕВ И ЗАЛЕЗ СЛЪНЦЕ:" {
             Text item=Date //label="Livingroom"
             Text item=none
@@ -8,18 +9,25 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
             //Text item=DateDiffFormat //label="Livingroo"
         }    
 
-    Frame label="ПРИСЪСТВИЕ" 
-    	{
-    	Switch item=gPresence icon="parents_3_3" label="В къщи са:"
-    	Text label="Кой си е у дома?:" icon="parents_3_3" 
-    		{
-    		Switch item=Network_Stefan_S7_Online icon="boy_3" label="Стефан S7"
-    		Switch item=Network_Stefan_S5_Online icon="boy_3" label="Стефан S5"
-    		Switch item=Network_Stefan_Note10_Online icon="boy_3" label="Стефан Note10"
-            Switch item=Network_Desi_N8_Online icon="girl_3" label="Деси"	    		
-    		Switch item=Network_Stefan_Note10_Benkovski_Online icon="boy_1" label="Стефан Note10 Бенковски"
-    		}
-         }
+        Frame label="ЗАХРАНВАНЕ КОНТРОЛЕРИ:" {
+            Switch item=XiGW2_sensor_plug_1_Power
+            Switch item=XiGW2_sensor_plug_1_InUse    
+            Text item=XiGW2_sensor_plug_1_loadPower       
+            Text item=XiGW2_sensor_plug_1_powerConsumed   
+        } 
+
+
+        Frame label="ДНЕВНА КОНСУМАЦИЯ НА ЕЛ. ЕНЕРГИЯЗА ПРЕДИШНИЯТ ДЕН:" {
+            Text item=Daily_Power_Usage_all_hvac_and_hot_water  label="ОБЩО КЛИМАТИЗАЦИЯ И БГВ [%.2f]"
+            Text item=Daily_Power_Usage_solar_hv_recirc_el_heater  label="СОЛАР И ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f]"
+            Text item=Daily_Power_Usage_heat_pump_and_well_pump  label="ТЕРМОПОМПА И СОНДАЖНА ПОМПА [%.2f]"
+            Text item=Daily_Power_Usage_heat_pump     label="ТЕРМОПОМПА [%.2f]"
+            Text item=Daily_Power_Usage_well_pump  label="СОНДАЖНА ПОМПА [%.2f]"
+            Text item=Daily_Power_Usage_soalar_and_hw_recirc  label="СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ [%.2f]"
+            Text item=Daily_Power_Usage_water_heater  label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f]"
+            Text item=Daily_Power_Usage_recuperator  label="РЕКУПЕРАТОР [%.2f]"
+        } 
+
 
         Frame label="ОТОПЛЕНИЕ/ОХЛАЖДАНЕ" icon="radiator" {
             // UNCOMMENT TO INITIALLY SET THE SWITCH POSITION !!!
@@ -28,7 +36,7 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
             Switch item=HVAC_HeatingCooling_Switch icon="mode_heating"  visibility=[HVAC_HeatingCooling_Switch==1.0] mappings=[0.0="ИЗКЛЮЧЕНО",1.0="ОТОПЛЕНИЕ",2.0="ОХЛАЖДАНЕ"]   
             Switch item=HVAC_HeatingCooling_Switch icon="mode_cooling"  visibility=[HVAC_HeatingCooling_Switch==2.0] mappings=[0.0="ИЗКЛЮЧЕНО",1.0="ОТОПЛЕНИЕ",2.0="ОХЛАЖДАНЕ"]  
             // Switch item=HeatingCoolingSwitch mappings=[0="OFF",1="HEATING",2="COOLING"]
-   
+            Setpoint    item=HVAC_Virtual_Thermostat_Delta_Temp label="Температурна делта [%.1f °C]" icon="temperature" minValue=0 maxValue=1 step=0.1
             Text label="УПРАВЛЕНИЕ НА КЛИМАТИЗАЦИЯТА:" icon="radiator" {
                     // Switch item=Heating_ON_OFF label="КЪЩА: КОНТРОЛЕР термостати (ВКЛ./ИЗКЛ.)"
                     // https://community.openhab.org/t/solved-how-to-insert-an-empty-field-in-sitemap/48546/2
@@ -155,21 +163,21 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
                 Group item=Gr_House_Outside_Temperature label="ВЪНШНА (средно измерена) [%.1f °C]" icon="temperature"
                 Group item=Gr_House_Inside_Temperature label="ВЪТРЕШНА (средно измерена) [%.1f °C]" icon="temperature"
                     // Text item=none
-                    // Text item=none
-                Frame label="ТЕМПЕРАТУРИ БГВ:" icon="temperature" {
-                Text item= GF_HR_SENSORS_TEMP_hw_tank_top label="БОЙЛЕР ГОРЕ [%.1f °C]" icon="temperature"
-                Text item= GF_HR_SENSORS_TEMP_hw_tank_top label="БОЙЛЕР СРЕДА [%.1f °C]" icon="temperature"
-                }
-                Frame label="ТЕМПЕРАТУРИ СОЛАР:" icon="temperature" {
-                Text item= GF_HR_SENSORS_TEMP_solar_col label="СЛЪНЧЕВ КОЛЕКТОР [%.1f °C]" icon="temperature"
-                Text item=none
-                Text item= GF_HR_SENSORS_TEMP_solar_from_col label="ОТ СЛЪНЧЕВ КОЛЕКТОР [%.1f °C]" icon="temperature"
-                Text item= GF_HR_SENSORS_TEMP_solar_to_col label="КЪМ СЛЪНЧЕВ КОЛЕКТОР [%.1f °C]" icon="temperature"
-                }
-                Frame label="ТЕСТ:" icon="temperature" {
-                Text item= GF_Sonoff_TH16_2_Temperature label="СПАЛНЯ ЕТ.2 [%.1f °C]" icon="temperature"
-                Text item= XGW2_XA_THP_6_Temperature label="КОРИДОР ЕТ.3 [%.1f °C]" icon="temperature"
-                }
+                //     // Text item=none
+                // Frame label="ТЕМПЕРАТУРИ БГВ:" icon="temperature" {
+                // Text item= GF_HR_SENSORS_TEMP_hw_tank_top label="БОЙЛЕР ГОРЕ [%.1f °C]" icon="temperature"
+                // Text item= GF_HR_SENSORS_TEMP_hw_tank_top label="БОЙЛЕР СРЕДА [%.1f °C]" icon="temperature"
+                // }
+                // Frame label="ТЕМПЕРАТУРИ СОЛАР:" icon="temperature" {
+                // Text item= GF_HR_SENSORS_TEMP_solar_col label="СЛЪНЧЕВ КОЛЕКТОР [%.1f °C]" icon="temperature"
+                // Text item=none
+                // Text item= GF_HR_SENSORS_TEMP_solar_from_col label="ОТ СЛЪНЧЕВ КОЛЕКТОР [%.1f °C]" icon="temperature"
+                // Text item= GF_HR_SENSORS_TEMP_solar_to_col label="КЪМ СЛЪНЧЕВ КОЛЕКТОР [%.1f °C]" icon="temperature"
+                // }
+                // Frame label="ТЕСТ:" icon="temperature" {
+                // Text item= GF_Sonoff_TH16_2_Temperature label="СПАЛНЯ ЕТ.2 [%.1f °C]" icon="temperature"
+                // Text item= XGW2_XA_THP_6_Temperature label="КОРИДОР ЕТ.3 [%.1f °C]" icon="temperature"
+                // }
         }
 
         // Frame label="ВЪТРЕШНА ТЕМЕПРАТУРА:" icon="temperature" {
@@ -191,14 +199,17 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
         // }
            
         Frame label="УПРАВЛЕНИЕ ПОМПИ И НАГРЕВАТЕЛ:" icon="water_heater" {    
-            Switch  item=GF_HR_Relay_Ctrl_hw_electric_heater icon="water_heater"  label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР"
-            Switch  item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="ПОМПА РЕЦИРКУЛАЦИЯ БГВ"
-            Switch  item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="ПОМПА ДЕСУПЕРХИИТЪР"
-            Switch  item=GF_HR_Relay_Ctrl_solar_3way_sw icon="3way_valve" label="ТРИПЪТНА ЗАДВИЖКА СОЛАР"    
+            Switch  item=GF_HR_Relay_Ctrl_Power30 icon="radiator"  label="КОНТАКТОР ТЕРМОПОМПА"
+            Switch  item=GF_HR_Relay_Ctrl_hp_circ_pump icon="circulation_pump"  label="РЕЛЕ ПОМПА ЦИРКУЛАЦИЯ ТЕРМОПОМПА"
+            Switch  item=GF_HR_Relay_Ctrl_hw_electric_heater icon="water_heater"  label="РЕЛЕ ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР"
+            Switch  item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="РЕЛЕ ПОМПА РЕЦИРКУЛАЦИЯ БГВ"
+            Switch  item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="РЕЛЕ ПОМПА ДЕСУПЕРХИИТЪР"
+            Switch  item=GF_HR_Relay_Ctrl_solar_3way_sw icon="3way_valve" label="РЕЛЕ ТРИПЪТНА ЗАДВИЖКА СОЛАР"    
         }
 
         Frame label="СТАТУС ТЕРМОПОМПА И ПОМПИ:" icon="switch" {
                 Switch item=GF_HR_hp_On_Off icon="switch" label="ТЕРМОПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+                Switch item=GF_HR_Relay_Ctrl_hp_circ_pump icon="switch" label="ПОМПА ЦИРКУЛАЦИЯ ТЕРМОПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
                 Switch item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="ПОМПА ДЕСУПЕРХИИТЪР" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
                 Switch item=GF_HR_solar_pump_On_Off icon="circulation_pump" label="ПОМПА СОЛАР" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
                 Switch item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="РЕЦИРКУЛАЦИОННА ПОМПА БГВ" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
@@ -232,6 +243,19 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
 
             Group item=Gr_GF_HR_AM_ET_DIY_Heating_Room_Ctrl
         }
+
+    Frame label="ПРИСЪСТВИЕ" 
+    	{
+    	Switch item=gPresence icon="parents_3_3" label="В къщи са:"
+    	Text label="Кой си е у дома?:" icon="parents_3_3" 
+    		{
+    		Switch item=Network_Stefan_S7_Online icon="boy_3" label="Стефан S7"
+    		Switch item=Network_Stefan_S5_Online icon="boy_3" label="Стефан S5"
+    		Switch item=Network_Stefan_Note10_Online icon="boy_3" label="Стефан Note10"
+            Switch item=Network_Desi_N8_Online icon="girl_3" label="Деси"	    		
+    		Switch item=Network_Stefan_Note10_Benkovski_Online icon="boy_1" label="Стефан Note10 Бенковски"
+    		}
+         }
 
         Frame label="ОТОПЛЕНИЕ/ОХЛАЖДАНЕ ДУХАЛКИ ОФИС И ТЕСТ ВСИЧКИ ЗАДВИЖКИ" icon="radiator" {
             // UNCOMMENT TO INITIALLY SET THE SWITCH POSITION !!!

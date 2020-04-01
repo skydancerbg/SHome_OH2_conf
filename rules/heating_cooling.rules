@@ -30,7 +30,7 @@ then
                     
                         // actuator.sendCommand("1")
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         logInfo("HVAC_LIVING_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -53,7 +53,7 @@ then
                     
                         // actuator.sendCommand("0")
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         logInfo("HVAC_LIVING_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -81,7 +81,7 @@ then
             HVAC_UF_Room_ACTUATORS_2.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -95,7 +95,7 @@ then
             HVAC_UF_Room_ACTUATORS_2.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -126,7 +126,7 @@ then
             HVAC_UF_Room_ACTUATORS_3.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -140,7 +140,7 @@ then
             HVAC_UF_Room_ACTUATORS_3.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -171,7 +171,7 @@ then
             HVAC_UF_Room_ACTUATORS_4.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -185,7 +185,7 @@ then
             HVAC_UF_Room_ACTUATORS_4.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -216,7 +216,7 @@ then
             HVAC_UF_Room_ACTUATORS_5.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -230,7 +230,7 @@ then
             HVAC_UF_Room_ACTUATORS_5.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -261,7 +261,7 @@ then
             HVAC_UF_Room_ACTUATORS_6.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -275,7 +275,7 @@ then
             HVAC_UF_Room_ACTUATORS_6.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -306,7 +306,7 @@ then
             HVAC_UF_Room_ACTUATORS_7.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -320,7 +320,7 @@ then
             HVAC_UF_Room_ACTUATORS_7.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -351,7 +351,7 @@ then
             HVAC_UF_Room_ACTUATORS_8.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -365,7 +365,7 @@ then
             HVAC_UF_Room_ACTUATORS_8.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -396,7 +396,7 @@ then
             HVAC_UF_Room_ACTUATORS_9.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -410,7 +410,7 @@ then
             HVAC_UF_Room_ACTUATORS_9.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -441,7 +441,7 @@ then
             HVAC_UF_Room_ACTUATORS_10.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -455,7 +455,7 @@ then
             HVAC_UF_Room_ACTUATORS_10.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -486,7 +486,7 @@ then
             HVAC_UF_Room_ACTUATORS_11.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -500,7 +500,7 @@ then
             HVAC_UF_Room_ACTUATORS_11.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -531,7 +531,7 @@ then
             HVAC_UF_Room_ACTUATORS_12.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -545,7 +545,7 @@ then
             HVAC_UF_Room_ACTUATORS_12.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -576,7 +576,7 @@ then
             HVAC_UF_Room_ACTUATORS_13.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -590,7 +590,7 @@ then
             HVAC_UF_Room_ACTUATORS_13.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -621,7 +621,7 @@ then
             HVAC_UF_Room_ACTUATORS_14.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -635,7 +635,7 @@ then
             HVAC_UF_Room_ACTUATORS_14.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -666,7 +666,7 @@ then
             HVAC_UF_Room_ACTUATORS_15.members.forEach[actuator|
                     
                         actuator.sendCommand(ON)
-                        // Thread::sleep(500)
+                        Thread::sleep(500)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO ON")
                         iterator ++
                     ]
@@ -680,7 +680,7 @@ then
             HVAC_UF_Room_ACTUATORS_15.members.forEach[actuator|
                     
                         actuator.sendCommand(OFF)
-                        // Thread::sleep(200)
+                        Thread::sleep(200)
                         // logInfo("HVAC_OFFICE_ROOM_ACTUATOR", "LIVING ROOM UF ACTUATOR "+ iterator.toString +" SET TO OFF")
                         iterator ++
                     ]
@@ -698,6 +698,18 @@ end
 
 
 // HEAT PUMP RELATED
+rule "START UNDERFLOOR CIRCULATION PUMP WHEN HEAT PUMP STARTS"
+
+when
+	Item GF_HR_hp_On_Off received update
+then
+// HEAT PUMP POWER CONSUMPTION IS OVER 3500 WATTS PLUS WELL PUMP CONSUMPTION OF 600 TO 800 WATTS USUAL TOTAL ACTIVE POWER IS ABOUT 4500 WATTS
+    if (GF_HR_Relay_Ctrl_hp_circ_pump.state == OFF) {
+        GF_HR_Relay_Ctrl_hp_circ_pump.sendCommand(ON)
+        logInfo("heat__CIRCULATION_pump_on_rule", "HEAT PUMP ON -> UNDERFLOOR CIRCULATION PUMP START") 
+    }
+end
+
 rule "Update GF_HR_hp_On_Off SWITCH BASED ON HEAT PUMP POWER CONSUMPTION"
 
 when

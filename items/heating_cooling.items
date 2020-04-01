@@ -15,6 +15,8 @@ Number HeatingCoolingSwitch "[MAP(heatingcooling_states.map):%s]" (Gr_Persist_On
 
 Number HVAC_HeatingCooling_Switch "[MAP(heatingcooling_states.map):%s]" (Gr_Persist_On_Change_Startup)
 
+Number HVAC_Virtual_Thermostat_Delta_Temp (Gr_Persist_On_Change_Startup)
+
 //ALL ROOM TEMPERATURE SENSORS:
 Group Gr_HVAC_Room_Temperatures
 //ALL ROOM TEMPERATURE SETPOINTS:

@@ -1,7 +1,7 @@
 //https://community.openhab.org/t/solved-how-to-insert-an-empty-field-in-sitemap/48546/2
 String none "" <none>
 
-
+// Number TotalKWh 
 
 // for  “turn on a lamp when motion is detected but only after sunset until sunrise”
 // https://community.openhab.org/t/help-to-create-a-rule-turn-on-a-lamp-when-motion-is-detected-but-only-after-sunset-until-sunrise/43905
