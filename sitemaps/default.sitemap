@@ -17,18 +17,6 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
         } 
 
 
-        Frame label="ДНЕВНА КОНСУМАЦИЯ НА ЕЛ. ЕНЕРГИЯЗА ПРЕДИШНИЯТ ДЕН:" {
-            Text item=Daily_Power_Usage_all_hvac_and_hot_water  label="ОБЩО КЛИМАТИЗАЦИЯ И БГВ [%.2f]"
-            Text item=Daily_Power_Usage_solar_hv_recirc_el_heater  label="СОЛАР И ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f]"
-            Text item=Daily_Power_Usage_heat_pump_and_well_pump  label="ТЕРМОПОМПА И СОНДАЖНА ПОМПА [%.2f]"
-            Text item=Daily_Power_Usage_heat_pump     label="ТЕРМОПОМПА [%.2f]"
-            Text item=Daily_Power_Usage_well_pump  label="СОНДАЖНА ПОМПА [%.2f]"
-            Text item=Daily_Power_Usage_soalar_and_hw_recirc  label="СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ [%.2f]"
-            Text item=Daily_Power_Usage_water_heater  label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f]"
-            Text item=Daily_Power_Usage_recuperator  label="РЕКУПЕРАТОР [%.2f]"
-        } 
-
-
         Frame label="ОТОПЛЕНИЕ/ОХЛАЖДАНЕ" icon="radiator" {
             // UNCOMMENT TO INITIALLY SET THE SWITCH POSITION !!!
             // Switch item=HVAC_HeatingCooling_Switch icon="off_button"  mappings=[0.0="ИЗКЛЮЧЕНО",1.0="ОТОПЛЕНИЕ",2.0="ОХЛАЖДАНЕ"]   
@@ -152,9 +140,9 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
         Frame label="ЗАДВИЖКИ ПОДОВО ОТОПЛЕНИЕ:" icon="groundfloor" {    
             Switch  item=Gr_UF_ALL_ACTUATORS icon="presence"  label="ВСИЧКИ ЗАДВИЖКИ"
             Group   item=Gr_UF_ALL_ACTUATORS
-            Switch  item=Gr_UF_FF_ACTUATORS icon="groundfloor" label="ЗАДВИЖКИ ЕТАЖ 1 И ГАРАЖ (12)"
+            Switch  item=Gr_UF_FF_ACTUATORS icon="groundfloor" label="ЗАДВИЖКИ ЕТАЖ 1 И ГАРАЖ -10/(12)"
             Group   item=Gr_UF_FF_ACTUATORS
-            Switch  item=Gr_UF_SF_ACTUATORS icon="firstfloor" label="ЗАДВИЖКИ ЕТАЖ 2 И 3 (11)"
+            Switch  item=Gr_UF_SF_ACTUATORS icon="firstfloor" label="ЗАДВИЖКИ ЕТАЖ 2 И 3 -9/(11)"
             Group   item=Gr_UF_SF_ACTUATORS
         }
 
@@ -197,22 +185,14 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
         //                     }
         //         }
         // }
-           
-        Frame label="УПРАВЛЕНИЕ ПОМПИ И НАГРЕВАТЕЛ:" icon="water_heater" {    
-            Switch  item=GF_HR_Relay_Ctrl_Power30 icon="radiator"  label="КОНТАКТОР ТЕРМОПОМПА"
-            Switch  item=GF_HR_Relay_Ctrl_hp_circ_pump icon="circulation_pump"  label="РЕЛЕ ПОМПА ЦИРКУЛАЦИЯ ТЕРМОПОМПА"
-            Switch  item=GF_HR_Relay_Ctrl_hw_electric_heater icon="water_heater"  label="РЕЛЕ ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР"
-            Switch  item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="РЕЛЕ ПОМПА РЕЦИРКУЛАЦИЯ БГВ"
-            Switch  item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="РЕЛЕ ПОМПА ДЕСУПЕРХИИТЪР"
-            Switch  item=GF_HR_Relay_Ctrl_solar_3way_sw icon="3way_valve" label="РЕЛЕ ТРИПЪТНА ЗАДВИЖКА СОЛАР"    
-        }
 
         Frame label="СТАТУС ТЕРМОПОМПА И ПОМПИ:" icon="switch" {
                 Switch item=GF_HR_hp_On_Off icon="switch" label="ТЕРМОПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
-                Switch item=GF_HR_Relay_Ctrl_hp_circ_pump icon="switch" label="ПОМПА ЦИРКУЛАЦИЯ ТЕРМОПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
-                Switch item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="ПОМПА ДЕСУПЕРХИИТЪР" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
-                Switch item=GF_HR_solar_pump_On_Off icon="circulation_pump" label="ПОМПА СОЛАР" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
-                Switch item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="РЕЦИРКУЛАЦИОННА ПОМПА БГВ" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+                Switch item=GF_HR_well_pump_On_Off icon="water_pump" label="СОНДАЖНА ПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+                Switch item=GF_HR_Relay_Ctrl_hp_circ_pump icon="circulation_pump" label="ЦИРКУЛАЦИЯ ТЕРМОПОМПА  ПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+                Switch item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="ДЕСУПЕРХИИТЪР ПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+                Switch item=GF_HR_solar_pump_On_Off icon="circulation_pump" label="СОЛАР ПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+                Switch item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="РЕЦИРКУЛАЦЯ БГВ ПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
         }
 
     // Frame label="ПОКАЗАНИЯ НА ЕЛЕКТРОМЕРИТЕ:" icon="light" {    
@@ -256,6 +236,15 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
     		Switch item=Network_Stefan_Note10_Benkovski_Online icon="boy_1" label="Стефан Note10 Бенковски"
     		}
          }
+           
+        Frame label="УПРАВЛЕНИЕ ПОМПИ И НАГРЕВАТЕЛ:" icon="water_heater" {    
+            Switch  item=GF_HR_Relay_Ctrl_Power30 icon="radiator"  label="КОНТАКТОР ТЕРМОПОМПА"
+            Switch  item=GF_HR_Relay_Ctrl_hp_circ_pump icon="circulation_pump"  label="РЕЛЕ ПОМПА ЦИРКУЛАЦИЯ ТЕРМОПОМПА"
+            Switch  item=GF_HR_Relay_Ctrl_hw_electric_heater icon="water_heater"  label="РЕЛЕ ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР"
+            Switch  item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="РЕЛЕ ПОМПА РЕЦИРКУЛАЦИЯ БГВ"
+            Switch  item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="РЕЛЕ ПОМПА ДЕСУПЕРХИИТЪР"
+            Switch  item=GF_HR_Relay_Ctrl_solar_3way_sw icon="3way_valve" label="РЕЛЕ ТРИПЪТНА ЗАДВИЖКА СОЛАР" 
+        }
 
         Frame label="ОТОПЛЕНИЕ/ОХЛАЖДАНЕ ДУХАЛКИ ОФИС И ТЕСТ ВСИЧКИ ЗАДВИЖКИ" icon="radiator" {
             // UNCOMMENT TO INITIALLY SET THE SWITCH POSITION !!!
@@ -284,6 +273,18 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
                 }
             } 
         }
+
+
+        Frame label="ДНЕВНА КОНСУМАЦИЯ НА ЕЛ. ЕНЕРГИЯЗА ПРЕДИШНИЯТ ДЕН:" {
+            Text item=Daily_Power_Usage_all_hvac_and_hot_water  label="ОБЩО КЛИМАТИЗАЦИЯ И БГВ [%.2f]"
+            Text item=Daily_Power_Usage_solar_hv_recirc_el_heater  label="СОЛАР И ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f]"
+            Text item=Daily_Power_Usage_heat_pump_and_well_pump  label="ТЕРМОПОМПА И СОНДАЖНА ПОМПА [%.2f]"
+            Text item=Daily_Power_Usage_heat_pump     label="ТЕРМОПОМПА [%.2f]"
+            Text item=Daily_Power_Usage_well_pump  label="СОНДАЖНА ПОМПА [%.2f]"
+            Text item=Daily_Power_Usage_soalar_and_hw_recirc  label="СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ [%.2f]"
+            Text item=Daily_Power_Usage_water_heater  label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f]"
+            Text item=Daily_Power_Usage_recuperator  label="РЕКУПЕРАТОР [%.2f]"
+        } 
 
 
         Frame label="УСТРОЙСТВА НА БАТЕРИИ - НИВО НА БАТЕРИЯТА:" icon="battery" {    

@@ -1,5 +1,8 @@
 
 //  !!!!    3 POSITION HEATING/COOLING/OFF SWITCH !!!!!!!!!!!
+
+// USED FOR ELECTRIC HEATING OF THE OFFICE - REMOVE AFTER USE!!!!!!!!!!!!!!!!!
+
 // https://community.openhab.org/t/multi-state-switches/10939/6
 Number HeatingCoolingSwitch "[MAP(heatingcooling_states.map):%s]" (Gr_Persist_On_Change_Startup)
 // Number HeatingCoolingSwitch "СЪСТОЯНИЕ: [MAP(heatingcooling_states.map):%s]"

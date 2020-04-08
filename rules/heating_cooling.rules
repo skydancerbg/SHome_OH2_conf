@@ -10,12 +10,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_1 received update or 
 	Item Gr_HVAC_Room_Temperature_1 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_1 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_1.state as Number)< (HVAC_Room_Thermostat_Setpoint_1.state as Number)-1.0 ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_1.state == ON) {
+    if(((Gr_HVAC_Room_Temperature_1.state as Number)< (HVAC_Room_Thermostat_Setpoint_1.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_1.state == ON) {
+    // if(((Gr_HVAC_Room_Temperature_1.state as Number)< (HVAC_Room_Thermostat_Setpoint_1.state as Number)-1.0 ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_1.state == ON) {
             // GF_HR_Relay_Ctrl_Power1.sendCommand(ON)
             // Thread::sleep(500)
             // GF_HR_Relay_Ctrl_Power2.sendCommand(ON)
@@ -71,12 +72,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_2 received update or 
 	Item Gr_HVAC_Room_Temperature_2 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_2 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_2.state as Number)< (HVAC_Room_Thermostat_Setpoint_2.state as Number)-1.0 ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_2.state == ON) {
+    if(((Gr_HVAC_Room_Temperature_2.state as Number)< (HVAC_Room_Thermostat_Setpoint_2.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_2.state == ON) {
+    // if(((Gr_HVAC_Room_Temperature_2.state as Number)< (HVAC_Room_Thermostat_Setpoint_2.state as Number)-1.0 ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_2.state == ON) {
 
             HVAC_UF_Room_ACTUATORS_2.members.forEach[actuator|
                     
@@ -116,12 +118,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_3 received update or 
 	Item Gr_HVAC_Room_Temperature_3 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_3 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_3.state as Number)< (HVAC_Room_Thermostat_Setpoint_3.state as Number)-1.0 ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_3.state == ON) {
+    if(((Gr_HVAC_Room_Temperature_3.state as Number)< (HVAC_Room_Thermostat_Setpoint_3.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_3.state == ON) {
+    // if(((Gr_HVAC_Room_Temperature_3.state as Number)< (HVAC_Room_Thermostat_Setpoint_3.state as Number)-1.0 ) && (HVAC_HeatingCooling_Switch.state as Number) == 1.0  && HVAC_Room_Enable_3.state == ON) {
 
             HVAC_UF_Room_ACTUATORS_3.members.forEach[actuator|
                     
@@ -161,12 +164,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_4 received update or 
 	Item Gr_HVAC_Room_Temperature_4 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_4 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_4.state as Number)< (HVAC_Room_Thermostat_Setpoint_4.state as Number)-1.0 )  && HVAC_Room_Enable_4.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_4.state as Number)< (HVAC_Room_Thermostat_Setpoint_4.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_4.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_4.state as Number)< (HVAC_Room_Thermostat_Setpoint_4.state as Number)-1.0 )  && HVAC_Room_Enable_4.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_4.members.forEach[actuator|
                     
@@ -206,12 +210,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_5 received update or 
 	Item Gr_HVAC_Room_Temperature_5 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_5 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_5.state as Number)< (HVAC_Room_Thermostat_Setpoint_5.state as Number)-1.0 )  && HVAC_Room_Enable_5.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_5.state as Number)< (HVAC_Room_Thermostat_Setpoint_5.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_5.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_5.state as Number)< (HVAC_Room_Thermostat_Setpoint_5.state as Number)-1.0 )  && HVAC_Room_Enable_5.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_5.members.forEach[actuator|
                     
@@ -251,12 +256,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_6 received update or 
 	Item Gr_HVAC_Room_Temperature_6 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_6 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_6.state as Number)< (HVAC_Room_Thermostat_Setpoint_6.state as Number)-1.0 )  && HVAC_Room_Enable_6.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_6.state as Number)< (HVAC_Room_Thermostat_Setpoint_6.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_6.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_6.state as Number)< (HVAC_Room_Thermostat_Setpoint_6.state as Number)-1.0 )  && HVAC_Room_Enable_6.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_6.members.forEach[actuator|
                     
@@ -296,12 +302,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_7 received update or 
 	Item Gr_HVAC_Room_Temperature_7 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_7 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_7.state as Number)< (HVAC_Room_Thermostat_Setpoint_7.state as Number)-1.0 )  && HVAC_Room_Enable_7.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_7.state as Number)< (HVAC_Room_Thermostat_Setpoint_7.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_7.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_7.state as Number)< (HVAC_Room_Thermostat_Setpoint_7.state as Number)-1.0 )  && HVAC_Room_Enable_7.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_7.members.forEach[actuator|
                     
@@ -341,12 +348,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_8 received update or 
 	Item Gr_HVAC_Room_Temperature_8 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_8 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_8.state as Number)< (HVAC_Room_Thermostat_Setpoint_8.state as Number)-1.0 )  && HVAC_Room_Enable_8.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_8.state as Number)< (HVAC_Room_Thermostat_Setpoint_8.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_8.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_8.state as Number)< (HVAC_Room_Thermostat_Setpoint_8.state as Number)-1.0 )  && HVAC_Room_Enable_8.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_8.members.forEach[actuator|
                     
@@ -386,12 +394,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_9 received update or 
 	Item Gr_HVAC_Room_Temperature_9 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_9 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_9.state as Number)< (HVAC_Room_Thermostat_Setpoint_9.state as Number)-1.0 )  && HVAC_Room_Enable_9.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_9.state as Number)< (HVAC_Room_Thermostat_Setpoint_9.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_9.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_9.state as Number)< (HVAC_Room_Thermostat_Setpoint_9.state as Number)-1.0 )  && HVAC_Room_Enable_9.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_9.members.forEach[actuator|
                     
@@ -431,12 +440,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_10 received update or 
 	Item Gr_HVAC_Room_Temperature_10 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_10 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_10.state as Number)< (HVAC_Room_Thermostat_Setpoint_10.state as Number)-1.0 )  && HVAC_Room_Enable_10.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_10.state as Number)< (HVAC_Room_Thermostat_Setpoint_10.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_10.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_10.state as Number)< (HVAC_Room_Thermostat_Setpoint_10.state as Number)-1.0 )  && HVAC_Room_Enable_10.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_10.members.forEach[actuator|
                     
@@ -476,12 +486,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_11 received update or 
 	Item Gr_HVAC_Room_Temperature_11 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_11 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_11.state as Number)< (HVAC_Room_Thermostat_Setpoint_11.state as Number)-1.0 )  && HVAC_Room_Enable_11.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_11.state as Number)< (HVAC_Room_Thermostat_Setpoint_11.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_11.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_11.state as Number)< (HVAC_Room_Thermostat_Setpoint_11.state as Number)-1.0 )  && HVAC_Room_Enable_11.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_11.members.forEach[actuator|
                     
@@ -521,12 +532,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_12 received update or 
 	Item Gr_HVAC_Room_Temperature_12 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_12 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_12.state as Number)< (HVAC_Room_Thermostat_Setpoint_12.state as Number)-1.0 )  && HVAC_Room_Enable_12.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_12.state as Number)< (HVAC_Room_Thermostat_Setpoint_12.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_12.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_12.state as Number)< (HVAC_Room_Thermostat_Setpoint_12.state as Number)-1.0 )  && HVAC_Room_Enable_12.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_12.members.forEach[actuator|
                     
@@ -566,12 +578,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_13 received update or 
 	Item Gr_HVAC_Room_Temperature_13 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_13 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_13.state as Number)< (HVAC_Room_Thermostat_Setpoint_13.state as Number)-1.0 )  && HVAC_Room_Enable_13.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_13.state as Number)< (HVAC_Room_Thermostat_Setpoint_13.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_13.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_13.state as Number)< (HVAC_Room_Thermostat_Setpoint_13.state as Number)-1.0 )  && HVAC_Room_Enable_13.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_13.members.forEach[actuator|
                     
@@ -611,12 +624,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_14 received update or 
 	Item Gr_HVAC_Room_Temperature_14 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_14 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_14.state as Number)< (HVAC_Room_Thermostat_Setpoint_14.state as Number)-1.0 )  && HVAC_Room_Enable_14.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_14.state as Number)< (HVAC_Room_Thermostat_Setpoint_14.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_14.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_14.state as Number)< (HVAC_Room_Thermostat_Setpoint_14.state as Number)-1.0 )  && HVAC_Room_Enable_14.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_14.members.forEach[actuator|
                     
@@ -656,12 +670,13 @@ when
 	Item HVAC_HeatingCooling_Switch received update or 
 	Item HVAC_Room_Thermostat_Setpoint_15 received update or 
 	Item Gr_HVAC_Room_Temperature_15 received update or // PROMENI TOVAAAAAAAAAAAAAAAAAA
-    // Item Heating_ON_OFF changed or
+	Item HVAC_Virtual_Thermostat_Delta_Temp received update or 
     Item HVAC_Room_Enable_15 changed
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_15.state as Number)< (HVAC_Room_Thermostat_Setpoint_15.state as Number)-1.0 )  && HVAC_Room_Enable_15.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_15.state as Number)< (HVAC_Room_Thermostat_Setpoint_15.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_15.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_15.state as Number)< (HVAC_Room_Thermostat_Setpoint_15.state as Number)-1.0 )  && HVAC_Room_Enable_15.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_15.members.forEach[actuator|
                     
@@ -695,18 +710,39 @@ then
 end
 
 
-
+// ******************************************************************************************************************************************************
 
 // HEAT PUMP RELATED
+
+// **** SHOULD BE ON 24/7!!!! TURN IT ON WHEN HEAT PUMP STARTS IF IT WAS STOPPED IN SOME REASON!!!!!!!!!!!!!!!!!!!
 rule "START UNDERFLOOR CIRCULATION PUMP WHEN HEAT PUMP STARTS"
 
 when
 	Item GF_HR_hp_On_Off received update
 then
 // HEAT PUMP POWER CONSUMPTION IS OVER 3500 WATTS PLUS WELL PUMP CONSUMPTION OF 600 TO 800 WATTS USUAL TOTAL ACTIVE POWER IS ABOUT 4500 WATTS
-    if (GF_HR_Relay_Ctrl_hp_circ_pump.state == OFF) {
-        GF_HR_Relay_Ctrl_hp_circ_pump.sendCommand(ON)
-        logInfo("heat__CIRCULATION_pump_on_rule", "HEAT PUMP ON -> UNDERFLOOR CIRCULATION PUMP START") 
+    if (GF_HR_hp_On_Off.state == ON) {
+        if (GF_HR_Relay_Ctrl_hp_circ_pump.state == OFF || GF_HR_Relay_Ctrl_hp_circ_pump.state == UNDEF) {
+            GF_HR_Relay_Ctrl_hp_circ_pump.sendCommand(ON)
+            // logInfo("heat__CIRCULATION_pump_on_rule", "HEAT PUMP ON -> UNDERFLOOR CIRCULATION PUMP START") 
+        }
+    }
+end
+
+// ******************************************************************************************************************************************************
+
+// **** IF HVAC IS SWITCHED OFF VIA OFF/HEATING/COOLING SWITCH SWITCH THE HEAT PUMP CIRCULATION PUMP OFF!!!!!!!!!!!!!!!!!!!
+rule "STOP UNDERFLOOR CIRCULATION PUMP IF HEATING COOLING SWITCH IS SET TO OFF"
+
+when
+	Item GF_HR_hp_On_Off received update
+then
+// HEAT PUMP POWER CONSUMPTION IS OVER 3500 WATTS PLUS WELL PUMP CONSUMPTION OF 600 TO 800 WATTS USUAL TOTAL ACTIVE POWER IS ABOUT 4500 WATTS
+    if ((HVAC_HeatingCooling_Switch.state as Number) == 0.0){
+        if (GF_HR_Relay_Ctrl_hp_circ_pump.state == ON || GF_HR_Relay_Ctrl_hp_circ_pump.state == UNDEF) {
+            GF_HR_Relay_Ctrl_hp_circ_pump.sendCommand(OFF)
+            // logInfo("heat__CIRCULATION_pump_on_rule", "HEAT PUMP ON -> UNDERFLOOR CIRCULATION PUMP START") 
+        }
     }
 end
 
@@ -717,16 +753,82 @@ when
 then
 // HEAT PUMP POWER CONSUMPTION IS OVER 3500 WATTS PLUS WELL PUMP CONSUMPTION OF 600 TO 800 WATTS USUAL TOTAL ACTIVE POWER IS ABOUT 4500 WATTS
     if ((Meter_Total_Active_Power_heat_pump.state as Number) > 2500.0){
-        GF_HR_hp_On_Off.sendCommand(ON)
-        logInfo("heat_pump_onoff_rule", "GF_HR_hp_On_Off set to ON") 
+        if (GF_HR_hp_On_Off.state == OFF || GF_HR_hp_On_Off.state == UNDEF) {
+            GF_HR_hp_On_Off.sendCommand(ON)
+            // logInfo("heat_pump_onoff_rule", "GF_HR_hp_On_Off set to ON") 
+        }
     }
     else if ((Meter_Total_Active_Power_heat_pump.state as Number) < 2500.0) {
-        GF_HR_hp_On_Off.sendCommand(OFF)
-        logInfo("heat_pump_onoff_rule", "GF_HR_hp_On_Off set to OFF") 
+        if (GF_HR_hp_On_Off.state == ON || GF_HR_hp_On_Off.state == UNDEF) {
+            GF_HR_hp_On_Off.sendCommand(OFF)
+            // logInfo("heat_pump_onoff_rule", "GF_HR_hp_On_Off set to OFF") 
+        }
     }
 end
 
-// SOLAR PUMP RELATED
+
+// ******************************************************************************************************************************************************
+// WELL PUMP RELATED
+rule "Update GF_HR_well_pump_On_Off SWITCH BASED ON WELL PUMP POWER CONSUMPTION"
+
+when
+	Item Meter_Power_well_pump received update
+then
+// WELL PUMP POWER CONSUMPTION IS OVER 350 WATTS (CURRENT INDIAN PUMP IS ABOT 750W -370W)
+    if ((Meter_Power_well_pump.state as Number) > 350.0){
+        if (GF_HR_well_pump_On_Off.state == OFF || GF_HR_hp_On_Off.state == UNDEF) {
+            GF_HR_well_pump_On_Off.sendCommand(ON)
+            logInfo("well_pump_onoff_rule", "GF_HR_well_pump_On_Off set to ON") 
+        }
+    }
+    else if ((Meter_Power_well_pump.state as Number) < 350.0) {
+        if (GF_HR_well_pump_On_Off.state == ON || GF_HR_hp_On_Off.state == UNDEF) {
+            GF_HR_well_pump_On_Off.sendCommand(OFF)
+            logInfo("well_pump_onoff_rule", "GF_HR_well_pump_On_Off set to OFF") 
+        }
+    }
+end
+
+// ******************************************************************************************************************************************************
+// ******************************************************************************************************************************************************
+// TURN OFF HEAT PUMP IF WELL WATER OUT TEMPERATURE BELOW 6 DEGREES CELSIUS /PREVENT ICE BUILDUP!!!!!!!!!!!!
+// ******************************************************************************************************************************************************
+rule "TURN OFF HEAT PUMP IF WELL WATER OUT TEMPERATURE BELOW 6 DEGREES CELSIUS"
+
+when
+	Item GF_HR_SENSORS_TEMP_hp_well_out received update
+then
+		if( ((GF_HR_SENSORS_TEMP_hp_well_out.state as Number) <= 6.0)&& GF_HR_hp_On_Off.state == ON) {
+
+            GF_HR_Relay_Ctrl_Power30.sendCommand(OFF)
+            logInfo("shut_down-hp_if_no_well_water_rule", "HEAT PUMP CONTACTOR set to OFF, as well water out temperature below 5 degrees.") 
+            //SEND NOTIFICATION TO THE PHONE APP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            sendNotification("shivarov@code.bg", "ТЕРМОПОМПАТА БЕ ИЗКЛЮЧЕНА, защото сондажната помпа спря!")
+        }
+end
+
+// ******************************************************************************************************************************************************
+//      !!!!!!! RULE ACTION DISABLED!!!! ONLY SENDS NOTIFICATION!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// ******************************************************************************************************************************************************
+// TURN OFF HEAT PUMP IF WELL PUMP SWITCHES OFF WHILE HP IN OPERATION /PREVENT ICE BUILDUP!!!!!!!!!!!!
+// ******************************************************************************************************************************************************
+rule "TURN OFF HEAT PUMP IF WELL PUMP SWITCHES OFF WHILE HP IN OPERATION"
+
+when
+	Item GF_HR_well_pump_On_Off received update
+then
+		if(GF_HR_hp_On_Off.state == ON && GF_HR_well_pump_On_Off.state == OFF) {
+
+            // GF_HR_Relay_Ctrl_Power30.sendCommand(OFF)
+            // logInfo("shut_down-hp_if_no_well_water_rule", "HEAT PUMP CONTACTOR GF_HR_Relay_Ctrl_Power30 set to OFF") 
+            //SEND NOTIFICATION TO THE PHONE APP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // sendNotification("shivarov@code.bg", "ТЕРМОПОМПАТА БЕ ИЗКЛЮЧЕНА, защото сондажната помпа спря!")
+        }
+end
+// ******************************************************************************************************************************************************
+//                              S O L A R           PUMP RELATED
+// ******************************************************************************************************************************************************
+
 rule "Update GF_HR_solar_pump_On_Off SWITCH BASED ON SOLAR AND HW RECIRCULATION POWER CONSUMPTION"
 
 when
@@ -738,30 +840,129 @@ then
 // !!!!!!!!!!!!!!!! The 40 W threshold set here needs fine tuning based on more usage data !!!!!!!!!!!
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if ((Meter_Power_soalar_and_hw_recirculation.state as Number) > 40.0){
-        GF_HR_solar_pump_On_Off.sendCommand(ON)
-        logInfo("solar_pump_onoff_rule", "GF_HR_solar_pump_On_Off set to ON") 
+        if (GF_HR_solar_pump_On_Off.state == OFF || GF_HR_solar_pump_On_Off.state == UNDEF) {
+            GF_HR_solar_pump_On_Off.sendCommand(ON)
+            // logInfo("solar_pump_onoff_rule", "GF_HR_solar_pump_On_Off set to ON") 
+        }
     }
     else if ((Meter_Power_soalar_and_hw_recirculation.state as Number) < 40.0) {
-        GF_HR_solar_pump_On_Off.sendCommand(OFF)
-        logInfo("solar_pump_onoff_rule", "GF_HR_solar_pump_On_Off set to OFF") 
+        if (GF_HR_solar_pump_On_Off.state == ON || GF_HR_solar_pump_On_Off.state == UNDEF) {
+            GF_HR_solar_pump_On_Off.sendCommand(OFF)
+            // logInfo("solar_pump_onoff_rule", "GF_HR_solar_pump_On_Off set to OFF") 
+        }
     }
 end
 
-// DESUPERHEATER PUMP RELATED
+// ******************************************************************************************************************************************************
+//                      D E S U P E R H E A T E R       PUMP RELATED - turn on only if hot water tank middle below 40 degrees
+//                                                                     in order not to cool down tank ! ! !                 
+// ******************************************************************************************************************************************************
+// ******************************************************************************************************************************************************
+//                      NEEDS FINE TUNNING OF THE TANK MIDDLE TEMPERATURE AT WICH THE RULE TO BE ACTIVATED ! ! ! ! ! 
+// ******************************************************************************************************************************************************
 rule "CONTROL GF_HR_Relay_Ctrl_hw_hp_superheater_pump REALY BASED ON HEAT PUMP ON OFF VIRTUAL SWITCH GF_HR_hp_On_Off"
 
 when
 	Item GF_HR_hp_On_Off received update
 then
     if (GF_HR_hp_On_Off.state == ON){
-        GF_HR_Relay_Ctrl_hw_hp_superheater_pump.sendCommand(ON)
-        logInfo("desuperheater_onoff", "GF_HR_Relay_Ctrl_hw_hp_superheater_pump set to ON") 
+        if (((GF_HR_SENSORS_TEMP_hw_tank_middle.state as Number) < 40.0) && (GF_HR_Relay_Ctrl_hw_hp_superheater_pump.state == OFF || GF_HR_Relay_Ctrl_hw_hp_superheater_pump.state == UNDEF)) {
+        // if (GF_HR_Relay_Ctrl_hw_hp_superheater_pump.state == OFF || GF_HR_Relay_Ctrl_hw_hp_superheater_pump.state == UNDEF) {
+            GF_HR_Relay_Ctrl_hw_hp_superheater_pump.sendCommand(ON)
+            // logInfo("desuperheater_onoff", "GF_HR_Relay_Ctrl_hw_hp_superheater_pump set to ON")
+        } 
     }
     else if (GF_HR_hp_On_Off.state == OFF) {
-        GF_HR_Relay_Ctrl_hw_hp_superheater_pump.sendCommand(OFF)
-        logInfo("desuperheater_onoff", "GF_HR_Relay_Ctrl_hw_hp_superheater_pump set to OFF") 
+        if (GF_HR_Relay_Ctrl_hw_hp_superheater_pump.state == ON || GF_HR_Relay_Ctrl_hw_hp_superheater_pump.state == UNDEF) {
+            GF_HR_Relay_Ctrl_hw_hp_superheater_pump.sendCommand(OFF)
+            // logInfo("desuperheater_onoff", "GF_HR_Relay_Ctrl_hw_hp_superheater_pump set to OFF") 
+        }
     }
 end
+
+// ******************************************************************************************************************************************************
+// HOME OFFICE HEATING RELATED:
+rule "Update HOME OFFICE ELECTRIC BLOWER Heating"
+
+when
+	Item HeatingCoolingSwitch received update or 
+	Item GF_OF_Heating_Setpoint received update or 
+	Item GF_Sonoff_TH16_6_Temperature received update or 
+    // Item Heating_ON_OFF changed or
+    Item GF_OF_Heating_Enable changed
+then
+            
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+            // logInfo("heating_temp_minus_1", ((GF_OF_Heating_Setpoint.state as Number)-1.0).toString)
+
+        //    logInfo("heating_setpoint_temp prЕdi if!!!!!!!", HeatingCoolingSwitch.state.toString)
+
+
+    if(((GF_Sonoff_TH16_6_Temperature.state as Number)< (GF_OF_Heating_Setpoint.state as Number)-1.0 ) && (HeatingCoolingSwitch.state as Number) == 1.0  && GF_OF_Heating_Enable.state == ON) {
+    // if(((GF_Sonoff_TH16_6_Temperature.state as Number)< (GF_OF_Heating_Setpoint.state as Number)-1.0 ) && Heating_ON_OFF.state == ON  && GF_OF_Heating_Enable.state == ON) {
+
+        // logInfo("electric heating office", "temperaturata e po-malka ot setpointa ИЛИ КОМАНДА ВКЛ ИЗКЛ")
+
+
+        // logInfo("heating GF_OF_sonoff_pow_2_Power", GF_OF_sonoff_pow_2_Power.state.toString)
+        // logInfo("heating GF_OF_sonoff_pow_2_Power", GF_OF_sonoff_pow_3_Power.state.toString)
+		if(GF_OF_sonoff_pow_2_Power.state == OFF || GF_OF_sonoff_pow_2_Power.state == UNDEF) {
+                    //  logInfo("electric heating office", "komanda pow2 on")
+
+            GF_OF_sonoff_pow_2_Power.sendCommand(ON)
+            GF_OF_Heating.sendCommand(ON)
+        }
+        if(GF_OF_sonoff_pow_3_Power.state == OFF || GF_OF_sonoff_pow_3_Power.state == UNDEF) {
+                    // logInfo("electric heating office", "komanda pow3 on")
+            Thread::sleep(2000) // Пусни втория калорифер след 2 секунди
+            GF_OF_sonoff_pow_3_Power.sendCommand(ON)
+            GF_OF_Heating.sendCommand(ON)
+        }
+	}else if (((GF_Sonoff_TH16_6_Temperature.state as Number) >= (GF_OF_Heating_Setpoint.state as Number)) || (HeatingCoolingSwitch.state  as Number) == 0 || (HeatingCoolingSwitch.state  as Number) == 2.0 || GF_OF_Heating_Enable.state == OFF)
+	// }else if (((GF_Sonoff_TH16_6_Temperature.state as Number) >= (GF_OF_Heating_Setpoint.state as Number)) || Heating_ON_OFF.state == OFF  || GF_OF_Heating_Enable.state == OFF)
+    {
+        // logInfo("electric heating office", "temperaturata e po-goliama ot setpointa ИЛИ КОМАНДА OFF")
+		
+         if(GF_OF_sonoff_pow_2_Power.state == ON || GF_OF_sonoff_pow_2_Power.state == UNDEF || GF_OF_sonoff_pow_3_Power.state == ON  || GF_OF_sonoff_pow_3_Power.state == UNDEF) {
+                    // logInfo("heating", "komanda OFF")
+            GF_OF_sonoff_pow_2_Power.sendCommand(OFF)
+                    Thread::sleep(1000)
+            GF_OF_sonoff_pow_3_Power.sendCommand(OFF)
+        }
+        if(GF_OF_sonoff_pow_2_Power.state == OFF && GF_OF_sonoff_pow_3_Power.state == OFF) {
+                    // logInfo("GF_OF_Heating-WHEN RECEIVED PECHKI OFF OR TEMP DIFFERENCE", "komanda OFF")
+            if(GF_OF_Heating.state == ON) {
+                GF_OF_Heating.sendCommand(OFF)
+            }
+        }
+        // logInfo("heating office", "temperaturata e po-goliama ot setpointa ИЛИ КОМАНДА OFF")
+		
+        //  if(GF_OF_sonoff_pow_2_Power.state == ON || GF_OF_sonoff_pow_2_Power.state == UNDEF) {
+        //             // logInfo("heating", "komanda OFF")
+        //     GF_OF_sonoff_pow_2_Power.sendCommand(OFF)
+        // }
+        // if(GF_OF_sonoff_pow_3_Power.state == ON  || GF_OF_sonoff_pow_3_Power.state == UNDEF) {
+        //             // logInfo("heating", "komanda OFF")
+        //     GF_OF_sonoff_pow_3_Power.sendCommand(OFF)
+        // }
+        // if(GF_OF_sonoff_pow_2_Power.state == OFF && GF_OF_sonoff_pow_3_Power.state == OFF) {
+        //             logInfo("GF_OF_Heating-WHEN RECEIVED PECHKI OFF OR TEMP DIFFERENCE", "komanda OFF")
+        //             Thread::sleep(1000)
+        //     GF_OF_Heating.sendCommand(OFF)
+        // }
+      
+    }
+
+end
+
+
+
+
+
+
+
+
+
 
 
 // HOME ALL HEATING RELATED:
@@ -890,79 +1091,6 @@ end
 //     }
 
 // end
-
-
-// HOME OFFICE HEATING RELATED:
-rule "Update HOME OFFICE ELECTRIC BLOWER Heating"
-
-when
-	Item HeatingCoolingSwitch received update or 
-	Item GF_OF_Heating_Setpoint received update or 
-	Item GF_Sonoff_TH16_6_Temperature received update or 
-    // Item Heating_ON_OFF changed or
-    Item GF_OF_Heating_Enable changed
-then
-            
-            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
-            // logInfo("heating_temp_minus_1", ((GF_OF_Heating_Setpoint.state as Number)-1.0).toString)
-
-        //    logInfo("heating_setpoint_temp prЕdi if!!!!!!!", HeatingCoolingSwitch.state.toString)
-
-
-    if(((GF_Sonoff_TH16_6_Temperature.state as Number)< (GF_OF_Heating_Setpoint.state as Number)-1.0 ) && (HeatingCoolingSwitch.state as Number) == 1.0  && GF_OF_Heating_Enable.state == ON) {
-    // if(((GF_Sonoff_TH16_6_Temperature.state as Number)< (GF_OF_Heating_Setpoint.state as Number)-1.0 ) && Heating_ON_OFF.state == ON  && GF_OF_Heating_Enable.state == ON) {
-
-        logInfo("heating office", "temperaturata e po-malka ot setpointa ИЛИ КОМАНДА ВКЛ ИЗКЛ")
-
-
-        // logInfo("heating GF_OF_sonoff_pow_2_Power", GF_OF_sonoff_pow_2_Power.state.toString)
-        // logInfo("heating GF_OF_sonoff_pow_2_Power", GF_OF_sonoff_pow_3_Power.state.toString)
-		if(GF_OF_sonoff_pow_2_Power.state == OFF || GF_OF_sonoff_pow_2_Power.state == UNDEF) {
-                     logInfo("heating office", "komanda pow2 on")
-
-            GF_OF_sonoff_pow_2_Power.sendCommand(ON)
-            GF_OF_Heating.sendCommand(ON)
-        }
-        if(GF_OF_sonoff_pow_3_Power.state == OFF || GF_OF_sonoff_pow_3_Power.state == UNDEF) {
-                    logInfo("heating office", "komanda pow3 on")
-            Thread::sleep(2000) // Пусни втория калорифер след 2 секунди
-            GF_OF_sonoff_pow_3_Power.sendCommand(ON)
-            GF_OF_Heating.sendCommand(ON)
-        }
-	}else if (((GF_Sonoff_TH16_6_Temperature.state as Number) >= (GF_OF_Heating_Setpoint.state as Number)) || (HeatingCoolingSwitch.state  as Number) == 0 || (HeatingCoolingSwitch.state  as Number) == 2.0 || GF_OF_Heating_Enable.state == OFF)
-	// }else if (((GF_Sonoff_TH16_6_Temperature.state as Number) >= (GF_OF_Heating_Setpoint.state as Number)) || Heating_ON_OFF.state == OFF  || GF_OF_Heating_Enable.state == OFF)
-    {
-        logInfo("heating office", "temperaturata e po-goliama ot setpointa ИЛИ КОМАНДА OFF")
-		
-         if(GF_OF_sonoff_pow_2_Power.state == ON || GF_OF_sonoff_pow_2_Power.state == UNDEF || GF_OF_sonoff_pow_3_Power.state == ON  || GF_OF_sonoff_pow_3_Power.state == UNDEF) {
-                    // logInfo("heating", "komanda OFF")
-            GF_OF_sonoff_pow_2_Power.sendCommand(OFF)
-            GF_OF_sonoff_pow_3_Power.sendCommand(OFF)
-                    Thread::sleep(1000)
-        }
-        if(GF_OF_sonoff_pow_2_Power.state == OFF && GF_OF_sonoff_pow_3_Power.state == OFF) {
-                    logInfo("GF_OF_Heating-WHEN RECEIVED PECHKI OFF OR TEMP DIFFERENCE", "komanda OFF")
-            GF_OF_Heating.sendCommand(OFF)
-        }
-        // logInfo("heating office", "temperaturata e po-goliama ot setpointa ИЛИ КОМАНДА OFF")
-		
-        //  if(GF_OF_sonoff_pow_2_Power.state == ON || GF_OF_sonoff_pow_2_Power.state == UNDEF) {
-        //             // logInfo("heating", "komanda OFF")
-        //     GF_OF_sonoff_pow_2_Power.sendCommand(OFF)
-        // }
-        // if(GF_OF_sonoff_pow_3_Power.state == ON  || GF_OF_sonoff_pow_3_Power.state == UNDEF) {
-        //             // logInfo("heating", "komanda OFF")
-        //     GF_OF_sonoff_pow_3_Power.sendCommand(OFF)
-        // }
-        // if(GF_OF_sonoff_pow_2_Power.state == OFF && GF_OF_sonoff_pow_3_Power.state == OFF) {
-        //             logInfo("GF_OF_Heating-WHEN RECEIVED PECHKI OFF OR TEMP DIFFERENCE", "komanda OFF")
-        //             Thread::sleep(1000)
-        //     GF_OF_Heating.sendCommand(OFF)
-        // }
-      
-    }
-
-end
 
 
 // rule "Heating ON/OFF set to OFF"

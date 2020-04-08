@@ -5,17 +5,15 @@
 // Group Gr_Persist_On_Statup
 Group Gr_Persist_On_Change
 Group Gr_Persist_On_Change_Startup
+Group Gr_Persist_On_Change_1minute_Startup
 Group Gr_Persist_On_Change_1minute
+Group Gr_Persist_Every_1_Minute
+Group Gr_Persist_Every_30_Seconds
+
 
 //// SECURITY SYSTEM
 // !!! All Group items for the security system are located in security_system.rules file
 
-//// ENERGY METERS
-Group:Number:SUM     Gr_HR_ACTIVE_POWER   "МОМЕНТНА КОНСУМАЦИЯ ОВИ И БГВ (ОБЩО)   [%.0f W]" <electric_meter>
-Group:Number:SUM     Gr_HR_HeatPump_And_WellPump_POWER   "МОМЕНТНА КОНСУМАЦИЯ ТЕРМОПОМПА И СОНДАЖНА ПОМПА   [%.0f W]" <electric_meter>
-Group:Number:SUM     Gr_HR_Total_KWh   "ОБЩО ОВИ И БГВ - ДО МОМЕНТА:  [%.2f KWh]" <electric_meter>
-Group:Number:SUM     Gr_HR_Total_KWh_HeatPump_And_WellPump   "ОБЩО ТЕРМОПОМПА И СОНДАЖНА ПОМПА - ДО МОМЕНТА:  [%.2f KWh]" <electric_meter>
-Group:Number:SUM     Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump   "ОБЩО ТЕРМОПОМПА И СОНДАЖНА ПОМПА - ДО МОМЕНТА:  [%.2f KWh]" <electric_meter>
 
 
 
