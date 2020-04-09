@@ -10,6 +10,8 @@ Group Gr_Persist_On_Change_1minute
 Group Gr_Persist_Every_1_Minute
 Group Gr_Persist_Every_30_Seconds
 
+Group Gr_Persist_On_Change_Restore_On_Startup
+
 
 //// SECURITY SYSTEM
 // !!! All Group items for the security system are located in security_system.rules file

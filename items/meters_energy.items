@@ -14,21 +14,86 @@ Group:Number:SUM     Gr_HR_Total_KWh_HeatPump_And_WellPump   "ОБЩО ТЕРМ�
 Group:Number:SUM     Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump   "ОБЩО ТЕРМОПОМПА И СОНДАЖНА ПОМПА - ДО МОМЕНТА:  [%.2f KWh]" <electric_meter>
 
 // R E M O V E   A F T E R   U S E  ! ! !
-// TEMPORARY USED TO FIND ТХЕ CАUSE OF WELL PUMP STOP
+// TEMPORARY USED TO FIND ТHЕ CАUSE OF WELL PUMP STOP
 Group:Number         Gr_METERS_Voltage   "ВОЛТАЖ:  [%.2f KWh]" <energy> 
 
 // // // 
 // // //    T E S T                     ! ! ! ! !
 
 Switch TEST_Triggering_Switch_1 "TEST SWITCH 1 - USE TO TRIGGER THE RULE"
+Switch TEST_Triggering_Switch_2 "TEST SWITCH 2 - USE TO TRIGGER THE RULE"
 
 // SAVES DAYLY KWh USING SINCE LAST RULE.... 
 // FIRST ONE HAS THE TOTAL TO START DATE VALUE...
-Number TEST_Meter_DATA_TO_DATE_KWh_heat_pump //SAVES THE METER READING EVERY DY AT MIDNIGHT
-Number TEST_Meter_DATA_DAILY_KWh_heat_pump
+Number TEST_Meter_DATA_TO_DATE_KWh_heat_pump "TEST HEAT PUMP METER KWh TO DATE  [%.2f]" (Gr_Persist_On_Change_Startup)  //SAVES THE METER READING EVERY DY AT MIDNIGHT
+Number TEST_Meter_DATA_DAILY_KWh_heat_pump "TEST HEAT PUMP METER DAYLY KWh  [%.2f]" (Gr_Persist_On_Change_Startup) // Holds the previous day power consumption! will save daily values at midnight
+
+        Number TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water "TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water [%.2f kWh]"  (Gr_Persist_On_Change_Startup)                   
+        Number TEST_DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump "TEST_DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_TO_DATE_SUM_solar_hv_recirc_el_heater "TEST_DB_kWh_TO_DATE_SUM_solar_hv_recirc_el_heater [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_TO_DATE_heat_pump "TEST_DB_kWh_TO_DATE_heat_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_TO_DATE_well_pump "TEST_DB_kWh_TO_DATE_well_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_TO_DATE_soalar_and_hw_recirc "TEST_DB_kWh_TO_DATE_soalar_and_hw_recirc [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_TO_DATE_water_heater "TEST_DB_kWh_TO_DATE_water_heater [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_TO_DATE_recuperator "TEST_DB_kWh_TO_DATE_recuperator [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_DAILY_SUM_hvac_and_hot_water "TEST_DB_kWh_DAILY_SUM_hvac_and_hot_water [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_DAILY_SUM_heat_pump_and_well_pump "TEST_DB_kWh_DAILY_SUM_heat_pump_and_well_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_DAILY_SUM_solar_hw_and_heater "TEST_DB_kWh_DAILY_SUM_solar_hv_recirc_el_heater [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_DAILY_heat_pump "TEST_DB_kWh_DAILY_heat_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_DAILY_well_pump "TEST_DB_kWh_DAILY_well_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_DAILY_soalar_and_hw_recirc "TEST_DB_kWh_DAILY_soalar_and_hw_recirc [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_DAILY_water_heater "TEST_DB_kWh_DAILY_water_heater [%.2f kWh]" (Gr_Persist_On_Change_Startup)
+        Number TEST_DB_kWh_DAILY_recuperator "TEST_DB_kWh_DAILY_recuperator [%.2f kWh]" (Gr_Persist_On_Change_Startup)
 
 // // //    E  N  D    T E S T          ! ! ! ! !
 // // // 
+
+Number DB_kWh_TO_DATE_heat_pump            "HEAT PUMP kWh TO DATE  [%.2f kWh]"                    (Gr_Persist_On_Change_Restore_On_Startup)   //Meter_Total_KWh_heat_pump
+Number DB_kWh_TO_DATE_well_pump            "WELL PUMP kWh TO DATE  [%.2f kWh]"                    (Gr_Persist_On_Change_Restore_On_Startup)   //Meter_TotalKWh_well_pump
+Number DB_kWh_TO_DATE_soalar_and_hw_recirc "SOLAR & HW RECIRCULATION kWh TO DATE  [%.2f kWh]"     (Gr_Persist_On_Change_Restore_On_Startup) //Meter_TotalKWh_soalar_and_hw_recirculation
+Number DB_kWh_TO_DATE_water_heater         "WATER HEATER kWh TO DATE  [%.2f kWh]"                 (Gr_Persist_On_Change_Restore_On_Startup)    //Meter_TotalKWh_soalar_and_hw_recirculation
+Number DB_kWh_TO_DATE_recuperator          "RECUPERATOR kWh TO DATE  [%.2f kWh]"                  (Gr_Persist_On_Change_Restore_On_Startup)  //Meter_TotalKWh_recuperator
+Number DB_kWh_TO_DATE_SUM_hvac_and_hot_water        "TOTAL HVAC & HOT WATER kWh TO DATE  [%.2f kWh]"            (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh
+//
+// R E M O V E ! ! wrong wording use the one below
+Number DB_kWh_TO_DATE_SUM_solar_hv_recirc_el_heater "TOTAL SOLAR & ELECTRIC HOT WATER kWh TO DATE  [%.2f kWh]"  (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump
+//
+Number DB_kWh_TO_DATE_SUM_solar_hw_and_heater "TOTAL SOLAR & ELECTRIC HOT WATER kWh TO DATE  [%.2f kWh]"  (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump
+Number DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump   "TOTAL HEAT PUMP & WELL PUMP kWh TO DATE  [%.2f kWh]"       (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh_HeatPump_And_WellPump
+
+
+
+Number DB_kWh_DAILY_heat_pump                     "DAILY HEAT PUMP [%.2f kWh]"                   (Gr_Persist_On_Change_Restore_On_Startup)   //Meter_Total_KWh_heat_pump
+Number DB_kWh_DAILY_well_pump                     "DAILY WELL PUMP [%.2f kWh]"                   (Gr_Persist_On_Change_Restore_On_Startup)   //Meter_TotalKWh_well_pump
+Number DB_kWh_DAILY_soalar_and_hw_recirc          "DAILY SOLAR & HW RECIRCULATION [%.2f kWh]"    (Gr_Persist_On_Change_Restore_On_Startup) //Meter_TotalKWh_soalar_and_hw_recirculation
+Number DB_kWh_DAILY_water_heater                  "DAILY WATER HEATER [%.2f kWh]"                (Gr_Persist_On_Change_Restore_On_Startup)    //Meter_TotalKWh_soalar_and_hw_recirculation
+Number DB_kWh_DAILY_recuperator                   "DAILY RECUPERATOR [%.2f kWh]"                 (Gr_Persist_On_Change_Restore_On_Startup)  //Meter_TotalKWh_recuperator
+Number DB_kWh_DAILY_SUM_hvac_and_hot_water        "DAILY HVAC & HOT WATER [%.2f kWh]"            (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh
+Number DB_kWh_DAILY_SUM_solar_hw_and_heater "DAILY SOLAR & ELECTRIC HOT WATER [%.2f kWh]"  (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump
+Number DB_kWh_DAILY_SUM_heat_pump_and_well_pump   "DAILY HEAT PUMP & WELL PUMP [%.2f kWh]"       (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh_HeatPump_And_WellPump
+
+Number DB_kWh_MONTHLY_heat_pump            "MONTHLY HEAT PUMP [%.2f kWh]"                     (Gr_Persist_On_Change_Restore_On_Startup)   
+Number DB_kWh_MONTHLY_well_pump            "MONTHLY WELL PUMP [%.2f kWh]"                     (Gr_Persist_On_Change_Restore_On_Startup)   
+Number DB_kWh_MONTHLY_soalar_and_hw_recirc "MONTHLY SOLAR & HW RECIRCULATION [%.2f kWh]"      (Gr_Persist_On_Change_Restore_On_Startup) 
+Number DB_kWh_MONTHLY_water_heater         "MONTHLY WATER HEATER [%.2f kWh]"                  (Gr_Persist_On_Change_Restore_On_Startup)    
+Number DB_kWh_MONTHLY_recuperator          "MONTHLY RECUPERATOR [%.2f kWh]"                   (Gr_Persist_On_Change_Restore_On_Startup)  
+// SUM:
+Number DB_kWh_MONTHLY_SUM_hvac_and_hot_water        "MONTHLY HVAC & HOT WATER [%.2f kWh]"            (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh
+Number DB_kWh_MONTHLY_SUM_solar_hw_and_heater "MONTHLY SOLAR & ELECTRIC HOT WATER [%.2f kWh]"  (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump
+Number DB_kWh_MONTHLY_SUM_heat_pump_and_well_pump   "MONTHLY HEAT PUMP & WELL PUMP [%.2f kWh]"       (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh_HeatPump_And_WellPump
+
+
+Number DB_kWh_YEARLY_heat_pump            "YEARLY HEAT PUMP[%.2f kWh]"                       (Gr_Persist_On_Change_Restore_On_Startup)   
+Number DB_kWh_YEARLY_well_pump            "YEARLY WELL PUMP[%.2f kWh]"                       (Gr_Persist_On_Change_Restore_On_Startup)   
+Number DB_kWh_YEARLY_soalar_and_hw_recirc "YEARLY SOLAR & HW RECIRCULATION [%.2f kWh]"        (Gr_Persist_On_Change_Restore_On_Startup) 
+Number DB_kWh_YEARLY_water_heater         "YEARLY WATER HEATER [%.2f kWh]"                    (Gr_Persist_On_Change_Restore_On_Startup)    
+Number DB_kWh_YEARLY_recuperator          "YEARLY RECUPERATOR [%.2f kWh]"                     (Gr_Persist_On_Change_Restore_On_Startup)  
+// SUM:
+Number DB_kWh_YEARLY_SUM_hvac_and_hot_water        "YEARLY HVAC & HOT WATER [%.2f kWh]"            (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh
+Number DB_kWh_YEARLY_SUM_solar_hw_and_heater "YEARLY SOLAR & ELECTRIC HOT WATER [%.2f kWh]"  (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump
+Number DB_kWh_YEARLY_SUM_heat_pump_and_well_pump   "YEARLY HEAT PUMP & WELL PUMP [%.2f kWh]"       (Gr_Persist_On_Change_Restore_On_Startup)   //Gr_HR_Total_KWh_HeatPump_And_WellPump
+
+
 
 //  Daily power usage example:
 // https://community.openhab.org/t/solved-power-usage-daily/70614/4
@@ -36,6 +101,7 @@ Number TEST_Meter_DATA_DAILY_KWh_heat_pump
 Number Daily_Power_Usage_all_hvac_and_hot_water (Gr_Persist_On_Change) //Gr_HR_Total_KWh
 Number Daily_Power_Usage_solar_hv_recirc_el_heater (Gr_Persist_On_Change)   //Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump
 Number Daily_Power_Usage_heat_pump_and_well_pump (Gr_Persist_On_Change) //Gr_HR_Total_KWh_HeatPump_And_WellPump
+
 Number Daily_Power_Usage_heat_pump (Gr_Persist_On_Change)   //Meter_Total_KWh_heat_pump
 Number Daily_Power_Usage_well_pump (Gr_Persist_On_Change)   //Meter_TotalKWh_well_pump
 Number Daily_Power_Usage_soalar_and_hw_recirc (Gr_Persist_On_Change) //Meter_TotalKWh_soalar_and_hw_recirculation

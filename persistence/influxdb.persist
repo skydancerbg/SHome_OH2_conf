@@ -1,14 +1,54 @@
 // Cron Expression Generator & Explainer
 // https://www.freeformatter.com/cron-expression-generator-quartz.html
 
+// ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+// openHAB makes use of Quartz Cron, which is slightly different from common cron in GNU/Linux.
+// The biggest difference (that I’m aware of…) is, that quartz cron has the ability to trigger per Second, while GNU/Linux cron will only trigger per Minute.
+// ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+// 
+// A Quartz Cron expression takes the form of six or optionally seven fields:
+// Seconds
+// Minutes
+// Hours
+// Day-of-Month
+// Month
+// Day-of-Week
+// Year (optional field)
+
+// //   C H R O N
+//
+// #  *    *    *    *    *    *    *  command to execute
+// #  ┬    ┬    ┬    ┬    ┬    ┬    ┬
+// #  │    │    │    │    │    │    │
+// #  │    │    │    │    │    │    └──── year
+// #  │    │    │    │    │    └───────── day of week (0 - 6) (0 to 6 are Sunday to Saturday)
+// #  │    │    │    │    └────────────── month (1 - 12)
+// #  │    │    │    └─────────────────── day of month (1 - 31)
+// #  │    │    └──────────────────────── hour (0 - 23)
+// #  │    └───────────────────────────── min (0 - 59)
+// #  └────────────────────────────────── sec (0 - 59)
+// 
+// http://www.cronmaker.com/;jsessionid=node01c238cs67e9e85pzk2k0mr6l630861.node0?0 // USE TO GENERATE CHRON EXPRESSIONS!!!!!!!!!
+// https://www.freeformatter.com/cron-expression-generator-quartz.html // USE TO GENERATE CHRON EXPRESSIONS!!!!!!!!!
+// 
+// Time cron "0 2 0 1 1 ? *" // // Every year on Jan 1st at 2 minutes past midnight
+
+// "0 0/5 * * * ?" //every 5 Minutes
+// "0 1 0 * * ?" //daily at 12:01 am
+// "0 1 0 1 * ?" //monthly at 01 12:01 am
+// "0 2 0 1 1 ?" //yearly at 01-01 12:02 am
+// year is optional, * is “don’t care”, ? is mandatory either on day OR weekday, ? must be set exactly once.
+// But your definition is fine, I have no idea why it shouldn’t work.
+
 Strategies {
 every30seconds : "0/30 0 0 ? * * *"
-everyMinute : "0 * * * * ?"
-everyHour : "0 0 * * * ?"
-everyDay : "0 0 0 * * ?" //time cron "0 0 0 * * ?"  // Fires midnight every day
+everyMinute : "0 * * ? * *"
 every2Minutes : "0 */2 * ? * *"
-every1Minutes : "0 */1 * ? * *"
-every5Minutes : "0 0/5 * * * ?"
+every5Minutes : "0 */5 * ? * *"
+everyHour : "0 0 * ? * *"
+everyDay : "0 0 0 * * ?" //time cron "0 0 0 * * ?"  // Fires midnight every day
+everyMonth : "0 0 1 * *"// At 00:00 on day-of-month 1.
+everyYear : "0 0 1 1 *"// At 00:00 on day-of-month 1 in January.
 //If no strategy is defined, everyChange will be used.
 default = everyChange
 }
@@ -17,9 +57,10 @@ Items {
 
     Gr_Persist_On_Change* :  strategy = everyChange
     Gr_Persist_On_Change_Startup*, HeatingCoolingSwitch, GF_OF_Heating_Setpoint : strategy = everyChange, restoreOnStartup
-    Gr_Persist_On_Change_1minute_Startup* : strategy = everyChange, everyMinute, restoreOnStartup
+    Gr_Persist_On_Change_1minute_Startup*,Gr_HR_Total_KWh, Gr_HR_Total_KWh* : strategy = everyChange, everyMinute, restoreOnStartup
     Gr_HR_ACTIVE_POWER,Gr_HR_ACTIVE_POWER*,Gr_METERS_Voltage*,Meter_Ampers_well_pump,r_HR_HeatPump_And_WellPump_POWER : strategy = everyChange, every30seconds
     Gr_Persist_On_Change_1minute*,  Gr_Temperature_measurments*: strategy = everyChange, everyMinute
+
     // Gr_Persist_On_Change_1minute*,  Gr_Temperature_measurments*, Gr_HR_ACTIVE_POWER*, Gr_House_Inside_Temperature : strategy = everyChange, every1Minutes
     // Gr_Persist_Every_30_Seconds* :  strategy = every30seconds
     // Gr_Persist_Every_1_Minute* :  strategy = everyMinute

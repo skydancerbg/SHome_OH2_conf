@@ -9,6 +9,65 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
             //Text item=DateDiffFormat //label="Livingroo"
         }    
 
+
+        // Frame label="TEST METERS DATA LOGGING:" {
+        //     // Switch item=TEST_Triggering_Switch_1
+        //     Switch item=TEST_Triggering_Switch_2
+        //     Text item=TEST_Meter_DATA_TO_DATE_KWh_heat_pump       
+        //     Text item=TEST_Meter_DATA_DAILY_KWh_heat_pump
+        // } 
+
+
+        // Frame label="TEST!!!!!!!!!!!ПОКАЗАНИЯ ЕЛЕКТРОМЕРИ В 00:00 ЧАСА:" {
+        //     Text item=TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water         label="TEST_ОБЩО ОВИ И ТОПЛА ВОДА [%.2f kWh]"        
+        //     Text item=TEST_DB_kWh_TO_DATE_SUM_solar_hw_and_heater  label="TEST_ОБЩО СОЛАР И ТОПЛА ВОДА [%.2f kWh]" 
+        //     Text item=TEST_DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump    label="TEST_ОБЩО ТЕРМОПОМПА И СОНДАЖНА ПОМПА [%.2f kWh]" 
+        //     Text item=none
+        //     Text item=TEST_DB_kWh_TO_DATE_heat_pump              label="TEST_ТЕРМОПОМПА [%.2f kWh]"           
+        //     Text item=TEST_DB_kWh_TO_DATE_well_pump              label="TEST_СОНДАЖНА ПОМПА [%.2f kWh]"          
+        //     Text item=TEST_DB_kWh_TO_DATE_soalar_and_hw_recirc   label="TEST_СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ [%.2f kWh]"
+        //     Text item=TEST_DB_kWh_TO_DATE_water_heater           label="TEST_ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f kWh]"        
+        //     Text item=TEST_DB_kWh_TO_DATE_recuperator            label="TEST_РЕКУПЕРАТОР [%.2f kWh]"     
+        // } 
+
+        // Frame label="TEST!!!!!!!!!!! ДНЕВНА КОНСУМАЦИЯ НА ЕЛ. ЕНЕРГИЯЗА ПРЕДИШНИЯ ДЕН:" {
+        //     Text item=TEST_DB_kWh_DAILY_SUM_hvac_and_hot_water         label="TEST_ОБЩО ОВИ И ТОПЛА ВОДА [%.2f kWh]"        
+        //     Text item=TEST_DB_kWh_DAILY_SUM_solar_hw_and_heater  label="TEST_ОБЩО СОЛАР И ТОПЛА ВОДА [%.2f kWh]" 
+        //     Text item=TEST_DB_kWh_DAILY_SUM_heat_pump_and_well_pump    label="TEST_ОБЩО ТЕРМОПОМПА И СОНДАЖНА ПОМПА [%.2f kWh]" 
+        //     Text item=none
+        //     Text item=TEST_DB_kWh_DAILY_heat_pump              label="TEST_ТЕРМОПОМПА [%.2f kWh]"           
+        //     Text item=TEST_DB_kWh_DAILY_well_pump              label="TEST_СОНДАЖНА ПОМПА [%.2f kWh]"          
+        //     Text item=TEST_DB_kWh_DAILY_soalar_and_hw_recirc   label="TEST_СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ [%.2f kWh]"
+        //     Text item=TEST_DB_kWh_DAILY_water_heater           label="TEST_ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f kWh]"        
+        //     Text item=TEST_DB_kWh_DAILY_recuperator            label="TEST_РЕКУПЕРАТОР [%.2f kWh]"     
+        // } 
+
+
+        Frame label="ПОКАЗАНИЯ ЕЛЕКТРОМЕРИ В 00:00:45 ЧАСА:" {
+            Text item=DB_kWh_TO_DATE_SUM_hvac_and_hot_water         label="ОБЩО ОВИ И ТОПЛА ВОДА [%.2f kWh]"        
+            Text item=DB_kWh_TO_DATE_SUM_solar_hw_and_heater  label="ОБЩО СОЛАР И ТОПЛА ВОДА [%.2f kWh]" 
+            Text item=DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump    label="ОБЩО ТЕРМОПОМПА И СОНДАЖНА ПОМПА [%.2f kWh]" 
+            Text item=none
+            Text item=DB_kWh_TO_DATE_heat_pump              label="ТЕРМОПОМПА [%.2f kWh]"           
+            Text item=DB_kWh_TO_DATE_well_pump              label="СОНДАЖНА ПОМПА [%.2f kWh]"          
+            Text item=DB_kWh_TO_DATE_soalar_and_hw_recirc   label="СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ [%.2f kWh]"
+            Text item=DB_kWh_TO_DATE_water_heater           label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f kWh]"        
+            Text item=DB_kWh_TO_DATE_recuperator            label="РЕКУПЕРАТОР [%.2f kWh]"     
+        } 
+
+        Frame label="ДНЕВНА КОНСУМАЦИЯ НА ЕЛ. ЕНЕРГИЯ ЗА ПРЕДИШНИЯ ДЕН:" {
+            Text item=DB_kWh_DAILY_SUM_hvac_and_hot_water           label="ОБЩО ОВИ И ТОПЛА ВОДА [%.2f kWh]"        
+            Text item=DB_kWh_DAILY_SUM_solar_hw_and_heater          label="ОБЩО СОЛАР И ТОПЛА ВОДА [%.2f kWh]" 
+            Text item=DB_kWh_DAILY_SUM_heat_pump_and_well_pump      label="ОБЩО ТЕРМОПОМПА И СОНДАЖНА ПОМПА [%.2f kWh]" 
+            Text item=none
+            Text item=DB_kWh_DAILY_heat_pump                        label="ТЕРМОПОМПА [%.2f kWh]"           
+            Text item=DB_kWh_DAILY_well_pump                        label="СОНДАЖНА ПОМПА [%.2f kWh]"          
+            Text item=DB_kWh_DAILY_soalar_and_hw_recirc             label="СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ [%.2f kWh]"
+            Text item=DB_kWh_DAILY_water_heater                     label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f kWh]"        
+            Text item=DB_kWh_DAILY_recuperator                      label="РЕКУПЕРАТОР [%.2f kWh]"     
+        } 
+
+
         Frame label="ЗАХРАНВАНЕ КОНТРОЛЕРИ:" {
             Switch item=XiGW2_sensor_plug_1_Power
             Switch item=XiGW2_sensor_plug_1_InUse    
@@ -273,18 +332,6 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
                 }
             } 
         }
-
-
-        Frame label="ДНЕВНА КОНСУМАЦИЯ НА ЕЛ. ЕНЕРГИЯЗА ПРЕДИШНИЯТ ДЕН:" {
-            Text item=Daily_Power_Usage_all_hvac_and_hot_water  label="ОБЩО КЛИМАТИЗАЦИЯ И БГВ [%.2f]"
-            Text item=Daily_Power_Usage_solar_hv_recirc_el_heater  label="СОЛАР И ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f]"
-            Text item=Daily_Power_Usage_heat_pump_and_well_pump  label="ТЕРМОПОМПА И СОНДАЖНА ПОМПА [%.2f]"
-            Text item=Daily_Power_Usage_heat_pump     label="ТЕРМОПОМПА [%.2f]"
-            Text item=Daily_Power_Usage_well_pump  label="СОНДАЖНА ПОМПА [%.2f]"
-            Text item=Daily_Power_Usage_soalar_and_hw_recirc  label="СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ [%.2f]"
-            Text item=Daily_Power_Usage_water_heater  label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР [%.2f]"
-            Text item=Daily_Power_Usage_recuperator  label="РЕКУПЕРАТОР [%.2f]"
-        } 
 
 
         Frame label="УСТРОЙСТВА НА БАТЕРИИ - НИВО НА БАТЕРИЯТА:" icon="battery" {    
