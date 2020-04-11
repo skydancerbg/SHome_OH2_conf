@@ -56,7 +56,7 @@ default = everyChange
 Items {
 
     Gr_Persist_On_Change* :  strategy = everyChange
-    Gr_Persist_On_Change_Startup*, HeatingCoolingSwitch, GF_OF_Heating_Setpoint : strategy = everyChange, restoreOnStartup
+    Gr_Persist_On_Change_Startup*, HeatingCoolingSwitch, GF_OF_Heating_Setpoint,Gr_Persist_On_Change_Restore_On_Startup,Gr_Persist_On_Change_Restore_On_Startup* : strategy = everyChange, restoreOnStartup
     Gr_Persist_On_Change_1minute_Startup*,Gr_HR_Total_KWh, Gr_HR_Total_KWh* : strategy = everyChange, everyMinute, restoreOnStartup
     Gr_HR_ACTIVE_POWER,Gr_HR_ACTIVE_POWER*,Gr_METERS_Voltage*,Meter_Ampers_well_pump,r_HR_HeatPump_And_WellPump_POWER : strategy = everyChange, every30seconds
     Gr_Persist_On_Change_1minute*,  Gr_Temperature_measurments*: strategy = everyChange, everyMinute

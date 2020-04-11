@@ -1,0 +1,205 @@
+// BASED ON:
+// https://community.openhab.org/t/rule-to-monitor-device-status-on-off-and-calculating-total-usage/60634/5
+// FOR WEEKLY, MOTHLY, YEARLY CALCULATIONS CHECK:
+// https://community.openhab.org/t/how-would-i-calculate-daily-weekly-monthly-values-off-an-item/68938/3
+
+// Switch GF_HR_well_pump_On_Off
+// Switch GF_HR_hp_On_Off
+// Switch GF_HR_solar_pump_On_Off
+// Switch GF_HR_Relay_Ctrl_hw_hp_superheater_pump
+ 
+// DB_START_TIME_Heat_pump - Stores Epoch timestamp   
+// DB_STOP_TIME_Heat_pump  - Stores Epoch timestamp    
+// DB_RUNTIME_TOTAL_Heat_pump - Stores TOTAL runtime minutes
+// DB_RUNTIME_DAILY_Heat_pump  - Stores DAILY runtime hours at midnight
+// DB_RUNTIME_TODAY_Heat_pump   - Shows runtime hours for TODAY till the moment
+// DB_RUNTIME_DAILY_TOTAL_Heat_pump
+// DB_RUNTIME_LAST_RUN_Heat_pump  - Stores LAST RUN runtime minutes 
+
+var Number Epoch_Time = 0
+var Number Start_Of_Day_Time = 0
+// var Number Epoch_Time_On = 0
+// var Number Epoch_Time_Off = 0
+var Number new_Heat_pump_Run_time_Hours = 0
+var Number temp_Heat_pump_last_Run_time_Minutes = 0
+
+// // // CORRECT DATA ARE STARTING FROM MIDNIGHT AT 11.4.2020
+
+rule "Calculate Heat pump Run time"
+when
+    Item GF_HR_hp_On_Off changed  //from <state>] [to <state>]
+then
+
+        // logInfo("Heat Pump", "entering !!!!!!!!! Calculate Heat pump Run time")
+
+    Epoch_Time = now.millis
+    Start_Of_Day_Time = now.withTimeAtStartOfDay.millis // epoch at midnight
+
+    // logInfo("Heat Pump", "Heat Pump GF_HR_well_pump_On_Off.state - " + GF_HR_well_pump_On_Off.state)
+    // logInfo("Heat Pump", "Heat Pump Epoch_Time - " + Epoch_Time)
+
+    if (GF_HR_hp_On_Off.state == ON) DB_START_TIME_Heat_pump.postUpdate(Epoch_Time) // PERSISTED VIA GROUP - EVERY CHANGE, RESTORE ON STARTUP
+    // logInfo("Heat Pump", "Heat Pump DB_START_TIME_Heat_pump: " + DB_START_TIME_Heat_pump.state) //1586524424267
+    if (GF_HR_hp_On_Off.state == OFF){
+        DB_STOP_TIME_Heat_pump.postUpdate(Epoch_Time) // PERSISTED VIA GROUP - EVERY CHANGE, RESTORE ON STARTUP
+        // logInfo("Heat Pump", "Heat Pump DB_STOP_TIME_Heat_pump: " + DB_STOP_TIME_Heat_pump.state) //1586524566306
+        if ( (DB_START_TIME_Heat_pump.state as Number) < (Epoch_Time) ) {
+        // if (((DB_START_TIME_Heat_pump.state as Number) > 0 && (DB_STOP_TIME_Heat_pump.state as Number) > 0) && ((DB_START_TIME_Heat_pump.state as Number) < (DB_STOP_TIME_Heat_pump.state as Number)) ) {
+            // logInfo("Heat Pump", "entering !!!!!!!!! IF !!!!!!!!!!!!!!!!")
+            temp_Heat_pump_last_Run_time_Minutes = ((Epoch_Time - (DB_START_TIME_Heat_pump.state as Number)) / 60000)
+            // temp_Heat_pump_last_Run_time_Minutes = (((DB_STOP_TIME_Heat_pump.state as Number) - (DB_START_TIME_Heat_pump.state as Number)) / 60000)
+            // logInfo("Heat Pump", "!!!!!!!!! firsat calc !!!!!!!!!!!!!!!!")
+            // logInfo("Heat Pump", "temp_Heat_pump_last_Run_time_Minutes: " + temp_Heat_pump_last_Run_time_Minutes)
+            new_Heat_pump_Run_time_Hours = ((Epoch_Time - (DB_START_TIME_Heat_pump.state as Number)) / 60000)/60 // IN HOURS
+
+            //////////////////////////////////////////////////////////////////
+            // new_Heat_pump_Run_time_Hours = new_Heat_pump_Run_time_Hours + 1.14 + 4.1
+            //////////////////////////////////////////////////////////////////////
+
+            // new_Heat_pump_Run_time_Hours = (((DB_STOP_TIME_Heat_pump.state as Number) - (DB_START_TIME_Heat_pump.state as Number)) / 60000)/60 // IN HOURS
+            // logInfo("Heat Pump", "!!!!!!!!! Second calc !!!!!!!!!!!!!!!!")
+            // logInfo("Heat Pump", "MINUTITE V CHASOVE? new_Heat_pump_Run_time_Hours: " + new_Heat_pump_Run_time_Hours)
+            // logInfo("Heat Pump", "MINUTITE V CHASOVE? temp_Heat_pump_last_Run_time_Minutes DELENO NA 60 : " + (temp_Heat_pump_last_Run_time_Minutes / 60))
+
+            val old_hp_runtime_total =  DB_RUNTIME_TOTAL_Heat_pump.state as Number
+            // logInfo("Heat Pump", "OLD old_hp_runtime_total: " + old_hp_runtime_total)
+            var new_hp_runtime_total =new_Heat_pump_Run_time_Hours + old_hp_runtime_total
+            // logInfo("Heat Pump", "NEW DB_RUNTIME_TOTAL_Heat_pump: " + new_hp_runtime_total)
+
+            // logInfo("Heat Pump", "DB_RUNTIME_DAILY_TOTAL_Heat_pump: " + DB_RUNTIME_DAILY_TOTAL_Heat_pump.state)
+            // logInfo("Heat Pump", "temp_hp_runtime_total+DB_RUNTIME_DAILY_TOTAL_Heat_pump: " + DB_RUNTIME_DAILY_TOTAL_Heat_pump.state)
+
+            // total work hours since the begginig in hour
+            DB_RUNTIME_TOTAL_Heat_pump.postUpdate(new_hp_runtime_total) // PERSISTED VIA GROUP - EVERY CHANGE, RESTORE ON STARTUP
+            //todays work hours =  total - value at midnight 
+            val old_daily_runtime_total = DB_RUNTIME_DAILY_TOTAL_Heat_pump.state as Number
+            DB_RUNTIME_TODAY_Heat_pump.postUpdate(new_hp_runtime_total - old_daily_runtime_total)
+            // // total work hours since the begginig in hour
+            // DB_RUNTIME_TOTAL_Heat_pump.postUpdate(temp_Heat_pump_Run_time_Hours + (DB_RUNTIME_TOTAL_Heat_pump.state as Number)) // PERSISTED VIA GROUP - EVERY CHANGE, RESTORE ON STARTUP
+            // //todays work hours =  total - value at midnight 
+            // DB_RUNTIME_TODAY_Heat_pump.postUpdate((DB_RUNTIME_TOTAL_Heat_pump.state as Number) - (DB_RUNTIME_DAILY_TOTAL_Heat_pump.state as Number))
+            // last runtime in minutes
+            DB_RUNTIME_LAST_RUN_Heat_pump.postUpdate(temp_Heat_pump_last_Run_time_Minutes) 
+            // logInfo("Heat Pump", "Last Heat Pump Runtime: " + temp_Heat_pump_last_Run_time_Minutes)
+            // logInfo("Heat Pump", "END SECOND IF WHEN OFFF")
+            
+            // Convert milliseconds since midnight to seconds to minutes to hours:
+            val hoursToday = (Epoch_Time - Start_Of_Day_Time) / 1000 / 60 / 60
+            // Calculate worktime percentage:
+            val worktime_percentage = DB_RUNTIME_TODAY_Heat_pump.state as Number / hoursToday * 100
+            // Post the result:
+            DB_RUNTIME_TODAY_PERCENTAGE_OF_ON_TIME_Heat_pump.postUpdate(worktime_percentage)
+
+        }
+    }
+end
+
+// // // TODO   MAKE THE DAILY CALCULATIONS BASED ON METER READINGS WHITHOUT SAVING THE DAILY VALUES TO DB
+
+// // // CORRECT DATA ARE STARTING FROM MIDNIGHT AT 11.4.2020
+
+rule "persist CURRENT READINGS AND CALCULATED YESTERDAYS electric meter and power usage values"
+when
+    Time cron "55 0 0 ? * * *"  // At 00:00:55am every day in order to let other processes to finish calculations!!!
+then
+
+// DB_RUNTIME_TOTAL_Heat_pump  RUNNING TOTAL WORK HOURS    
+// DB_RUNTIME_DAILY_TOTAL_Heat_pump TOTAL WORK HOURS SAVED EVERY DAY AT 55 SEC AFTER MIDNIGHT 
+// DB_RUNTIME_DAILY_Heat_pump   WORK HOURS FOR YESTERDAY   
+
+        // READ CURRENT VALUES TO VAL
+        val current_reading_TOTAL_WORKHOURS_heat_pump = DB_RUNTIME_TOTAL_Heat_pump.state           
+        
+        // READ OLD YESTERDAY VALUES TO VAL
+        val yesterdays_reading_RUNTIME_DAILY_TOTAL_WORKHOURS_heat_pump = DB_RUNTIME_DAILY_TOTAL_Heat_pump.state           
+        // val yesterdays_reading_RUNTIME_DAILY_heat_pump = DB_RUNTIME_DAILY_Heat_pump.state           
+
+        // CALCULATE AND WRITE THE NEW CURRENT VALUES TO DB
+
+        DB_RUNTIME_DAILY_TOTAL_Heat_pump.postUpdate(current_reading_TOTAL_WORKHOURS_heat_pump as Number)
+
+        // CALCULATE AND WRITE THE NEW YESTERDAY VALUES TO DB
+        
+        DB_RUNTIME_DAILY_Heat_pump.postUpdate((current_reading_TOTAL_WORKHOURS_heat_pump as Number) - (yesterdays_reading_RUNTIME_DAILY_TOTAL_WORKHOURS_heat_pump as Number))
+        
+
+
+        logInfo("heat_pump_worktime_to_db", "heat_pump WORK TIME values persisted in database!!!")
+
+
+end
+
+rule "INITIAL SETUP VALUES FOR Calculate Heat pump Runtime RULE"
+when
+    Item TEST_Triggering_Switch_4 changed  from OFF to ON
+then
+    // //initial set of numbers while heat pump is off
+    // DB_STOP_TIME_Heat_pump.postUpdate(Epoch_Time)
+    // DB_START_TIME_Heat_pump.postUpdate(0)
+    // DB_RUNTIME_LAST_RUN_Heat_pump.postUpdate(0.25)
+    // DB_RUNTIME_DAILY_Heat_pump.postUpdate(107.72)
+    // DB_RUNTIME_TOTAL_Heat_pump.postUpdate(110.73)
+    
+    // // TEST percentage worktime calculation
+    // Epoch_Time = now.millis
+    // Start_Of_Day_Time = now.withTimeAtStartOfDay.millis  // epoch at midnight
+    //     // convert milliseconds to seconds to minutes to hours
+    // val hoursToday = (Epoch_Time - Start_Of_Day_Time) / 1000 / 60 / 60
+    // val worktime_percentage = DB_RUNTIME_TODAY_Heat_pump.state as Number / hoursToday * 100
+    //     DB_RUNTIME_TODAY_PERCENTAGE_OF_ON_TIME_Heat_pump.postUpdate(worktime_percentage)
+
+logInfo("TEST", "heat_pump WORK TIME INITIAL values persisted in database!!!")
+end
+
+// rule "TEST Calculate Heat pump Runtime"
+// when
+//     Item TEST_Triggering_Switch_3 changed  //from <state>] [to <state>]
+// then
+//     Epoch_Time = now.millis
+//     //initial set of numbers
+//     // GF_HR_hp_Stop_time.postUpdate(0)
+//     // GF_HR_hp_Start_time.postUpdate(0)
+//     // GF_HR_hp_Run_time_Minutes.postUpdate(0)
+
+//     // logInfo("Heat Pump", "Heat Pump GF_HR_well_pump_On_Off.state - " + GF_HR_well_pump_On_Off.state)
+
+//     // logInfo("Heat Pump", "Heat Pump Epoch_Time - " + Epoch_Time)
+//     if (TEST_Triggering_Switch_3.state == OFF) GF_HR_hp_Stop_time.postUpdate(Epoch_Time)
+//     // logInfo("Heat Pump", "Heat Pump GF_HR_hp_Stop_time - " + GF_HR_hp_Stop_time.state)
+//     if (TEST_Triggering_Switch_3.state == ON) GF_HR_hp_Start_time.postUpdate(Epoch_Time)
+//     // logInfo("Heat Pump", "Heat Pump GF_HR_hp_Start_time - " + GF_HR_hp_Start_time.state)
+//     if (((GF_HR_hp_Start_time.state as DecimalType) > 0 && (GF_HR_hp_Stop_time.state as DecimalType) > 0) && ((GF_HR_hp_Start_time.state as DecimalType) < (GF_HR_hp_Stop_time.state as DecimalType)) ) {
+//         temp_Heat_pump_Run_time = ((GF_HR_hp_Stop_time.state as DecimalType) - (GF_HR_hp_Start_time.state as DecimalType)) / 60000
+//         GF_HR_hp_Run_time_Minutes.postUpdate(temp_Heat_pump_Run_time)
+//         GF_HR_hp_TOTAL_Run_time_Minutes.postUpdate(temp_Heat_pump_Run_time + (GF_HR_hp_TOTAL_Run_time_Minutes.state as DecimalType) )
+//         logInfo("Heat Pump", "Heat Pump Runtime - " + temp_Heat_pump_Run_time)
+//         }
+// end
+
+// rule "Calculate Heat pump Runtime"
+// when
+//     Item GF_HR_well_pump_On_Off changed
+// then
+//     Epoch_Time = now.millis
+//     if (GF_HR_well_pump_On_Off.state == OFF) GF_HR_hp_Stop_time.postUpdate(Epoch_Time)
+//     if (GF_HR_well_pump_On_Off.state == ON) GF_HR_hp_Start_time.postUpdate(Epoch_Time)
+//     if ((GF_HR_hp_Start_time.state as DecimalType) > 0 && (GF_HR_hp_Stop_time.state as DecimalType) > 0) {
+//         var_Heat_pump_Run_time = ((GF_HR_hp_Stop_time.state as DecimalType) - (GF_HR_hp_Start_time.state as DecimalType)) / 60000
+//         GF_HR_hp_Run_time_Minutes.postUpdate(var_Heat_pump_Run_time)
+//         logInfo("Heat Pump", "Heat Pump Runtime - " + var_Heat_pump_Run_time)
+//         }
+// end
+
+// rule "Calculate Washing Machine Runtime"
+// when
+//     Item Washing_Machine_State changed
+// then
+//     Epoch_Time = now.millis
+//     if (Washing_Machine_State.state == OFF) Washing_Machine_Stop_Time.postUpdate(Epoch_Time)
+//     if (Washing_Machine_State.state == ON) Washing_Machine_Start_Time.postUpdate(Epoch_Time)
+//     if ((Washing_Machine_Start_Time.state as DecimalType) > 0 && (Washing_Machine_Stop_Time.state as DecimalType) > 0) {
+//         Washing_Machine_Runtime = ((Washing_Machine_Stop_Time.state as DecimalType) - (Washing_Machine_Start_Time.state as DecimalType)) / 60000
+//         Washing_Machine_Runtime_Minutes.postUpdate(Washing_Machine_Runtime)
+//         logInfo("Washing Machine", "Washing Machine Runtime - " + Washing_Machine_Runtime)
+//         }
+// end

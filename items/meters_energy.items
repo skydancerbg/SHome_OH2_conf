@@ -17,36 +17,6 @@ Group:Number:SUM     Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump   "
 // TEMPORARY USED TO FIND ТHЕ CАUSE OF WELL PUMP STOP
 Group:Number         Gr_METERS_Voltage   "ВОЛТАЖ:  [%.2f KWh]" <energy> 
 
-// // // 
-// // //    T E S T                     ! ! ! ! !
-
-Switch TEST_Triggering_Switch_1 "TEST SWITCH 1 - USE TO TRIGGER THE RULE"
-Switch TEST_Triggering_Switch_2 "TEST SWITCH 2 - USE TO TRIGGER THE RULE"
-
-// SAVES DAYLY KWh USING SINCE LAST RULE.... 
-// FIRST ONE HAS THE TOTAL TO START DATE VALUE...
-Number TEST_Meter_DATA_TO_DATE_KWh_heat_pump "TEST HEAT PUMP METER KWh TO DATE  [%.2f]" (Gr_Persist_On_Change_Startup)  //SAVES THE METER READING EVERY DY AT MIDNIGHT
-Number TEST_Meter_DATA_DAILY_KWh_heat_pump "TEST HEAT PUMP METER DAYLY KWh  [%.2f]" (Gr_Persist_On_Change_Startup) // Holds the previous day power consumption! will save daily values at midnight
-
-        Number TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water "TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water [%.2f kWh]"  (Gr_Persist_On_Change_Startup)                   
-        Number TEST_DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump "TEST_DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_TO_DATE_SUM_solar_hv_recirc_el_heater "TEST_DB_kWh_TO_DATE_SUM_solar_hv_recirc_el_heater [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_TO_DATE_heat_pump "TEST_DB_kWh_TO_DATE_heat_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_TO_DATE_well_pump "TEST_DB_kWh_TO_DATE_well_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_TO_DATE_soalar_and_hw_recirc "TEST_DB_kWh_TO_DATE_soalar_and_hw_recirc [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_TO_DATE_water_heater "TEST_DB_kWh_TO_DATE_water_heater [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_TO_DATE_recuperator "TEST_DB_kWh_TO_DATE_recuperator [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_DAILY_SUM_hvac_and_hot_water "TEST_DB_kWh_DAILY_SUM_hvac_and_hot_water [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_DAILY_SUM_heat_pump_and_well_pump "TEST_DB_kWh_DAILY_SUM_heat_pump_and_well_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_DAILY_SUM_solar_hw_and_heater "TEST_DB_kWh_DAILY_SUM_solar_hv_recirc_el_heater [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_DAILY_heat_pump "TEST_DB_kWh_DAILY_heat_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_DAILY_well_pump "TEST_DB_kWh_DAILY_well_pump [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_DAILY_soalar_and_hw_recirc "TEST_DB_kWh_DAILY_soalar_and_hw_recirc [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_DAILY_water_heater "TEST_DB_kWh_DAILY_water_heater [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-        Number TEST_DB_kWh_DAILY_recuperator "TEST_DB_kWh_DAILY_recuperator [%.2f kWh]" (Gr_Persist_On_Change_Startup)
-
-// // //    E  N  D    T E S T          ! ! ! ! !
-// // // 
 
 Number DB_kWh_TO_DATE_heat_pump            "HEAT PUMP kWh TO DATE  [%.2f kWh]"                    (Gr_Persist_On_Change_Restore_On_Startup)   //Meter_Total_KWh_heat_pump
 Number DB_kWh_TO_DATE_well_pump            "WELL PUMP kWh TO DATE  [%.2f kWh]"                    (Gr_Persist_On_Change_Restore_On_Startup)   //Meter_TotalKWh_well_pump

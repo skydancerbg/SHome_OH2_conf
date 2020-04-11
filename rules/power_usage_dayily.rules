@@ -10,6 +10,10 @@
 // 0 0 6/1 ? * * *  -At second :00, at minute :00, every hour starting at 06am, of every day
 // 45 0 0 ? * * *  -At 00:00:45am every day
 //
+
+
+// // // TODO   MAKE THE DAILY CALCULATIONS BASED ON METER READINGS WHITHOUT SAVING THE DAILY VALUES TO DB
+
 rule "persist CURRENT READINGS AND CALCULATED YESTERDAYS electric meter and power usage values"
 when
     Time cron "45 0 0 ? * * *"  // At 00:00:45am every day in order to let other processes to finish calculations!!!
@@ -61,28 +65,27 @@ end
 
 
 
-rule "TEST initial persist of TO DATE value"
-when
-    Item TEST_Triggering_Switch_1 received update
-then
-    if (TEST_Triggering_Switch_1.state == ON){
-        // DB_kWh_TO_DATE_heat_pump.postUpdate(380.72)           
-        // DB_kWh_TO_DATE_well_pump.postUpdate(83.90)           
-        // DB_kWh_TO_DATE_soalar_and_hw_recirc.postUpdate(10.23)
-        // DB_kWh_TO_DATE_water_heater.postUpdate(12.41)        
-        // DB_kWh_TO_DATE_recuperator.postUpdate(0.23) 
-        // DB_kWh_TO_DATE_SUM_hvac_and_hot_water.postUpdate(487.49)       
-        // // DB_kWh_TO_DATE_SUM_solar_hv_recirc_el_heater.postUpdate(22.64) // not in use wrong name!!!
-        // DB_kWh_TO_DATE_SUM_solar_hw_and_heater.postUpdate(22.64)
-        // DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump.postUpdate(464.62)          
-    logInfo("chron", "Initial persist of TO DATE value !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+// rule "TEST initial persist of TO DATE value"
+// when
+//     Item TEST_Triggering_Switch_1 received update
+// then
+//     if (TEST_Triggering_Switch_1.state == ON){
+//         // DB_kWh_TO_DATE_heat_pump.postUpdate(380.72)           
+//         // DB_kWh_TO_DATE_well_pump.postUpdate(83.90)           
+//         // DB_kWh_TO_DATE_soalar_and_hw_recirc.postUpdate(10.23)
+//         // DB_kWh_TO_DATE_water_heater.postUpdate(12.41)        
+//         // DB_kWh_TO_DATE_recuperator.postUpdate(0.23) 
+//         // DB_kWh_TO_DATE_SUM_hvac_and_hot_water.postUpdate(487.49)       
+//         // DB_kWh_TO_DATE_SUM_solar_hw_and_heater.postUpdate(22.64)
+//         // DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump.postUpdate(464.62)          
+//     logInfo("rule", "Initial persist of TO DATE value !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     
-    }
-    // TEST_Meter_DATA_DAILY_KWh_heat_pump.postUpdate(0.23)
-    // postUpdate(Daily_Power_Usage_all_hvac_and_hot_water,268.35)
+//     }
+//     // TEST_Meter_DATA_DAILY_KWh_heat_pump.postUpdate(0.23)
+//     // postUpdate(Daily_Power_Usage_all_hvac_and_hot_water,268.35)
     
 
-end
+// end
 
 
 // logInfo("Test","Item_last:   {}",Item.state)
@@ -93,89 +96,95 @@ end
 // Item.lastUpdate will use whatever database you have defined as default.
 // You need Item.lastUpdate(“influxdb”) if the default is different.
 
-rule "TEST initial persist of DAILY value"
-when
-    Item TEST_Triggering_Switch_2 received update
-then
-    if (TEST_Triggering_Switch_2.state == ON){
-        // TEST_Meter_DATA_DAILY_KWh_heat_pump.postUpdate((TEST_Meter_DATA_TO_DATE_KWh_heat_pump.state as Number)-)  // USE LAST?????
-        // val current_reading_reading_heat_pump =Meter_Total_KWh_heat_pump.state
-        // logInfo("Test","Meter_Total_KWh_heat_pump_last:   {}",current_reading_reading_heat_pump)
-        // logInfo("Test","TEST_Meter_DATA_TO_DATE_KWh_heat_pump_last:   {}",DB_kWh_TO_DATE_heat_pump.state)
-        // logInfo("Test","DAILY POWER CONSUMPTION:   {}",(current_reading_reading_heat_pump as Number)-(DB_kWh_TO_DATE_heat_pump.state as Number))
-        // logInfo("Test","Meter_Total_KWh_heat_pump_last:   {}",Meter_Total_KWh_heat_pump.state)
-        // logInfo("Test","TEST_Meter_DATA_TO_DATE_KWh_heat_pump_last:   {}",DB_kWh_TO_DATE_heat_pump.state)
+// rule "TEST initial persist of DAILY value"
+// when
+//     Item TEST_Triggering_Switch_2 received update
+// then
+//     if (TEST_Triggering_Switch_2.state == ON){
+//         // TEST_Meter_DATA_DAILY_KWh_heat_pump.postUpdate((TEST_Meter_DATA_TO_DATE_KWh_heat_pump.state as Number)-)  // USE LAST?????
+//         // val current_reading_reading_heat_pump =Meter_Total_KWh_heat_pump.state
+//         // logInfo("Test","Meter_Total_KWh_heat_pump_last:   {}",current_reading_reading_heat_pump)
+//         // logInfo("Test","TEST_Meter_DATA_TO_DATE_KWh_heat_pump_last:   {}",DB_kWh_TO_DATE_heat_pump.state)
+//         // logInfo("Test","DAILY POWER CONSUMPTION:   {}",(current_reading_reading_heat_pump as Number)-(DB_kWh_TO_DATE_heat_pump.state as Number))
+//         // logInfo("Test","Meter_Total_KWh_heat_pump_last:   {}",Meter_Total_KWh_heat_pump.state)
+//         // logInfo("Test","TEST_Meter_DATA_TO_DATE_KWh_heat_pump_last:   {}",DB_kWh_TO_DATE_heat_pump.state)
 
-        // logInfo("Test","DAILY POWER CONSUMPTION:   {}",(Meter_Total_KWh_heat_pump.state as Number)-(DB_kWh_TO_DATE_heat_pump.state as Number))
-//     Daily_Power_Usage_all_hvac_and_hot_water.postUpdate((Gr_HR_Total_KWh.state as DecimalType) -(Daily_Power_Usage_all_hvac_and_hot_water.state as DecimalType)) //Gr_HR_Total_KWh
-//     Daily_Power_Usage_solar_hv_recirc_el_heater.postUpdate((Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump.state as DecimalType) -(Daily_Power_Usage_solar_hv_recirc_el_heater.state as DecimalType)) //Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump
-//     Daily_Power_Usage_heat_pump_and_well_pump.postUpdate((Gr_HR_Total_KWh_HeatPump_And_WellPump.state as DecimalType) -(Daily_Power_Usage_heat_pump_and_well_pump.state as DecimalType)) //Gr_HR_Total_KWh_HeatPump_And_WellPump
-//     Daily_Power_Usage_heat_pump.postUpdate((Meter_Total_KWh_heat_pump.state as DecimalType) -(Daily_Power_Usage_heat_pump.state as DecimalType)) //Meter_Total_KWh_heat_pump
-//     Daily_Power_Usage_well_pump.postUpdate((Meter_TotalKWh_well_pump.state as DecimalType) -(Daily_Power_Usage_well_pump.state as DecimalType)) //Meter_TotalKWh_well_pump
-//     Daily_Power_Usage_soalar_and_hw_recirc.postUpdate((Meter_TotalKWh_soalar_and_hw_recirculation.state as DecimalType) -(Daily_Power_Usage_soalar_and_hw_recirc.state as DecimalType)) //Meter_TotalKWh_soalar_and_hw_recirculation
-//     Daily_Power_Usage_water_heater.postUpdate((Meter_TotalKWh_soalar_and_hw_recirculation.state as DecimalType) -(Daily_Power_Usage_water_heater.state as DecimalType))//Meter_TotalKWh_soalar_and_hw_recirculation
-//     Daily_Power_Usage_recuperator.postUpdate((Meter_TotalKWh_recuperator.state as DecimalType) -(Daily_Power_Usage_recuperator.state as DecimalType)) //Meter_TotalKWh_recuperator
+//         // logInfo("Test","DAILY POWER CONSUMPTION:   {}",(Meter_Total_KWh_heat_pump.state as Number)-(DB_kWh_TO_DATE_heat_pump.state as Number))
+// //     Daily_Power_Usage_all_hvac_and_hot_water.postUpdate((Gr_HR_Total_KWh.state as DecimalType) -(Daily_Power_Usage_all_hvac_and_hot_water.state as DecimalType)) //Gr_HR_Total_KWh
+// //     Daily_Power_Usage_solar_hv_recirc_el_heater.postUpdate((Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump.state as DecimalType) -(Daily_Power_Usage_solar_hv_recirc_el_heater.state as DecimalType)) //Gr_HR_Total_KWh_Solar_ElectricHeater_And_HW_Recirc_pump
+// //     Daily_Power_Usage_heat_pump_and_well_pump.postUpdate((Gr_HR_Total_KWh_HeatPump_And_WellPump.state as DecimalType) -(Daily_Power_Usage_heat_pump_and_well_pump.state as DecimalType)) //Gr_HR_Total_KWh_HeatPump_And_WellPump
+// //     Daily_Power_Usage_heat_pump.postUpdate((Meter_Total_KWh_heat_pump.state as DecimalType) -(Daily_Power_Usage_heat_pump.state as DecimalType)) //Meter_Total_KWh_heat_pump
+// //     Daily_Power_Usage_well_pump.postUpdate((Meter_TotalKWh_well_pump.state as DecimalType) -(Daily_Power_Usage_well_pump.state as DecimalType)) //Meter_TotalKWh_well_pump
+// //     Daily_Power_Usage_soalar_and_hw_recirc.postUpdate((Meter_TotalKWh_soalar_and_hw_recirculation.state as DecimalType) -(Daily_Power_Usage_soalar_and_hw_recirc.state as DecimalType)) //Meter_TotalKWh_soalar_and_hw_recirculation
+// //     Daily_Power_Usage_water_heater.postUpdate((Meter_TotalKWh_soalar_and_hw_recirculation.state as DecimalType) -(Daily_Power_Usage_water_heater.state as DecimalType))//Meter_TotalKWh_soalar_and_hw_recirculation
+// //     Daily_Power_Usage_recuperator.postUpdate((Meter_TotalKWh_recuperator.state as DecimalType) -(Daily_Power_Usage_recuperator.state as DecimalType)) //Meter_TotalKWh_recuperator
 
-        val current_reading_heat_pump = Meter_Total_KWh_heat_pump.state           
-        val current_reading_well_pump = Meter_TotalKWh_well_pump.state           
-        val current_reading_soalar_and_hw_recirc = Meter_TotalKWh_soalar_and_hw_recirculation.state
-        val current_reading_water_heater = Meter_TotalKWh_water_heater.state        
-        val current_reading_recuperator = Meter_TotalKWh_recuperator.state 
-        // val current_total_to_date = current_reading_heat_pump as Number + current_reading_well_pump as Number + current_reading_soalar_and_hw_recirc as Number + current_reading_water_heater as Number + current_reading_recuperator as Number
-        val current_hvac_and_hot_water = current_reading_heat_pump as Number + current_reading_well_pump as Number + current_reading_soalar_and_hw_recirc as Number + current_reading_water_heater as Number + current_reading_recuperator as Number
-        val current_heat_and_well_pump = current_reading_heat_pump as Number + current_reading_well_pump as Number 
-        val current_solar_and_heater = current_reading_soalar_and_hw_recirc as Number + current_reading_water_heater as Number
 
-        val yesterdays_reading_heat_pump = DB_kWh_TO_DATE_heat_pump.state           
-        val yesterdays_reading_well_pump = DB_kWh_TO_DATE_well_pump.state           
-        val yesterdays_reading_soalar_and_hw_recirc = DB_kWh_TO_DATE_soalar_and_hw_recirc.state
-        val yesterdays_reading_water_heater = DB_kWh_TO_DATE_water_heater.state        
-        val yesterdays_reading_recuperator = DB_kWh_TO_DATE_recuperator.state 
+
+//         // val current_reading_heat_pump = Meter_Total_KWh_heat_pump.state           
+//         // val current_reading_well_pump = Meter_TotalKWh_well_pump.state           
+//         // val current_reading_soalar_and_hw_recirc = Meter_TotalKWh_soalar_and_hw_recirculation.state
+//         // val current_reading_water_heater = Meter_TotalKWh_water_heater.state        
+//         // val current_reading_recuperator = Meter_TotalKWh_recuperator.state 
+//         // // val current_total_to_date = current_reading_heat_pump as Number + current_reading_well_pump as Number + current_reading_soalar_and_hw_recirc as Number + current_reading_water_heater as Number + current_reading_recuperator as Number
+//         // val current_hvac_and_hot_water = current_reading_heat_pump as Number + current_reading_well_pump as Number + current_reading_soalar_and_hw_recirc as Number + current_reading_water_heater as Number + current_reading_recuperator as Number
+//         // val current_heat_and_well_pump = current_reading_heat_pump as Number + current_reading_well_pump as Number 
+//         // val current_solar_and_heater = current_reading_soalar_and_hw_recirc as Number + current_reading_water_heater as Number
+
+//         // val yesterdays_reading_heat_pump = DB_kWh_TO_DATE_heat_pump.state           
+//         // val yesterdays_reading_well_pump = DB_kWh_TO_DATE_well_pump.state           
+//         // val yesterdays_reading_soalar_and_hw_recirc = DB_kWh_TO_DATE_soalar_and_hw_recirc.state
+//         // val yesterdays_reading_water_heater = DB_kWh_TO_DATE_water_heater.state        
+//         // val yesterdays_reading_recuperator = DB_kWh_TO_DATE_recuperator.state 
         
-        val yesterdays_hvac_and_hot_water = TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water.state
-        val yesterdays_heat_and_well_pump = TEST_DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump.state
-        val yesterdays_solar_and_heater = TEST_DB_kWh_TO_DATE_SUM_solar_hv_recirc_el_heater.state
+//         // val yesterdays_hvac_and_hot_water = TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water.state
+//         // val yesterdays_heat_and_well_pump = TEST_DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump.state
+//         // val yesterdays_solar_and_heater = TEST_DB_kWh_TO_DATE_SUM_solar_hv_recirc_el_heater.state
         
 
 
-    // TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water.postUpdate(current_reading_heat_pump as Number + current_reading_well_pump as Number)
+//     // TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water.postUpdate(current_reading_heat_pump as Number + current_reading_well_pump as Number)
 
-        logInfo("test","current_hvac_and_hot_water:   {}",current_hvac_and_hot_water as Number)
-        logInfo("test","current_heat_and_well_pump:   {}",current_heat_and_well_pump as Number)
-        logInfo("test","current_solar_and_heater:   {}",current_solar_and_heater as Number)
-        // TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water.postUpdate(current_hvac_and_hot_water)       
-        // TEST_DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump.postUpdate((current_reading_heat_pump as Number) + (current_reading_well_pump as Number))
-
-        // TEST_DB_kWh_DAILY_SUM_solar_hw_and_heater.postUpdate((current_reading_soalar_and_hw_recirc as Number)+ (current_reading_water_heater as Number))
-
-        // TEST_DB_kWh_TO_DATE_heat_pump.postUpdate(current_reading_heat_pump)           
-        // TEST_DB_kWh_TO_DATE_well_pump.postUpdate(current_reading_well_pump)           
-        // TEST_DB_kWh_TO_DATE_soalar_and_hw_recirc.postUpdate(current_reading_soalar_and_hw_recirc)
-        // TEST_DB_kWh_TO_DATE_water_heater.postUpdate(current_reading_water_heater)        
-        // TEST_DB_kWh_TO_DATE_recuperator.postUpdate(current_reading_recuperator) 
-
-        // TEST_DB_kWh_DAILY_SUM_hvac_and_hot_water.postUpdate(current_hvac_and_hot_water as Number - yesterdays_hvac_and_hot_water as Number) 
-        // TEST_DB_kWh_DAILY_SUM_heat_pump_and_well_pump.postUpdate((current_heat_and_well_pump as Number) - (yesterdays_heat_and_well_pump as Number))          
-        // TEST_DB_kWh_DAILY_SUM_solar_hw_and_heater.postUpdate((current_solar_and_heater as Number) - (yesterdays_solar_and_heater as Number))
-        // TEST_DB_kWh_DAILY_heat_pump.postUpdate(current_reading_heat_pump as Number - yesterdays_reading_heat_pump as Number)           
-        // TEST_DB_kWh_DAILY_well_pump.postUpdate(current_reading_well_pump as Number - yesterdays_reading_well_pump as Number)           
-        // TEST_DB_kWh_DAILY_soalar_and_hw_recirc.postUpdate(current_reading_soalar_and_hw_recirc as Number - yesterdays_reading_soalar_and_hw_recirc as Number)
-        // TEST_DB_kWh_DAILY_water_heater.postUpdate(current_reading_water_heater as Number - yesterdays_reading_water_heater as Number)        
-        // TEST_DB_kWh_DAILY_recuperator.postUpdate(current_reading_recuperator as Number - yesterdays_reading_recuperator as Number) 
+//         // logInfo("test","current_hvac_and_hot_water:   {}",current_hvac_and_hot_water as Number)
+//         // logInfo("test","current_heat_and_well_pump:   {}",current_heat_and_well_pump as Number)
+//         // logInfo("test","current_solar_and_heater:   {}",current_solar_and_heater as Number)
 
 
-            // logInfo("Test","TEST_Meter_DATA_TO_DATE_KWh_heat_pump_-1:     {}",TEST_Meter_DATA_TO_DATE_KWh_heat_pump.previousState(true).state)
-        // logInfo("Test","TEST_Meter_DATA_TO_DATE_KWh_heat_pump Time_last:    {}",TEST_Meter_DATA_TO_DATE_KWh_heat_pump.lastUpdate.millis)
-        // logInfo("Test","Time_-1:      {}",Item.previousState(true).timestamp.time)
-        // logInfo("Test","Time_diff:     {}",Item.lastUpdate.millis-Item.previousState(true).timestamp.time)
+
+
+//         // TEST_DB_kWh_TO_DATE_SUM_hvac_and_hot_water.postUpdate(current_hvac_and_hot_water)       
+//         // TEST_DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump.postUpdate((current_reading_heat_pump as Number) + (current_reading_well_pump as Number))
+
+//         // TEST_DB_kWh_DAILY_SUM_solar_hw_and_heater.postUpdate((current_reading_soalar_and_hw_recirc as Number)+ (current_reading_water_heater as Number))
+
+//         // TEST_DB_kWh_TO_DATE_heat_pump.postUpdate(current_reading_heat_pump)           
+//         // TEST_DB_kWh_TO_DATE_well_pump.postUpdate(current_reading_well_pump)           
+//         // TEST_DB_kWh_TO_DATE_soalar_and_hw_recirc.postUpdate(current_reading_soalar_and_hw_recirc)
+//         // TEST_DB_kWh_TO_DATE_water_heater.postUpdate(current_reading_water_heater)        
+//         // TEST_DB_kWh_TO_DATE_recuperator.postUpdate(current_reading_recuperator) 
+
+//         // TEST_DB_kWh_DAILY_SUM_hvac_and_hot_water.postUpdate(current_hvac_and_hot_water as Number - yesterdays_hvac_and_hot_water as Number) 
+//         // TEST_DB_kWh_DAILY_SUM_heat_pump_and_well_pump.postUpdate((current_heat_and_well_pump as Number) - (yesterdays_heat_and_well_pump as Number))          
+//         // TEST_DB_kWh_DAILY_SUM_solar_hw_and_heater.postUpdate((current_solar_and_heater as Number) - (yesterdays_solar_and_heater as Number))
+//         // TEST_DB_kWh_DAILY_heat_pump.postUpdate(current_reading_heat_pump as Number - yesterdays_reading_heat_pump as Number)           
+//         // TEST_DB_kWh_DAILY_well_pump.postUpdate(current_reading_well_pump as Number - yesterdays_reading_well_pump as Number)           
+//         // TEST_DB_kWh_DAILY_soalar_and_hw_recirc.postUpdate(current_reading_soalar_and_hw_recirc as Number - yesterdays_reading_soalar_and_hw_recirc as Number)
+//         // TEST_DB_kWh_DAILY_water_heater.postUpdate(current_reading_water_heater as Number - yesterdays_reading_water_heater as Number)        
+//         // TEST_DB_kWh_DAILY_recuperator.postUpdate(current_reading_recuperator as Number - yesterdays_reading_recuperator as Number) 
+
+
+//             // logInfo("Test","TEST_Meter_DATA_TO_DATE_KWh_heat_pump_-1:     {}",TEST_Meter_DATA_TO_DATE_KWh_heat_pump.previousState(true).state)
+//         // logInfo("Test","TEST_Meter_DATA_TO_DATE_KWh_heat_pump Time_last:    {}",TEST_Meter_DATA_TO_DATE_KWh_heat_pump.lastUpdate.millis)
+//         // logInfo("Test","Time_-1:      {}",Item.previousState(true).timestamp.time)
+//         // logInfo("Test","Time_diff:     {}",Item.lastUpdate.millis-Item.previousState(true).timestamp.time)
         
-        logInfo("chron", "TEST persist of DAILY value!")
-    }
-    // TEST_Meter_DATA_DAILY_KWh_heat_pump.postUpdate(0.23)
-    // postUpdate(Daily_Power_Usage_all_hvac_and_hot_water,268.35)
+//         logInfo("chron", "TEST persist of DAILY value!")
+//     }
+//     // TEST_Meter_DATA_DAILY_KWh_heat_pump.postUpdate(0.23)
+//     // postUpdate(Daily_Power_Usage_all_hvac_and_hot_water,268.35)
     
 
-end
+// end
 
 // var initial // !!!!!!!!ПЪРВИ ЗАПИС НА 31.3.2020!!!!!!!!!!!!!!
 

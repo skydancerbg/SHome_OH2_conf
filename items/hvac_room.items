@@ -1,6 +1,20 @@
 
 // To be used with a rule to set it based on energy meter power consumption value
 Switch GF_HR_hp_On_Off      "ТЕРМОПОМПА ВКЛ./ИЗКЛ."    <switch>     (Gr_Persist_On_Change_1minute_Startup)
+
+// To be used with a rule to calculate Run time  and Rest time
+Number DB_START_TIME_Heat_pump          "ТЕРМОПОМПА Start time TIMESTAMP  [%d]"                         <time>        (Gr_Persist_On_Change_Restore_On_Startup)  //  - Stores Epoch timestamp
+Number DB_STOP_TIME_Heat_pump           "ТЕРМОПОМПА Stop Time TIMESTAMP  [%d]"                          <time>        (Gr_Persist_On_Change_Restore_On_Startup)  //  - Stores Epoch timestamp
+Number DB_RUNTIME_TOTAL_Heat_pump       "ТЕРМОПОМПА МОТОЧАСОВЕ: [%.2f часа]"         <time>        (Gr_Persist_On_Change_Restore_On_Startup)  // - Stores RUNNING TOTAL WORK HOURS   
+Number DB_RUNTIME_DAILY_TOTAL_Heat_pump "ТЕРМОПОМПА НАРАБОТКА ДО ДНЕС: [%.2f часа]"      <time>        (Gr_Persist_On_Change_Restore_On_Startup)  // - TOTAL WORK HOURS SAVED EVERY DAY AT 55 SEC AFTER MIDNIGHT
+Number DB_RUNTIME_TODAY_Heat_pump       "ТЕРМОПОМПА ДНЕС: [%.2f часа]"            <time>         // DO NOT PERSIST!!!  - TOTAL WORK HOURS FOR TODAY TILL THE MOMENT
+Number DB_RUNTIME_DAILY_Heat_pump       "ТЕРМОПОМПА ВЧЕРА [%.2f часа]"               <time>        (Gr_Persist_On_Change_Restore_On_Startup)  // - Stores    WORK HOURS FOR YESTERDAY
+Number DB_RUNTIME_LAST_RUN_Heat_pump    "ТЕРМОПОМПА ПОСЛЕДНО ВКЛЮЧВАНЕ ЗА: [%.2f мин.]"                 <time>        (Gr_Persist_On_Change_Restore_On_Startup)// - Stores last runtime IN minutes 
+Number DB_RUNTIME_TODAY_PERCENTAGE_OF_ON_TIME_Heat_pump    "ВРЕМЕ В РАБОТА: [%.2f %%]"                 <time>        (Gr_Persist_On_Change_Restore_On_Startup)// - Stores last runtime IN minutes 
+
+// Number GF_HR_hp_TOTAL_Rest_time_Minutes "ТЕРМОПОМПА TOTAL Rest Time Minutes [%.4f]"      <clock>       (Gr_Persist_On_Change_Restore_On_Startup)  // - Stores runtime minutes
+// Number GF_HR_hp_Rest_time_Minutes       "ТЕРМОПОМПА Rest Time Minutes [%.4f]"            <clock>       (Gr_Persist_On_Change_Restore_On_Startup)  // - Stores runtime minutes
+
 // To be used with a rule to set it based on energy meter power consumption value
 Switch GF_HR_well_pump_On_Off      "СОНДАЖНА ОПОМПА ВКЛ./ИЗКЛ."    <switch>     (Gr_Persist_On_Change_1minute_Startup)
 // To be used with a rule to set it based on energy meter power consumption value

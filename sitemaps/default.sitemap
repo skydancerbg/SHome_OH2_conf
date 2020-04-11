@@ -1,3 +1,6 @@
+//divide-number-when-displaying-in-sitemap
+// https://community.openhab.org/t/divide-number-when-displaying-in-sitemap/36577
+
 sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
 
         Frame label="ДАТА/ЧАС, ИЗГРЕВ И ЗАЛЕЗ СЛЪНЦЕ:" {
@@ -8,6 +11,24 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
             //ФОРМАТ С PM, БЕЗ ДЕН:
             //Text item=DateDiffFormat //label="Livingroo"
         }    
+
+
+        // Frame label="INITIAL DATA LOGGING SWITCH :" {
+            
+        //     Switch item=TEST_Triggering_Switch_4
+        // } 
+
+    Frame label="ТЕРМОПОМПА СТАТИСТИКА:" {
+            Text item=DB_RUNTIME_TODAY_Heat_pump
+            Text item=DB_RUNTIME_TODAY_PERCENTAGE_OF_ON_TIME_Heat_pump
+            Text item=DB_RUNTIME_LAST_RUN_Heat_pump
+            Text item=DB_RUNTIME_DAILY_Heat_pump
+            Text item=DB_RUNTIME_TOTAL_Heat_pump
+            Text item=DB_RUNTIME_DAILY_TOTAL_Heat_pump
+            // Text item=DB_STOP_TIME_Heat_pump
+            // Text item=DB_START_TIME_Heat_pump
+                    }         
+
 
 
         // Frame label="TEST METERS DATA LOGGING:" {
@@ -683,6 +704,31 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
         // Text item=date_hour_tst
 
     }
+
+        Frame label="ПОКАЗАНИЯ ЕЛЕКТРОМЕРИ В 00:00:45 ЧАСА:" {
+            Text item=DB_kWh_TO_DATE_SUM_hvac_and_hot_water         label="ОБЩО ОВИ И ТОПЛА ВОДА kWh [%.2f]"        
+            Text item=DB_kWh_TO_DATE_SUM_solar_hw_and_heater  label="ОБЩО СОЛАР И ТОПЛА ВОДА kWh [%.2f]" 
+            Text item=DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump    label="ОБЩО ТЕРМОПОМПА И СОНДАЖНА ПОМПА kWh [%.2f]" 
+            Text item=none
+            Text item=DB_kWh_TO_DATE_heat_pump              label="ТЕРМОПОМПА kWh [%.2f]"           
+            Text item=DB_kWh_TO_DATE_well_pump              label="СОНДАЖНА ПОМПА kWh [%.2f]"          
+            Text item=DB_kWh_TO_DATE_soalar_and_hw_recirc   label="СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ kWh [%.2f]"
+            Text item=DB_kWh_TO_DATE_water_heater           label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР kWh [%.2f]"        
+            Text item=DB_kWh_TO_DATE_recuperator            label="РЕКУПЕРАТОР kWh [%.2f]"     
+        } 
+
+        Frame label="ДНЕВНА КОНСУМАЦИЯ НА ЕЛ. ЕНЕРГИЯ ЗА ПРЕДИШНИЯ ДЕН:" {
+            Text item=DB_kWh_DAILY_SUM_hvac_and_hot_water           label="ОБЩО ОВИ И ТОПЛА ВОДА kWh [%.2f]"        
+            Text item=DB_kWh_DAILY_SUM_solar_hw_and_heater          label="ОБЩО СОЛАР И ТОПЛА ВОДА kWh [%.2f]" 
+            Text item=DB_kWh_DAILY_SUM_heat_pump_and_well_pump      label="ОБЩО ТЕРМОПОМПА И СОНДАЖНА ПОМПА kWh [%.2f]" 
+            Text item=none
+            Text item=DB_kWh_DAILY_heat_pump                        label="ТЕРМОПОМПА kWh [%.2f]"           
+            Text item=DB_kWh_DAILY_well_pump                        label="СОНДАЖНА ПОМПА kWh [%.2f]"          
+            Text item=DB_kWh_DAILY_soalar_and_hw_recirc             label="СОЛАР И РЕЦИРКУЛАЦИЯ НА БГВ kWh [%.2f kWh]"
+            Text item=DB_kWh_DAILY_water_heater                     label="ЕЛ. НАГРЕВАТЕЛ БОЙЛЕР kWh [%.2f]"        
+            Text item=DB_kWh_DAILY_recuperator                      label="РЕКУПЕРАТОР kWh [%.2f]"     
+        } 
+
 
 
 }
