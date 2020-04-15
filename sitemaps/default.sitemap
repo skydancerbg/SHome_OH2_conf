@@ -1,22 +1,95 @@
 //divide-number-when-displaying-in-sitemap
 // https://community.openhab.org/t/divide-number-when-displaying-in-sitemap/36577
 
-sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
+sitemap default label="НАШАТА КЪЩА" {
 
-        Frame label="ДАТА/ЧАС, ИЗГРЕВ И ЗАЛЕЗ СЛЪНЦЕ:" {
+        Frame  {
+        // Frame label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
+        // Frame label="ДАТА/ЧАС, ИЗГРЕВ И ЗАЛЕЗ СЛЪНЦЕ:" {
             Text item=Date //label="Livingroom"
-            Text item=none
-            Text item=Sunrise_Time
-            Text item=Sunset_Time
             //ФОРМАТ С PM, БЕЗ ДЕН:
             //Text item=DateDiffFormat //label="Livingroo"
+
+            Text item=systems_OK 
+            // Text item=systems_WARNING_yellow
+            // Text item=systems_WARNING_red 
+            // Text item=none
+            Text item=Sunrise_Time
+            Text item=Sunset_Time
+
+            Text item=GF_HR_SENSORS_TEMP_outside_roof   label="ОКОЛНА [%.1f °C]" icon="temperature_outside"       
+
+            Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==OFF] //mappings=[OFF="ДЕАКТИВИРАНА"]   
+            Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==ON] //mappings=[ON="АКТИВИРАНА"]   
+
+            Group item=Gr_House_Inside_Temperature label="ПОМЕЩЕНИЯ [%.1f °C]" icon="temperature"
+            
+            Group item=Gr_HR_ACTIVE_POWER icon="electric_meter"
+            
+            Text item=GF_HR_SENSORS_TEMP_hw_tank_top label="БОЙЛЕР [%.1f °C]" icon="water_heater_tank" 
+
+            Switch item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="ПОМПА РЕЦИРКУЛАЦЯ БГВ" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+       
+
+            Switch item=GF_HR_solar_pump_On_Off icon="solar_panel_house" label="СОЛАР" mappings=[ON="РАБОТИ"]  visibility=[GF_HR_solar_pump_On_Off==ON]
+            Switch item=GF_HR_solar_pump_On_Off icon="solar_energy_off_blue" label="СОЛАР" mappings=[OFF="ИЗКЛЮЧЕН"] visibility=[GF_HR_solar_pump_On_Off==OFF]
+            // Switch item=GF_HR_solar_pump_On_Off icon="solar_energy_black" label="СОЛАР" mappings=[OFF="ИЗКЛЮЧЕН"] visibility=[GF_HR_solar_pump_On_Off==OFF]
+            // Switch item=GF_HR_solar_pump_On_Off icon="solar_panel_house" label="СОЛАР" mappings=[ON="РАБОТИ", OFF="ИЗКЛЮЧЕН"]  //visibility=[GF_HR_solar_pump_On_Off==ON]
+            // Switch item=GF_HR_solar_pump_On_Off icon="solar_energy_black" label="СОЛАР" mappings=[ON="РАБОТИ", OFF="ИЗКЛЮЧЕН"]  //visibility=[GF_HR_solar_pump_On_Off==OFF]
+            // Switch item=GF_HR_solar_pump_On_Off icon="solar_energy" label="СОЛАР" mappings=[ON="РАБОТИ", OFF="ИЗКЛЮЧЕН"]
+
+            //icon https://www.flaticon.com/free-icon/air-conditioner_1104636?term=air%20conditioning&page=9&position=82
+            Text item=HVAC_HeatingCooling_Switch label="КЛИМАТИЗАЦИЯ:" icon="off_button"    visibility=[HVAC_HeatingCooling_Switch==0.0]    
+            Text item=HVAC_HeatingCooling_Switch label="КЛИМАТИЗАЦИЯ:" icon="air_conditioning_symbol"  visibility=[HVAC_HeatingCooling_Switch==1.0]    
+            // // Text item=HVAC_HeatingCooling_Switch label="КЛИМАТИЗАЦИЯ РЕЖИМ:" icon="mode_heating"  visibility=[HVAC_HeatingCooling_Switch==1.0]    
+            // Text item=HVAC_HeatingCooling_Switch label="КЛИМАТИЗАЦИЯ:" icon="mode_cooling"  visibility=[HVAC_HeatingCooling_Switch==2.0]
+
+            Switch item=GF_HR_hp_On_Off icon="air_conditioner_heating" label="ТЕРМОПОМПА" mappings=[ON="РАБОТИ"]  visibility=[GF_HR_hp_On_Off==ON]
+            Switch item=GF_HR_hp_On_Off icon="air_conditioner_off_grey" label="ТЕРМОПОМПА" mappings=[OFF="В ГОТОВНОСТ"] visibility=[GF_HR_hp_On_Off==OFF]
+            // Switch item=GF_HR_hp_On_Off icon="air_conditioner_heating" label="ТЕРМОПОМПА" mappings=[OFF="ИЗКЛЮЧЕНА"] visibility=[GF_HR_hp_On_Off==OFF]
+
+            Switch  item=Gr_UF_ALL_ACTUATORS icon="presence"  label="ЗАДВИЖКИ ПОДОВО"
+
+            Switch item=GF_HR_well_pump_On_Off icon="water_pump" label="СОНДАЖНА ПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+            Switch item=GF_HR_Relay_Ctrl_hp_circ_pump icon="circulation_pump" label="ПОМПА ЦИРКУЛАЦИЯ ПОДОВО" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+            Switch item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="ПОМПА ДЕСУПЕРХИИТЪР" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+
         }    
 
 
         // Frame label="INITIAL DATA LOGGING SWITCH :" {
             
+        //     Switch item=TEST_Triggering_Switch_1
+        //     Text item=none
+        //     Switch item=TEST_Triggering_Switch_3
+        //     Text item=none
+            
         //     Switch item=TEST_Triggering_Switch_4
+        //     Text item=none
+        //     Text item=TEST_String_Item_1 label="TEST: [%s]"
+        //     Text item=none
+        //     Text item=TEST_String_Item_2 
+        //     Text item=none
+        //     Text item=TEST_String_Item_3 
+        //     Text item=none
+        //     Text item=TEST_String_Item_4 
+        //     Text item=none
+        //     Text item=TEST_String_Item_5 
+        //     Text item=none
+        //     Text item=TEST_String_Item_6 
+        //     Text item=none
+        //     Text item=TEST_String_Item_7 
         // } 
+
+    Frame label="СОЛАР:" {
+            Text item=GF_HR_SENSORS_TEMP_outside_roof       
+            Text item=GF_HR_SENSORS_TEMP_hw_tank_top        
+            Text item=GF_HR_SENSORS_TEMP_hw_tank_middle     
+            Text item=GF_HR_SENSORS_TEMP_hw_tank_botom              
+            Text item=GF_HR_SENSORS_TEMP_solar_col          
+            Text item=GF_HR_SENSORS_TEMP_solar_from_col     
+            Text item=GF_HR_SENSORS_TEMP_solar_to_col       
+                    }         
 
     Frame label="ТЕРМОПОМПА СТАТИСТИКА:" {
             Text item=DB_RUNTIME_TODAY_Heat_pump
@@ -29,7 +102,44 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
             // Text item=DB_START_TIME_Heat_pump
                     }         
 
+        Frame label="АЛАРМЕНА СИСТЕМА:"  { 
 
+            // Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==OFF] //mappings=[OFF="ДЕАКТИВИРАНА"]   
+            // Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==ON] //mappings=[ON="АКТИВИРАНА"]   
+
+            // Switch item=Alarm_Arm_Disarm
+            Switch item=Alarm_Arm_Disarm_Switch   
+
+            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" mappings=[OFF="ДЕАКТИВИРАНА",ON="АКТИВИРАЙ"]   
+            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" mappings=[0="ДЕАКТИВИРАНА",1="АКТИВИРАЙ"]   
+            
+            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==0] mappings=[0="ДЕАКТИВИРАНА",1="АКТИВИРАЙ"]   
+            // Switch item=Alarm_Arm_Disarm_Switch icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==1] mappings=[0="ДЕАКТИВИРАЙ",1="АКТИВИРАНА"]   
+
+            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==0] mappings=[0="ДЕАКТИВИРАНА"]   
+            // Switch item=Alarm_Arm_Disarm_Switch icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==1] mappings=[1="АКТИВИРАНА"]   
+
+            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==0] mappings=[0="ИЗКЛЮЧЕНА",1="ВКЛЮЧИ"]   
+            // Switch item=Alarm_Arm_Disarm_Switch icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==1] mappings=[0="ИЗКЛЮЧИ",1="ВКЛЮЧЕНА"]   
+            
+            // https://community.openhab.org/t/solved-how-to-insert-an-empty-field-in-sitemap/48546/2
+            // Text item=none // String none "" <none> is defined in common.items
+
+            // Text label="НАСТРОЙКИ АЛАРМА:" icon="settings" {
+            //     Switch item=Alarm_Arm_Disarm
+            //     Switch item=Alarm_Detected
+            //     Group item=GF_WS_NU_WF_DIY_Alarm_Status_Display
+            //     Group item=GF_WS_NU_WF_DIY_Garden_Alarm_Transmitter
+            //     Group item=GF_WS_NU_WF_DIY_Siren_Activator
+            //     Group item=Gr_Sequrity_System_Motion icon="siren"
+            //     Switch item=Pir_1_Motion
+            //     Switch item=Pir_2_Motion
+            //     Switch item=Pir_3_Motion
+            //     Switch item=Pir_4_Motion
+            //     Switch item=Pir_5_Motion
+            //     Switch item=Pir_6_Motion
+            // }
+        }
 
         // Frame label="TEST METERS DATA LOGGING:" {
         //     // Switch item=TEST_Triggering_Switch_1
@@ -383,6 +493,8 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
                         Text  item=XGW2_XA_THP_4_Temperature label="THP_4: ОФИС" 
                         Text  item=XGW2_XA_THP_5_Temperature label="THP_5: ХОЛ" 
                         Text  item=XGW2_XA_THP_6_Temperature label="THP_6: ЕТ.3"
+                        Text  item=XGW2_XA_THP_7_Temperature label="THP_6: КОРИДОР ГАРАЖ"
+                        Text  item=XGW2_XA_THP_8_Temperature label="THP_6: СРЕДНА СПАЛНЯ"
                         Text  item=GF_HR_SENSORS_TEMP_heating_room label="КОТЕЛНО"
 
                 }
@@ -456,6 +568,8 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
                         Group item=gMIGW2_XA_THP_sensor_4  label="MI GW 2 THP_sensor_4"
                         Group item=gMIGW2_XA_THP_sensor_5  label="MI GW 2 THP_sensor_5"
                         Group item=gMIGW2_XA_THP_sensor_6  label="MI GW 2 THP_sensor_6"
+                        Group item=gMIGW2_XA_THP_sensor_7  label="MI GW 2 THP_sensor_7"
+                        Group item=gMIGW2_XA_THP_sensor_8  label="MI GW 2 THP_sensor_8"
                     }
                 }
             }           

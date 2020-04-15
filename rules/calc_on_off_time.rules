@@ -38,8 +38,18 @@ then
     // logInfo("Heat Pump", "Heat Pump GF_HR_well_pump_On_Off.state - " + GF_HR_well_pump_On_Off.state)
     // logInfo("Heat Pump", "Heat Pump Epoch_Time - " + Epoch_Time)
 
-    if (GF_HR_hp_On_Off.state == ON) DB_START_TIME_Heat_pump.postUpdate(Epoch_Time) // PERSISTED VIA GROUP - EVERY CHANGE, RESTORE ON STARTUP
+    if (GF_HR_hp_On_Off.state == ON){
+         DB_START_TIME_Heat_pump.postUpdate(Epoch_Time) // PERSISTED VIA GROUP - EVERY CHANGE, RESTORE ON STARTUP
+
+        // t e m p o r a r y - R E M O V E    A F T E R   U S E
+        TEST_String_Item_4.postUpdate("HP start: " + Meter_Total_KWh_heat_pump.state.toString)
+        TEST_String_Item_5.postUpdate("WP start: " + Meter_TotalKWh_well_pump.state.toString)
+        TEST_String_Item_6.postUpdate("HP is on ")
+        TEST_String_Item_7.postUpdate("WP is on ")
+        // E N D - R E M O V E    A F T E R   U S E
+        
     // logInfo("Heat Pump", "Heat Pump DB_START_TIME_Heat_pump: " + DB_START_TIME_Heat_pump.state) //1586524424267
+    }
     if (GF_HR_hp_On_Off.state == OFF){
         DB_STOP_TIME_Heat_pump.postUpdate(Epoch_Time) // PERSISTED VIA GROUP - EVERY CHANGE, RESTORE ON STARTUP
         // logInfo("Heat Pump", "Heat Pump DB_STOP_TIME_Heat_pump: " + DB_STOP_TIME_Heat_pump.state) //1586524566306
@@ -90,6 +100,25 @@ then
             // Post the result:
             DB_RUNTIME_TODAY_PERCENTAGE_OF_ON_TIME_Heat_pump.postUpdate(worktime_percentage)
 
+            // t e m p o r a r y - R E M O V E    A F T E R   U S E
+
+            // SHOW AVERAGE HEAT PUMP AND WELL PUMP POWER CONSUMPTION
+            val DateTimeType hp_start_in_DateTime_time = new DateTimeType(new DateTime((DB_START_TIME_Heat_pump.state as Number).longValue).toString)
+            val hp_start_in_joda_time = new DateTime((hp_start_in_DateTime_time).zonedDateTime.toInstant.toEpochMilli)
+            val avg_power_hp =    Meter_Total_Active_Power_heat_pump.averageSince(hp_start_in_joda_time)
+            val avg_power_well_pump =    Meter_Power_well_pump.averageSince(hp_start_in_joda_time)
+            TEST_String_Item_1.postUpdate("Start: " + hp_start_in_joda_time.toString)
+            TEST_String_Item_2.postUpdate("HP: " + avg_power_hp.toString)
+            TEST_String_Item_3.postUpdate("WP: " + avg_power_well_pump.toString)
+            logInfo("TEST", "Start: " + hp_start_in_joda_time.toString)
+            logInfo("TEST", "avg_power_hp " + avg_power_hp.toString)
+            logInfo("TEST", "avg_power_well_pump " + avg_power_well_pump.toString)
+            TEST_String_Item_6.postUpdate("HP end: " + Meter_Total_KWh_heat_pump.state.toString)
+            TEST_String_Item_7.postUpdate("WP end: " + Meter_TotalKWh_well_pump.state.toString)
+            // E N D - R E M O V E    A F T E R   U S E
+
+
+
         }
     }
 end
@@ -98,15 +127,15 @@ end
 
 // // // CORRECT DATA ARE STARTING FROM MIDNIGHT AT 11.4.2020
 
-rule "persist CURRENT READINGS AND CALCULATED YESTERDAYS electric meter and power usage values"
+rule "persist heat pump workhours values"
 when
     Time cron "55 0 0 ? * * *"  // At 00:00:55am every day in order to let other processes to finish calculations!!!
 then
-
+    sendNotification("shivarov@code.bg", "persist heat pump workhours values")
 // DB_RUNTIME_TOTAL_Heat_pump  RUNNING TOTAL WORK HOURS    
 // DB_RUNTIME_DAILY_TOTAL_Heat_pump TOTAL WORK HOURS SAVED EVERY DAY AT 55 SEC AFTER MIDNIGHT 
 // DB_RUNTIME_DAILY_Heat_pump   WORK HOURS FOR YESTERDAY   
-
+        logInfo("heat_pump_worktime_to_db", "ENTERING persist heat pump workhours values!!!")
         // READ CURRENT VALUES TO VAL
         val current_reading_TOTAL_WORKHOURS_heat_pump = DB_RUNTIME_TOTAL_Heat_pump.state           
         
@@ -131,8 +160,10 @@ end
 
 rule "INITIAL SETUP VALUES FOR Calculate Heat pump Runtime RULE"
 when
-    Item TEST_Triggering_Switch_4 changed  from OFF to ON
+    Item TEST_Triggering_Switch_1 changed  from OFF to ON
 then
+    //    sendNotification("shivarov@code.bg", "This is our notification sent via app.")
+
     // //initial set of numbers while heat pump is off
     // DB_STOP_TIME_Heat_pump.postUpdate(Epoch_Time)
     // DB_START_TIME_Heat_pump.postUpdate(0)
@@ -148,7 +179,84 @@ then
     // val worktime_percentage = DB_RUNTIME_TODAY_Heat_pump.state as Number / hoursToday * 100
     //     DB_RUNTIME_TODAY_PERCENTAGE_OF_ON_TIME_Heat_pump.postUpdate(worktime_percentage)
 
-logInfo("TEST", "heat_pump WORK TIME INITIAL values persisted in database!!!")
+    // // NEW TEST calculate average since power consumption
+
+    // var MyEpochFromNumberItem = (DB_START_TIME_Heat_pump.state as Number).longValue * 1000
+    // val MyJodaFromNumberItem = new DateTime(MyEpochFromNumberItem)
+    // // val MyJodaFromNumberItem = new DateTime((DB_START_TIME_Heat_pump.state as Number).longValue *1000)
+
+    // val DateTimeType MyDateTime = new DateTimeType(new DateTime((DB_START_TIME_Heat_pump.state as Number).longValue).toString)
+ 
+    // val DateTimeType MyDateTimeSTART = new DateTimeType(new DateTime((DB_START_TIME_Heat_pump.state as Number).longValue).toString)
+    // val DateTimeType MyDateTimeSTOP = new DateTimeType(new DateTime((DB_STOP_TIME_Heat_pump.state as Number).longValue).toString)
+ 
+    // val DateTimeType MyDateTimeTypeFromEpoch = new DateTimeType(new DateTime(now).toString)
+
+    // val min =    Meter_Total_Active_Power_heat_pump.minimumSince(MyJodaFromNumberItem) as Number
+    // // val min1 =    Meter_Total_KWh_heat_pump.minimumSince(now.minusMinutes(30))
+    // val max =    Meter_Total_Active_Power_heat_pump.maximumSince(MyJodaFromNumberItem) as Number
+    // val avg =    Meter_Total_Active_Power_heat_pump.averageSince(MyJodaFromNumberItem) as Number
+    // val delta =    Meter_Total_Active_Power_heat_pump.deltaSince(MyJodaFromNumberItem) as Number
+    // // val min =    Meter_Total_Active_Power_heat_pump.minimumSince(MyJodaFromNumberItem)
+    // // // val min1 =    Meter_Total_KWh_heat_pump.minimumSince(now.minusMinutes(30))
+    // // val max =    Meter_Total_Active_Power_heat_pump.maximumSince(MyJodaFromNumberItem)
+    // // val avg =    Meter_Total_Active_Power_heat_pump.averageSince(MyJodaFromNumberItem)
+    // // val delta =    Meter_Total_Active_Power_heat_pump.deltaSince(MyJodaFromNumberItem)
+    // var diff =    Meter_Total_Active_Power_heat_pump.minimumSince(now.minusMinutes(30)).state as Number - Meter_Total_Active_Power_heat_pump.minimumSince(MyJodaFromNumberItem).state as Number
+
+// https://community.openhab.org/t/type-conversions/32684
+    // var Number Epoch_Time = now.millis
+    // val DateTimeType hp_start_in_DateTime_time = new DateTimeType(new DateTime((DB_START_TIME_Heat_pump.state as Number).longValue).toString)
+    // val hp_start_in_joda_time = new DateTime((hp_start_in_DateTime_time).zonedDateTime.toInstant.toEpochMilli)
+    // val avg_power_hp =    Meter_Total_Active_Power_heat_pump.averageSince(hp_start_in_joda_time)
+    // val avg_power_well_pump =    Meter_Power_well_pump.averageSince(hp_start_in_joda_time)
+    // // TEST_String_Item_1.postUpdate("Start: " + hp_start_in_joda_time.toString)
+    // // TEST_String_Item_2.postUpdate("HP: " + avg_power_hp.toString)
+    // // TEST_String_Item_3.postUpdate("WP: " + avg_power_well_pump.toString)
+    // // logInfo("TEST", "Start: " + hp_start_in_joda_time.toString)
+    // // logInfo("TEST", "avg_power_hp " + avg_power_hp.toString)
+    // // logInfo("TEST", "avg_power_well_pump " + avg_power_well_pump.toString)
+    
+    // TEST_String_Item_4.postUpdate("HP start: " + Meter_Total_KWh_heat_pump.state.toString)
+    // TEST_String_Item_5.postUpdate("WP start: " + Meter_TotalKWh_well_pump.state.toString)
+
+    
+    
+
+// // https://community.openhab.org/t/type-conversions/32684
+//     val DateTimeType hp_start_in_DateTime_time = new DateTimeType(new DateTime((DB_START_TIME_Heat_pump.state as Number).longValue).toString)
+//     val hp_start_in_joda_time = new DateTime((hp_start_in_DateTime_time).calendar.timeInMillis)
+//     val avg_power_hp =    Meter_Total_Active_Power_heat_pump.averageSince(hp_start_in_joda_time)
+//     val avg_power_well_pump =    Meter_Power_well_pump.averageSince(hp_start_in_joda_time)
+//     TEST_String_Item_1.postUpdate("Start: " + hp_start_in_joda_time.toString)
+//     TEST_String_Item_2.postUpdate("HP: " + avg_power_hp.toString)
+//     TEST_String_Item_3.postUpdate("WP: " + avg_power_well_pump.toString)
+//     logInfo("TEST", "Start: " + hp_start_in_joda_time.toString)
+//     logInfo("TEST", "avg_power_hp " + avg_power_hp.toString)
+//     logInfo("TEST", "avg_power_well_pump " + avg_power_well_pump.toString)
+
+
+// logInfo("TEST", "MyJodaFromNumberItem " + MyJodaFromNumberItem.toString)
+// logInfo("TEST", "MyJodaFromNumberItem " + MyJodaFromNumberItem)
+// logInfo("TEST", "MyDateTime " + MyDateTime.toString)
+
+// logInfo("TEST", "MyDateTimeSTART " + MyDateTimeSTART.toString)
+// logInfo("TEST", "MyDateTimeSTOP " + MyDateTimeSTOP.toString)
+// logInfo("TEST", "minimumSince " + min.toString)
+// // logInfo("TEST", "minimumSince1 " + min1.state.toString)
+// logInfo("TEST", "averageSince " + avg.toString)
+// logInfo("TEST", "maximumSince " + max.toString)
+// logInfo("TEST", "deltaSince " + delta)
+// logInfo("TEST", "diff " + diff)
+// logInfo("TEST", "diff / 2 in WATT: " + diff / 2 )
+
+// logInfo("TEST", "heat_pump WORK TIME INITIAL values persisted in database!!!")
+
+    // val min =    Meter_Total_KWh_heat_pump.minimumSince(MyJodaFromNumberItem)
+    // // val min1 =    Meter_Total_KWh_heat_pump.minimumSince(now.minusMinutes(30))
+    // val max =    Meter_Total_KWh_heat_pump.maximumSince(MyJodaFromNumberItem)
+    // val delta =    Meter_Total_KWh_heat_pump.deltaSince(MyJodaFromNumberItem)
+    // var diff =    Meter_Total_KWh_heat_pump.minimumSince(now.minusMinutes(30)).state as Number - Meter_Total_KWh_heat_pump.minimumSince(MyJodaFromNumberItem).state as Number
 end
 
 // rule "TEST Calculate Heat pump Runtime"
@@ -190,16 +298,3 @@ end
 //         }
 // end
 
-// rule "Calculate Washing Machine Runtime"
-// when
-//     Item Washing_Machine_State changed
-// then
-//     Epoch_Time = now.millis
-//     if (Washing_Machine_State.state == OFF) Washing_Machine_Stop_Time.postUpdate(Epoch_Time)
-//     if (Washing_Machine_State.state == ON) Washing_Machine_Start_Time.postUpdate(Epoch_Time)
-//     if ((Washing_Machine_Start_Time.state as DecimalType) > 0 && (Washing_Machine_Stop_Time.state as DecimalType) > 0) {
-//         Washing_Machine_Runtime = ((Washing_Machine_Stop_Time.state as DecimalType) - (Washing_Machine_Start_Time.state as DecimalType)) / 60000
-//         Washing_Machine_Runtime_Minutes.postUpdate(Washing_Machine_Runtime)
-//         logInfo("Washing Machine", "Washing Machine Runtime - " + Washing_Machine_Runtime)
-//         }
-// end

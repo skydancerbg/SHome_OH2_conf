@@ -71,8 +71,11 @@ Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secu
         Type number : temp_recirc_back          "temp_recirc_back 18"               [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28793F9497020335"]
         Type number : temp_hot_water_out        "temp_hot_water_out 11"             [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28E918235F1401B6"]
         Type number : temp_hw_tank_top          "temp_hw_tank_top 12"               [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_281E5894970E037E"]
-        Type number : temp_hw_tank_middle       "temp_hw_tank_middle 25"            [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28C4D3FE0A000043"]
-        Type number : temp_hw_tank_botom        "temp_hw_tankbotom 10"              [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28B906235F140146"]
+        Type number : temp_hw_tank_middle       "temp_hw_tank_middle 25"            [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28B906235F140146"]
+        Type number : temp_hw_tank_botom        "temp_hw_tankbotom 10"              [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28C4D3FE0A000043"]
+        // Switched middle and bottom sensors, old things below:
+        // Type number : temp_hw_tank_middle       "temp_hw_tank_middle 25"            [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28C4D3FE0A000043"]
+        // Type number : temp_hw_tank_botom        "temp_hw_tankbotom 10"              [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28B906235F140146"]
         Type number : temp_cold_water_in        "temp_cold_water_in 2"              [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_286BC6235F1401CE"]
         Type number : temp_hp_well_in           "temp_hp_well_in 8"                 [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_286B1394970C0305"]
         Type number : temp_hp_well_out          "temp_hp_well_out 20"               [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_289B2F94970803E9"]

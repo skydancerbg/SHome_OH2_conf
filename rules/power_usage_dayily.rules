@@ -14,10 +14,87 @@
 
 // // // TODO   MAKE THE DAILY CALCULATIONS BASED ON METER READINGS WHITHOUT SAVING THE DAILY VALUES TO DB
 
-rule "persist CURRENT READINGS AND CALCULATED YESTERDAYS electric meter and power usage values"
+rule "TEST persist CURRENT READINGS AND CALCULATED YESTERDAYS electric meter and power usage values"
+when
+    Item TEST_Triggering_Switch_4 changed  from OFF to ON
+    // Time cron "45 0 0 ? * * *"  // At 00:00:45am every day in order to let other processes to finish calculations!!!
+then
+        // READ CURRENT VALUES TO VAL
+        val current_reading_heat_pump = Meter_Total_KWh_heat_pump.state           
+        val current_reading_well_pump = Meter_TotalKWh_well_pump.state           
+        val current_reading_soalar_and_hw_recirc = Meter_TotalKWh_soalar_and_hw_recirculation.state
+        val current_reading_water_heater = Meter_TotalKWh_water_heater.state        
+        val current_reading_recuperator = Meter_TotalKWh_recuperator.state 
+        val current_hvac_and_hot_water = current_reading_heat_pump as Number + current_reading_well_pump as Number + current_reading_soalar_and_hw_recirc as Number + current_reading_water_heater as Number + current_reading_recuperator as Number
+        val current_heat_and_well_pump = current_reading_heat_pump as Number + current_reading_well_pump as Number 
+        val current_solar_and_heater = current_reading_soalar_and_hw_recirc as Number + current_reading_water_heater as Number
+        
+        // READ OLD YESTERDAY VALUES TO VAL
+        val yesterdays_reading_heat_pump = DB_kWh_TO_DATE_heat_pump.state           
+        val yesterdays_reading_well_pump = DB_kWh_TO_DATE_well_pump.state           
+        val yesterdays_reading_soalar_and_hw_recirc = DB_kWh_TO_DATE_soalar_and_hw_recirc.state
+        val yesterdays_reading_water_heater = DB_kWh_TO_DATE_water_heater.state        
+        val yesterdays_reading_recuperator = DB_kWh_TO_DATE_recuperator.state 
+        val yesterdays_hvac_and_hot_water = DB_kWh_TO_DATE_SUM_hvac_and_hot_water.state
+        val yesterdays_heat_and_well_pump = DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump.state
+        val yesterdays_solar_and_heater = DB_kWh_TO_DATE_SUM_solar_hw_and_heater.state
+
+    
+    val joda_time_now = new DateTime(now.millis)
+// TEST_String_Item_1
+// TEST_String_Item_2
+// TEST_String_Item_3
+// TEST_String_Item_4
+// TEST_String_Item_5
+// TEST_String_Item_6
+// TEST_String_Item_7
+        // TEST_String_Item_1.postUpdate("mina!!!!!!!")       
+        TEST_String_Item_1.postUpdate(joda_time_now.toString)       
+        // CALCULATE AND WRITE THE NEW CURRENT VALUES TO DB
+        TEST_String_Item_2.postUpdate(current_hvac_and_hot_water)       
+        TEST_String_Item_3.postUpdate((current_reading_heat_pump as Number) + (current_reading_well_pump as Number))
+        TEST_String_Item_4.postUpdate((current_reading_soalar_and_hw_recirc as Number)+ (current_reading_water_heater as Number))
+        // CALCULATE AND WRITE THE NEW YESTERDAY VALUES TO DB
+        TEST_String_Item_5.postUpdate(current_hvac_and_hot_water as Number - yesterdays_hvac_and_hot_water as Number) 
+        TEST_String_Item_6.postUpdate((current_heat_and_well_pump as Number) - (yesterdays_heat_and_well_pump as Number))          
+        TEST_String_Item_7.postUpdate((current_solar_and_heater as Number) - (yesterdays_solar_and_heater as Number))
+
+
+        // CALCULATE AND WRITE THE NEW CURRENT VALUES TO DB
+        // DB_kWh_TO_DATE_SUM_hvac_and_hot_water.postUpdate(current_hvac_and_hot_water)       
+        // DB_kWh_TO_DATE_SUM_heat_pump_and_well_pump.postUpdate((current_reading_heat_pump as Number) + (current_reading_well_pump as Number))
+        // DB_kWh_TO_DATE_SUM_solar_hw_and_heater.postUpdate((current_reading_soalar_and_hw_recirc as Number)+ (current_reading_water_heater as Number))
+        // DB_kWh_TO_DATE_heat_pump.postUpdate(current_reading_heat_pump)           
+        // DB_kWh_TO_DATE_well_pump.postUpdate(current_reading_well_pump)           
+        // DB_kWh_TO_DATE_soalar_and_hw_recirc.postUpdate(current_reading_soalar_and_hw_recirc)
+        // DB_kWh_TO_DATE_water_heater.postUpdate(current_reading_water_heater)        
+        // DB_kWh_TO_DATE_recuperator.postUpdate(current_reading_recuperator)
+
+        // CALCULATE AND WRITE THE NEW YESTERDAY VALUES TO DB
+        // DB_kWh_DAILY_SUM_hvac_and_hot_water.postUpdate(current_hvac_and_hot_water as Number - yesterdays_hvac_and_hot_water as Number) 
+        // DB_kWh_DAILY_SUM_heat_pump_and_well_pump.postUpdate((current_heat_and_well_pump as Number) - (yesterdays_heat_and_well_pump as Number))          
+        // DB_kWh_DAILY_SUM_solar_hw_and_heater.postUpdate((current_solar_and_heater as Number) - (yesterdays_solar_and_heater as Number))
+        // DB_kWh_DAILY_heat_pump.postUpdate(current_reading_heat_pump as Number - yesterdays_reading_heat_pump as Number)           
+        // DB_kWh_DAILY_well_pump.postUpdate(current_reading_well_pump as Number - yesterdays_reading_well_pump as Number)           
+        // DB_kWh_DAILY_soalar_and_hw_recirc.postUpdate(current_reading_soalar_and_hw_recirc as Number - yesterdays_reading_soalar_and_hw_recirc as Number)
+        // DB_kWh_DAILY_water_heater.postUpdate(current_reading_water_heater as Number - yesterdays_reading_water_heater as Number)        
+        // DB_kWh_DAILY_recuperator.postUpdate(current_reading_recuperator as Number - yesterdays_reading_recuperator as Number) 
+
+        logInfo("rule_save_to_db", "TEST!!! Meter values published to strings!!!")
+
+
+end
+
+
+// // // TODO   MAKE THE DAILY CALCULATIONS BASED ON METER READINGS WHITHOUT SAVING THE DAILY VALUES TO DB
+
+rule "persist kWh To Date and Daily power usage"
 when
     Time cron "45 0 0 ? * * *"  // At 00:00:45am every day in order to let other processes to finish calculations!!!
 then
+       logInfo("rule_save_to_db", "persist kWh To Date and Daily power usage!!!")
+           sendNotification("shivarov@code.bg", "persist kWh To Date and Daily power usage")
+
         // READ CURRENT VALUES TO VAL
         val current_reading_heat_pump = Meter_Total_KWh_heat_pump.state           
         val current_reading_well_pump = Meter_TotalKWh_well_pump.state           

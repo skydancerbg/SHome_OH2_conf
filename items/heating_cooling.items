@@ -6,7 +6,13 @@
 // https://community.openhab.org/t/multi-state-switches/10939/6
 Number HeatingCoolingSwitch "[MAP(heatingcooling_states.map):%s]" (Gr_Persist_On_Change_Startup)
 // Number HeatingCoolingSwitch "СЪСТОЯНИЕ: [MAP(heatingcooling_states.map):%s]"
-
+// 0=OFF
+// 0.0=OFF
+// 1=HEATING
+// 1.0=HEATING
+// 2=COOLING
+// 2.0=COOLING
+// - = -
 
 // Number Livingroom_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_Livingroom)
 // Number GuestBedroom_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_GuestBedroom)

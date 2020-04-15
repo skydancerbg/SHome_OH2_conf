@@ -15,6 +15,8 @@ Bridge mihome:bridge:7811dcfd6181 "Xiaomi Gateway" [ serialNumber="7811dcfd6181"
     sensor_weather_v1   158d00036c1301  "Xiaomi Weather"    [itemId="158d00036c1301"]
     sensor_weather_v1   158d00036c12c6  "Xiaomi Weather"    [itemId="158d00036c12c6"]
     sensor_weather_v1   158d00036c1397  "Xiaomi Weather"    [itemId="158d00036c1397"]
+    sensor_weather_v1   158d00036c1397  "Xiaomi Weather"    [itemId="158d00036bd3f5"]
+    sensor_weather_v1   158d00036c1397  "Xiaomi Weather"    [itemId="158d0004460675"]
 
 
 
