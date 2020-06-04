@@ -117,9 +117,18 @@ Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secu
 // 21 - 28E7319497020335 ' --
 // 24 - 2857249497120370 ' ---
 // 
-    //    // SONOF DEVICES //////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    // SONOF DEVICES
 
  // // SONOFF DUAL   
+    Thing topic sonoff_dual "Sonoff Dual" @ "Living Room" {
+    Channels:
+        Type string : reachable "Reachable"              [ stateTopic="tele/sonoff_dual_1/LWT" ]
+        Type switch : power1     "Power1"                [ stateTopic="stat/sonoff_dual_1/POWER1", commandTopic="cmnd/sonoff_dual_1/POWER1" ]
+        Type switch : power2     "Power2"                [ stateTopic="stat/sonoff_dual_1/POWER2", commandTopic="cmnd/sonoff_dual_1/POWER2" ]        
+        Type number : rssi      "WiFi Signal Strength" [ stateTopic="tele/sonoff_dual_1/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+    }
+
+ // // SONOFF TH16   
 
     Thing topic sonoff_th16_6 "SonoffTH16 6 DS18B20 - Home Office" @ "Living Room" {
     Channels:
@@ -136,6 +145,17 @@ Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secu
         Type number : temperature   "Temperature"           [ stateTopic="tele/sonoff_th16_2/SENSOR", transformationPattern="JSONPATH:$.DS18B20.Temperature" ]
         Type number : rssi      "WiFi Signal Strength"      [ stateTopic="tele/sonoff_th16_2/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
     }
+
+// // !!!! Този сензор на ITEAD се разпознава като SI7021, а не като AM2301... Да се смени AM2301 в JSONPATH:$.SI7021.Temperature и JSONPATH:$.SI7021.Humidity
+    Thing topic sonoff_th16_4 "SonoffTH16 4 SI7021 T/H" @ "Living Room" {
+    Channels:
+        Type string : reachable     "Reachable"             [ stateTopic="tele/sonoff_th16_4/LWT" ]
+        Type switch : power         "Power"                 [ stateTopic="stat/sonoff_th16_4/POWER", commandTopic="cmnd/sonoff_th16_4/POWER" ]
+        Type number : temperature   "Temperature"           [ stateTopic="tele/sonoff_th16_4/SENSOR", transformationPattern="JSONPATH:$.SI7021.Temperature" ]
+        Type number : humidity      "Humidity"              [ stateTopic="tele/sonoff_th16_4/SENSOR", transformationPattern="JSONPATH:$.SI7021.Humidity" ]        
+        Type number : rssi      "WiFi Signal Strength"      [ stateTopic="tele/sonoff_th16_4/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+    }
+
 
 // // SONOFF POW
     
@@ -176,7 +196,86 @@ Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secu
     } 
 
 
- // // SONOFF S20 OUTLETS
+ // // SONOFF RF BRIDGE
+	Thing topic sonoffrfbridge1  {
+	Channels:
+        Type string : reachable     "Reachable"            [ stateTopic="tele/sonoff_RF_Bridge_1/LWT" ]
+        Type string : recieveddata  "Received Data"        [ stateTopic="tele/sonoff_RF_Bridge_1/RESULT", transformationPattern="JSONPATH:$.RfReceived.Data"]
+        Type string : recievedsync  "Received Sync"        [ stateTopic="tele/sonoff_RF_Bridge_1/RESULT", transformationPattern="JSONPATH:$.RfReceived.Sync"]
+        Type string : recievedlow   "Received Low"         [ stateTopic="tele/sonoff_RF_Bridge_1/RESULT", transformationPattern="JSONPATH:$.RfReceived.Low"]
+        Type string : recievedhigh  "Received High"        [ stateTopic="tele/sonoff_RF_Bridge_1/RESULT", transformationPattern="JSONPATH:$.RfReceived.High"]
+        Type string : recievedrfkey "Received RfKey"       [ stateTopic="tele/sonoff_RF_Bridge_1/RESULT", transformationPattern="JSONPATH:$.RfReceived.RfKey"]
+        Type number : rssi          "WiFi Signal Strength" [ stateTopic="tele/sonoff_RF_Bridge_1/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+ 
+// Custom already programmed 16 buttons:
+
+        // Type switch : button1       "Button 1"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RfKey1", on="6", transformationPattern="JSONPATH:$.RfKey1" ]
+        // Type switch : button2       "Button 2"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RfKey2", on="6", transformationPattern="JSONPATH:$.RfKey2" ]
+
+        // Type switch : button1       "Button 1"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RfKey1", transformationPattern="JSONPATH:$.RfKey1" ]
+        // Type switch : button2       "Button 2"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RfKey2", transformationPattern="JSONPATH:$.RfKey2" ]
+        // Type switch : button3       "Button 3"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RFKEY3", transformationPattern="JSONPATH:$.RfKey3" ]
+        // Type switch : button4       "Button 4"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RFKEY4", transformationPattern="JSONPATH:$.RfKey4" ]
+        // Type switch : button5       "Button 5"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RFKEY5", transformationPattern="JSONPATH:$.RfKey5" ]
+        // Type switch : button6       "Button 6"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RFKEY6", transformationPattern="JSONPATH:$.RfKey6" ]
+            
+        Type switch : switchrfA "Switch rf A" [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/Backlog", on="RfSync 8080; RfLow 260; RfHigh 800; RfCode #7172648", off="RfSync 8080; RfLow 260; RfHigh 800; RfCode #7172648"]
+        }
+
+
+//    // TASMOTA SONOFF DEVICES
+
+ // // TASMOTA SONOFF 4 channel 1   
+    Thing topic sonoff_4ch_1 "Sonoff 4CH 1" @ "House" {
+    Channels:
+        Type string : reachable "Reachable"              [ stateTopic="tele/sonoff_4ch_1/LWT" ]
+        Type switch : power1     "Power1"                [ stateTopic="stat/sonoff_4ch_1/POWER1", commandTopic="cmnd/sonoff_4ch_1/POWER1" ]
+        Type switch : power2     "Power2"                [ stateTopic="stat/sonoff_4ch_1/POWER2", commandTopic="cmnd/sonoff_4ch_1/POWER2" ]        
+        Type switch : power3     "Power3"                [ stateTopic="stat/sonoff_4ch_1/POWER3", commandTopic="cmnd/sonoff_4ch_1/POWER3" ]
+        Type switch : power4     "Power4"                [ stateTopic="stat/sonoff_4ch_1/POWER4", commandTopic="cmnd/sonoff_4ch_1/POWER4" ]        
+        Type number : rssi      "WiFi Signal Strength" [ stateTopic="tele/sonoff_4ch_1/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+    }
+
+    Thing topic sonoff_4ch_2 "Sonoff 4CH 2" @ "House" {
+    Channels:
+        Type string : reachable "Reachable"             [ stateTopic="tele/sonoff_4ch_2/LWT" ]
+        Type switch : power1     "Power1"               [ stateTopic="stat/sonoff_4ch_2/POWER1", commandTopic="cmnd/sonoff_4ch_2/POWER1" ]
+        Type switch : power2     "Power2"               [ stateTopic="stat/sonoff_4ch_2/POWER2", commandTopic="cmnd/sonoff_4ch_2/POWER2" ]        
+        Type switch : power3     "Power3"               [ stateTopic="stat/sonoff_4ch_2/POWER3", commandTopic="cmnd/sonoff_4ch_2/POWER3" ]
+        Type switch : power4     "Power4"               [ stateTopic="stat/sonoff_4ch_2/POWER4", commandTopic="cmnd/sonoff_4ch_2/POWER4" ]        
+        Type number : rssi      "WiFi Signal Strength"  [ stateTopic="tele/sonoff_4ch_2/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+    }
+
+//    // TASMOTA NodeMCU DEVICES
+
+    Thing topic nmcu_security_info_1 "NodeMCU Security Info 1" @ "House" {
+    Channels:
+        Type string : reachable "Reachable"             [ stateTopic="tele/nmcu_security_info_1/LWT" ]
+        Type switch : power1     "Power1"               [ stateTopic="stat/nmcu_security_info_1/POWER1", commandTopic="cmnd/nmcu_security_info_1/POWER1" ]
+        Type switch : power2     "Power2"               [ stateTopic="stat/nmcu_security_info_1/POWER2", commandTopic="cmnd/nmcu_security_info_1/POWER2" ]        
+        Type switch : power3     "Power3"               [ stateTopic="stat/nmcu_security_info_1/POWER3", commandTopic="cmnd/nmcu_security_info_1/POWER3" ]
+        Type switch : power4     "Power4"               [ stateTopic="stat/nmcu_security_info_1/POWER4", commandTopic="cmnd/nmcu_security_info_1/POWER4" ]        
+        Type switch : power5     "Power5"               [ stateTopic="stat/nmcu_security_info_1/POWER5", commandTopic="cmnd/nmcu_security_info_1/POWER5" ]        
+        Type number : rssi      "WiFi Signal Strength"  [ stateTopic="tele/nmcu_security_info_1/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+    }
+
+    Thing topic nmcu_security_activator_1 "NodeMCU Security Activator 1" @ "House" {
+    Channels:
+        Type string : reachable "Reachable"             [ stateTopic="tele/nmcu_security_actuator/LWT" ]
+        Type switch : power1     "Power1"               [ stateTopic="stat/nmcu_security_actuator/POWER1", commandTopic="cmnd/nmcu_security_actuator/POWER1" ]
+        Type switch : power2     "Power2"               [ stateTopic="stat/nmcu_security_actuator/POWER2", commandTopic="cmnd/nmcu_security_actuator/POWER2" ]        
+        Type number : rssi      "WiFi Signal Strength"  [ stateTopic="tele/nmcu_security_actuator/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+    }
+
+    Thing topic nmcu_security_siren_1 "NodeMCU Security Siren Relay 1" @ "House" {
+    Channels:
+        Type string : reachable "Reachable"             [ stateTopic="tele/nmcu_security_siren_1/LWT" ]
+        Type switch : power1     "Power1"               [ stateTopic="stat/nmcu_security_siren_1/POWER1", commandTopic="cmnd/nmcu_security_siren_1/POWER1" ]
+        Type number : rssi      "WiFi Signal Strength"  [ stateTopic="tele/nmcu_security_siren_1/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+    }
+
+
+
     
 
 

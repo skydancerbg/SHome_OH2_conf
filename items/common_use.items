@@ -5,6 +5,9 @@ String systems_OK "ВСИЧКИ СИСТЕМИ РАБОТЯТ БЕЗПРОБЛЕ
 String systems_WARNING_yellow "ВНИМАНИЕ! ПРОБЛЕМ В СИСТЕМА" <warning_triangle_yellow>
 String systems_WARNING_red "СИТЕМА НЕ ФУНКЦИОНИРА" <warning_triangle_red>
 
+
+Switch GF_GR_MotionDetector1
+
 // // // 
 // // //    T E S T                     ! ! ! ! !
 

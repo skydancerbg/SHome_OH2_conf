@@ -111,8 +111,8 @@ Number HVAC_Room_Thermostat_Setpoint_11 (Gr_Persist_On_Change_Startup,Gr_HVAC_Vi
 Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_11   "ЗАДВИЖКИ ИЗТОЧНА СПАЛНЯ [%d ВКЛЮЧЕНИ]" <heatingvalve>
 Switch HVAC_Heating_OnOff_Visualizer_11 
 
-//  HVAC LAUNDRY ROOM    (12)
-Switch HVAC_Room_Enable_12 "ПЕРАЛНО" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
+//  HVAC LAUNDRY ROOM AND CORRIDOR FLOOR 2   (12) // !!! THE UNDERFLOOR PIPES ARE CONNECTED WITH THE CORRIDOR BY DESIGN....
+Switch HVAC_Room_Enable_12 "ПЕРАЛНО И КОРИДОР ЕТ.2" (Gr_Persist_On_Change_Startup,Gr_HVAC_Room_HeatCool_Enable) [ "Switchable" ] 
 Group:Number:AVG Gr_HVAC_Room_Temperature_12 "СРЕДНА ТЕМПЕРАТУРА ПЕРАЛНО [%.1f °C]" 
 Number HVAC_Room_Thermostat_Setpoint_12 (Gr_Persist_On_Change_Startup,Gr_HVAC_Virtual_Thermostat_SetPoints) 
 Group:Switch:OR(ON, OFF)  HVAC_UF_Room_ACTUATORS_12   "ЗАДВИЖКИ ПЕРАЛНО [%d ВКЛЮЧЕНИ]" <heatingvalve>

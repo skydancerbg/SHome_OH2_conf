@@ -19,8 +19,8 @@ sitemap default label="НАШАТА КЪЩА" {
 
             Text item=GF_HR_SENSORS_TEMP_outside_roof   label="ОКОЛНА [%.1f °C]" icon="temperature_outside"       
 
-            Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==OFF] //mappings=[OFF="ДЕАКТИВИРАНА"]   
-            Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==ON] //mappings=[ON="АКТИВИРАНА"]   
+            Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==0] //mappings=[OFF="ДЕАКТИВИРАНА"]   
+            Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==1] //mappings=[ON="АКТИВИРАНА"]   
 
             Group item=Gr_House_Inside_Temperature label="ПОМЕЩЕНИЯ [%.1f °C]" icon="temperature"
             
@@ -44,19 +44,59 @@ sitemap default label="НАШАТА КЪЩА" {
             // // Text item=HVAC_HeatingCooling_Switch label="КЛИМАТИЗАЦИЯ РЕЖИМ:" icon="mode_heating"  visibility=[HVAC_HeatingCooling_Switch==1.0]    
             // Text item=HVAC_HeatingCooling_Switch label="КЛИМАТИЗАЦИЯ:" icon="mode_cooling"  visibility=[HVAC_HeatingCooling_Switch==2.0]
 
+// https://community.openhab.org/t/sitemap-visibility-rules-with-and/2728/2
             Switch item=GF_HR_hp_On_Off icon="air_conditioner_heating" label="ТЕРМОПОМПА" mappings=[ON="РАБОТИ"]  visibility=[GF_HR_hp_On_Off==ON]
             Switch item=GF_HR_hp_On_Off icon="air_conditioner_off_grey" label="ТЕРМОПОМПА" mappings=[OFF="В ГОТОВНОСТ"] visibility=[GF_HR_hp_On_Off==OFF]
             // Switch item=GF_HR_hp_On_Off icon="air_conditioner_heating" label="ТЕРМОПОМПА" mappings=[OFF="ИЗКЛЮЧЕНА"] visibility=[GF_HR_hp_On_Off==OFF]
 
-            Switch  item=Gr_UF_ALL_ACTUATORS icon="presence"  label="ЗАДВИЖКИ ПОДОВО"
-
             Switch item=GF_HR_well_pump_On_Off icon="water_pump" label="СОНДАЖНА ПОМПА" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+
+            Text  item=Gr_UF_ALL_ACTUATORS icon="heatingvalve"  label="ЗАДВИЖКИ ПОДОВО"
+            // Switch  item=Gr_UF_ALL_ACTUATORS icon="heatingvalve"  label="ЗАДВИЖКИ ПОДОВО"
+
             Switch item=GF_HR_Relay_Ctrl_hp_circ_pump icon="circulation_pump" label="ПОМПА ЦИРКУЛАЦИЯ ПОДОВО" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
             Switch item=GF_HR_Relay_Ctrl_hw_hp_superheater_pump icon="circulation_pump" label="ПОМПА ДЕСУПЕРХИИТЪР" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
 
         }    
 
 
+        Frame label="АЛАРМЕНА СИСТЕМА:"  {    
+            // Switch item=Alarm_Arm_Disarm_Switch mappings=[0="ИЗКЛЮЧЕНА",1="ВКЛЮЧЕНА"]   // !!!!!  UNCOMMENT TO INITIALLY SETUP THE ALARAM STATE 
+            
+            Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==0] mappings=[1="АКТИВИРАЙ"]   
+            Switch item=Alarm_Arm_Disarm_Switch icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==1] mappings=[0="СПРИ"]
+            
+            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==0] mappings=[0="ИЗКЛЮЧЕНА",1="ВКЛЮЧИ"]   
+            // Switch item=Alarm_Arm_Disarm_Switch icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==1] mappings=[0="ИЗКЛЮЧИ",1="ВКЛЮЧЕНА"]
+            
+               
+            // https://community.openhab.org/t/solved-how-to-insert-an-empty-field-in-sitemap/48546/2
+            // Text item=none // String none "" <none> is defined in common.items
+            Text label="НАСТРОЙКИ АЛАРМА:" icon="settings" {
+                Switch item=Alarm_Arm_Disarm
+                Switch item=Alarm_Detected
+                Group item=GF_WS_NU_WF_DIY_Alarm_Status_Display
+                Group item=GF_WS_NU_WF_DIY_Garden_Alarm_Transmitter
+                Group item=GF_WS_NU_WF_DIY_Siren_Activator
+                Group item=Gr_Sequrity_System_Motion icon="siren"
+                Switch item=Pir_1_Motion
+                Switch item=Pir_2_Motion
+                Switch item=Pir_3_Motion
+                Switch item=Pir_4_Motion
+                Switch item=Pir_5_Motion
+                Switch item=Pir_6_Motion
+            }
+        }
+
+    Frame label="ОСВЕТЛЕНИЕ:" icon="light" {    
+        Switch item=Gr_ALL_LIGHTS icon="light" label="ОСВЕТЛЕНИЕ (ВСИЧКИ)"
+        Group item=Gr_ALL_LIGHTS
+    }
+
+        Frame label="РОЗЕТКИ, КОНТАКТИ И РАЗКЛОНИТЕЛИ:" icon="groundfloor" {    
+            Switch item=Gr_ALL_POWER icon="poweroutlet" label="КОНСУМАТОРИ (ВСИЧКИ)"
+            Group item=Gr_ALL_POWER
+        }
         // Frame label="INITIAL DATA LOGGING SWITCH :" {
             
         //     Switch item=TEST_Triggering_Switch_1
@@ -101,45 +141,6 @@ sitemap default label="НАШАТА КЪЩА" {
             // Text item=DB_STOP_TIME_Heat_pump
             // Text item=DB_START_TIME_Heat_pump
                     }         
-
-        Frame label="АЛАРМЕНА СИСТЕМА:"  { 
-
-            // Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==OFF] //mappings=[OFF="ДЕАКТИВИРАНА"]   
-            // Text item=Alarm_Arm_Disarm_Switch label="АЛАРМЕНА СИСТЕМА:" icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==ON] //mappings=[ON="АКТИВИРАНА"]   
-
-            // Switch item=Alarm_Arm_Disarm
-            Switch item=Alarm_Arm_Disarm_Switch   
-
-            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" mappings=[OFF="ДЕАКТИВИРАНА",ON="АКТИВИРАЙ"]   
-            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" mappings=[0="ДЕАКТИВИРАНА",1="АКТИВИРАЙ"]   
-            
-            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==0] mappings=[0="ДЕАКТИВИРАНА",1="АКТИВИРАЙ"]   
-            // Switch item=Alarm_Arm_Disarm_Switch icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==1] mappings=[0="ДЕАКТИВИРАЙ",1="АКТИВИРАНА"]   
-
-            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==0] mappings=[0="ДЕАКТИВИРАНА"]   
-            // Switch item=Alarm_Arm_Disarm_Switch icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==1] mappings=[1="АКТИВИРАНА"]   
-
-            // Switch item=Alarm_Arm_Disarm_Switch icon="unsecured_shield" visibility=[Alarm_Arm_Disarm_Switch==0] mappings=[0="ИЗКЛЮЧЕНА",1="ВКЛЮЧИ"]   
-            // Switch item=Alarm_Arm_Disarm_Switch icon="secured_shield" visibility=[Alarm_Arm_Disarm_Switch==1] mappings=[0="ИЗКЛЮЧИ",1="ВКЛЮЧЕНА"]   
-            
-            // https://community.openhab.org/t/solved-how-to-insert-an-empty-field-in-sitemap/48546/2
-            // Text item=none // String none "" <none> is defined in common.items
-
-            // Text label="НАСТРОЙКИ АЛАРМА:" icon="settings" {
-            //     Switch item=Alarm_Arm_Disarm
-            //     Switch item=Alarm_Detected
-            //     Group item=GF_WS_NU_WF_DIY_Alarm_Status_Display
-            //     Group item=GF_WS_NU_WF_DIY_Garden_Alarm_Transmitter
-            //     Group item=GF_WS_NU_WF_DIY_Siren_Activator
-            //     Group item=Gr_Sequrity_System_Motion icon="siren"
-            //     Switch item=Pir_1_Motion
-            //     Switch item=Pir_2_Motion
-            //     Switch item=Pir_3_Motion
-            //     Switch item=Pir_4_Motion
-            //     Switch item=Pir_5_Motion
-            //     Switch item=Pir_6_Motion
-            // }
-        }
 
         // Frame label="TEST METERS DATA LOGGING:" {
         //     // Switch item=TEST_Triggering_Switch_1

@@ -7,9 +7,9 @@ logInfo("system_started", "on_startup.rules executed")
          // TotalCostWaterHeater.postUpdate(0.0)   // send a default value
 
 // SECURITY:
-   // Alarm_Detected.sendCommand(OFF) //??????????? алармата се нулира!!!!!!!!!!
+   Alarm_Detected.sendCommand(OFF) //??????????? алармата се нулира!!!!!!!!!!
 
-   // Gr_Sequrity_System_Motion.sendCommand(OFF)
+   Gr_Sequrity_System_Motion.sendCommand(OFF)
 
 // HEATING:
    //GF_OF_Heating_Enable.sendCommand(ON)
@@ -31,3 +31,4 @@ logInfo("system_started", "on_startup.rules executed")
 //    }
 
 end
+

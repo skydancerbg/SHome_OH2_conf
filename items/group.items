@@ -21,14 +21,10 @@ Group Gr_Persist_On_Change_Restore_On_Startup
 
 //// LIGHTNING
 
-Group:Switch:OR(ON, OFF)    gAllLights   "Осветление всички [%d ВКЛЮЧЕН(И)]"
-Group:Switch:OR(ON, OFF)    gStefBedroomLights   "Осветление спалня Стефан [%d ON]"
-Group:Switch:OR(ON, OFF)    Gr_Kitchen_Lights   "Осветление кухня [%d ON]"
-
 // Къща БЕНКОВСКИ:
 // Групите в къщата ще са с главни букви!
 // За къщата групата всички светлини ще се казва:
-Group:Switch:OR(ON, OFF)    Gr_ALL_LIGHTS   "Осветление всички [%d ВКЛЮЧЕН(И)]"
+Group:Switch:OR(ON, OFF)    Gr_ALL_LIGHTS   "Осветление [%d ВКЛЮЧЕН(И)]"
 // ??? Group:Switch:OR(ON, OFF)    Gr_GF_LIGHTS   "Осветление кухня [%d ON]"
 
 //// DOOR WINDOW SENSORS
@@ -40,12 +36,12 @@ Group:Switch:OR(ON, OFF)    Gr_ALL_LIGHTS   "Осветление всички [
 
 // Group:Number:SUM     gKitchen_Refrigerator_WF_Sensors   "Кухня - хладилник: Датчици за теч на вода [%d ОТВОРЕН(И)]"
 
-
+//EXAMPLE:
 // Group:Number:SUM 				gnuDoorSensor_Glasbruch_Status      "Glasbruchmelder Status sum [(%d)]"
 // Group:Switch:OR(ON,OFF) 		gswDoorSensor_Glasbruch_Status_All  "Glasbruchmelder Status alle [(%d)]"
 
 //// POWER
-Group:Switch:OR(ON, OFF)    gAllPower   "Консуматори  [%d ВКЛЮЧЕН(И)]"
+
 // Къща БЕНКОВСКИ:
 Group:Switch:OR(ON, OFF)    Gr_ALL_POWER   "Консуматори  [%d ВКЛЮЧЕН(И)]"
 
@@ -62,7 +58,6 @@ Group:Switch:OR(ON, OFF)    gAllBatteryLevel   "НИВО БАТЕРИИ  [БРО
 
 // // // // TEMPERATURES
 Group Gr_Temperature_measurments
-Group:Number:AVG Gr_S_Bdrm_Temperature "Stefan's Temperatures [%.1f °C]"
 
 Group:Number:AVG Gr_House_Inside_Temperature "Средна температура къща: [%.1f °C]"
 Group:Number:AVG Gr_House_Outside_Temperature "Средна външна температура къща: [%.1f °C]"
@@ -83,7 +78,7 @@ Group Group_SetPoint_Command
 Group Group_Room_Temperature
 
 // // LINKS TO SITEMAPS!!!!!!
-String admin_site  "http://192.168.1.201:8080/basicui/app?sitemap=administration"
+String admin_site  "http://192.168.1.100:8080/basicui/app?sitemap=administration"
 
 // // Template for devices ON/OFF counter group
 // Group:Switch:OR(ON, OFF)    x   "x[%d ON]"

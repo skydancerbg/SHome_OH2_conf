@@ -94,9 +94,11 @@ Switch XiGW2_Xiaomi_Switch_2_BatteryLow <energy> (gXiGW2_mia_wireless_switch_2, 
 // Humidity Range and Precision: 0 – 100% RH (non-condensing), ±3%
 // Atmospheric Pressure Range and Precision: 30 kPa – 110 kPa, ±0.12 kPa
 
-// // // ВЪНШНА TEMPERATURE !!!!!!!!! ВРЪЗВАМ ТЕСТОВО средна спалня И МАЛКАТА БАНЯ И ПРЕАЛНОТО ТУК!!!!!!!!!!!!!!
+// // // EAST BEDROOM & LAUNDRY & CORRIDOR & SMALL BATHROOM FLOOR 2 TEMPERATURE !!!!!!!!!
+// // LAUNDRY & CORRIDOR UNDERFOLOOR PIPES ARE CONNECTED BY DESIGN !!!!!!!!!
 Group gMIGW2_XA_THP_sensor_1
-Number:Temperature      XGW2_XA_THP_1_Temperature   "ТЕМПЕРАТУРА ЕТ.2 ИЗТОЧНА"  <temperature>  (Gr_HVAC_Room_Temperature_11,Gr_HVAC_Room_Temperature_12,Gr_HVAC_Room_Temperature_14,Gr_HVAC_Room_Temperature_10,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_1,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_1_Temperature   "ТЕМПЕРАТУРА ЕТ.2 ИЗТОЧНА"  <temperature>  (Gr_HVAC_Room_Temperature_11,Gr_HVAC_Room_Temperature_12,Gr_HVAC_Room_Temperature_14,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_1,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:temperature" }                                                                                                                                         
+// Number:Temperature      XGW2_XA_THP_1_Temperature   "ТЕМПЕРАТУРА ЕТ.2 ИЗТОЧНА"  <temperature>  (Gr_HVAC_Room_Temperature_11,Gr_HVAC_Room_Temperature_12,Gr_HVAC_Room_Temperature_14,Gr_HVAC_Room_Temperature_10,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_1,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_1_Humidity      <humidity>     (gMIGW2_XA_THP_sensor_1) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:humidity" }
 Number:Pressure         XGW2_XA_THP_1_Pressure      <pressure>     (gMIGW2_XA_THP_sensor_1) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:pressure" }
 Number                  XGW2_XA_THP_1_Battery       <battery>      (gMIGW2_XA_THP_sensor_1, gAllBatteryLevel) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:batteryLevel" }
@@ -104,7 +106,8 @@ Switch                  XGW2_XA_THP_1_BatteryLow    <energy>       (gMIGW2_XA_TH
 
 // // // РАБОТИЛНИЦА TEMPERATURE !!!!!!!!!СЛАГАМ И БАНЯ ГАРАЖ И КОРИДОР ГАРАЖ!!!!ДА СЕ СЕТНЕ ТУК СОНОФА ОТ БИГЛА!!!! И !!!ДА СЕ ПЕРМЕСТИ В ДРУГА СТАЯ
 Group gMIGW2_XA_THP_sensor_2
-Number:Temperature      XGW2_XA_THP_2_Temperature     "ТЕМПЕРАТУРА РАБОТИЛНИЦА" <temperature>  (Gr_HVAC_Room_Temperature_4,Gr_HVAC_Room_Temperature_5,Gr_HVAC_Room_Temperature_7,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_2,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_2_Temperature     "ТЕМПЕРАТУРА РАБОТИЛНИЦА" <temperature>  (Gr_HVAC_Room_Temperature_4,Gr_HVAC_Room_Temperature_5,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_2,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:temperature" }                                                                                                                                         
+// Number:Temperature      XGW2_XA_THP_2_Temperature     "ТЕМПЕРАТУРА РАБОТИЛНИЦА" <temperature>  (Gr_HVAC_Room_Temperature_4,Gr_HVAC_Room_Temperature_5,Gr_HVAC_Room_Temperature_7,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_2,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_2_Humidity        <humidity>     (gMIGW2_XA_THP_sensor_2) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:humidity" }
 Number:Pressure         XGW2_XA_THP_2_Pressure        <pressure>     (gMIGW2_XA_THP_sensor_2) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:pressure" }
 Number                  XGW2_XA_THP_2_Battery         <battery>      (gMIGW2_XA_THP_sensor_2, gAllBatteryLevel) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:batteryLevel" }
@@ -144,7 +147,7 @@ Switch                  XGW2_XA_THP_6_BatteryLow      <energy>       (gMIGW2_XA_
 
 // // // КОРИДОР ГАРАЖ TEMPERATURE !!!!!!!!!!!
 Group gMIGW2_XA_THP_sensor_7
-Number:Temperature      XGW2_XA_THP_7_Temperature     "ТЕМПЕРАТУРА 3-ТИ ЕТАЖ"  <temperature>  (Gr_HVAC_Room_Temperature_15,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_7,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1397:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_7_Temperature     "ТЕМПЕРАТУРА КОРИДОР ГАРАЖ"  <temperature>  (Gr_HVAC_Room_Temperature_7,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_7,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1397:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_7_Humidity        <humidity>     (gMIGW2_XA_THP_sensor_7) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036bd3f5:humidity" }
 Number:Pressure         XGW2_XA_THP_7_Pressure        <pressure>     (gMIGW2_XA_THP_sensor_7) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036bd3f5:pressure" }
 Number                  XGW2_XA_THP_7_Battery         <battery>      (gMIGW2_XA_THP_sensor_7, gAllBatteryLevel) { channel="mihome:7811dcfd6181:sensor_weather_v1:158d00036bd3f5:batteryLevel" }
@@ -152,7 +155,7 @@ Switch                  XGW2_XA_THP_7_BatteryLow      <energy>       (gMIGW2_XA_
 
 // // //НЕ ЗНАМ КЪДЕ TEMPERATURE !!!!!!!!!!!
 Group gMIGW2_XA_THP_sensor_8
-Number:Temperature      XGW2_XA_THP_8_Temperature     "ТЕМПЕРАТУРА 3-ТИ ЕТАЖ"  <temperature>  (Gr_HVAC_Room_Temperature_15,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_8,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1397:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_8_Temperature     "ТЕМПЕРАТУРА СРЕДНА СПАЛНЯ"  <temperature>  (Gr_HVAC_Room_Temperature_10,Gr_HVAC_Room_Temperatures,gMIGW2_XA_THP_sensor_8,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1397:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_8_Humidity        <humidity>     (gMIGW2_XA_THP_sensor_8)                   { channel="mihome:sensor_weather_v1:7811dcfd6181:158d0004460675:humidity" }
 Number:Pressure         XGW2_XA_THP_8_Pressure        <pressure>     (gMIGW2_XA_THP_sensor_8)                   { channel="mihome:sensor_weather_v1:7811dcfd6181:158d0004460675:pressure" }
 Number                  XGW2_XA_THP_8_Battery         <battery>      (gMIGW2_XA_THP_sensor_8, gAllBatteryLevel) { channel="mihome:7811dcfd6181:sensor_weather_v1:158d0004460675:batteryLevel" }
