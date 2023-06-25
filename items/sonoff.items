@@ -76,8 +76,16 @@ String GF_TR_Sonoff_4CH_2_Reachable "Reachable: [%s]"               <presence>  
 Switch GF_TR_Sonoff_4CH_2_Power1    "ОСВЕТЛЕНИЕ КОРИДОР ЕТ.1"       <switch>    (GF_TR_Sonoff_4CH_2, Gr_ALL_LIGHTS) ["Lighting"]    { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_2:power1" }       
 Switch GF_TR_Sonoff_4CH_2_Power2    "ОСВЕТЛЕНИЕ КОРИДОР ГАРАЖ"      <switch>    (GF_TR_Sonoff_4CH_2, Gr_ALL_LIGHTS) ["Lighting"]    { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_2:power2" }       
 Switch GF_TR_Sonoff_4CH_2_Power3    "ОСВЕТЛЕНИЕ ХОЛ"                <switch>    (GF_TR_Sonoff_4CH_2, Gr_ALL_LIGHTS) ["Lighting"]    { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_2:power3" }       
-Switch GF_TR_Sonoff_4CH_2_Power4    "Technical room light"          <switch>    (GF_TR_Sonoff_4CH_2, Gr_ALL_LIGHTS) ["Lighting"]    { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_2:power4" }       
+Switch GF_TR_Sonoff_4CH_2_Power4    "ОСВЕТЛЕНИЕ ТЕХНИЧЕСКО ГАРАЖ"          <switch>    (GF_TR_Sonoff_4CH_2, Gr_ALL_LIGHTS) ["Lighting"]    { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_2:power4" }       
 Number GF_TR_Sonoff_4CH_2_RSSI      "WiFi Signal Strength [%d %%]"  <network>   (GF_TR_Sonoff_4CH_2)                                { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_2:rssi" }
+
+Group  GF_TR_Sonoff_4CH_4           "Sonoff 4CH-4"                  <group> //(Sonoff_4CH)
+String GF_TR_Sonoff_4CH_4_Reachable "Reachable: [%s]"               <presence>  (GF_TR_Sonoff_4CH_4)                                { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_4:reachable" }
+Switch GF_TR_Sonoff_4CH_4_Power1    "ОСВЕТЛЕНИЕ КОРИДОР ЕТ.2"       <switch>    (GF_TR_Sonoff_4CH_4, Gr_ALL_LIGHTS) ["Lighting"]    { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_4:power1" }       
+Switch GF_TR_Sonoff_4CH_4_Power2    "ОСВЕТЛЕНИЕ ГАРДЕРОБНА"      <switch>    (GF_TR_Sonoff_4CH_4, Gr_ALL_LIGHTS) ["Lighting"]    { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_4:power2" }       
+Switch GF_TR_Sonoff_4CH_4_Power3    "ОСВЕТЛЕНИЕ СРЕДНА СТАЯ"                <switch>    (GF_TR_Sonoff_4CH_4, Gr_ALL_LIGHTS) ["Lighting"]    { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_4:power3" }       
+Switch GF_TR_Sonoff_4CH_4_Power4    "ОСВЕТЛЕНИЕ ПЕРАЛНО"          <switch>    (GF_TR_Sonoff_4CH_4, Gr_ALL_LIGHTS) ["Lighting"]    { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_4:power4" }       
+Number GF_TR_Sonoff_4CH_4_RSSI      "WiFi Signal Strength [%d %%]"  <network>   (GF_TR_Sonoff_4CH_4)                                { channel="mqtt:topic:MyMQTTthing:sonoff_4ch_4:rssi" }
 
 
 Group  GF_TR_Sonoff_4CH_PRO_1           "Sonoff 4CH-PRO-1"              <group> //(Sonoff_4CH)
