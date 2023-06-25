@@ -1,0 +1,52 @@
+//divide-number-when-displaying-in-sitemap
+// https://community.openhab.org/t/divide-number-when-displaying-in-sitemap/36577
+
+sitemap default label="ИНТЕЖИВО - Кибер-физични системи (КФС) за интелигентно управление на комплексите за отглеждане на животни" {
+
+        Frame  {
+            Text item=Date
+            Text item=systems_OK 
+            Text item=Sunrise_Time
+            Text item=Sunset_Time
+            
+            Group item=Gr_HR_ACTIVE_POWER icon="electric_meter"
+            
+            Text item=GF_HR_SENSORS_TEMP_hw_tank_top label="БОЙЛЕР [%.1f °C]" icon="water_heater_tank" 
+
+            Switch item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="ПОМПА РЕЦИРКУЛАЦЯ БГВ" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+       
+
+            Switch item=GF_HR_solar_pump_On_Off icon="solar_panel_house" label="СОЛАР" mappings=[ON="РАБОТИ"]  visibility=[GF_HR_solar_pump_On_Off==ON]
+            Switch item=GF_HR_solar_pump_On_Off icon="solar_energy_off_blue" label="СОЛАР" mappings=[OFF="ИЗКЛЮЧЕН"] visibility=[GF_HR_solar_pump_On_Off==OFF]
+        }    
+
+
+
+    
+    Frame label="Solar and HW recirculation pump electric meter 515 - ID:105" {
+        
+        Text item=Meter_Power_soalar_and_hw_recirculation label="105 Power Watts"
+        Text item=Meter_Voltage_soalar_and_hw_recirculation label="VOLTAGE"
+        Text item=Meter_Ampers_soalar_and_hw_recirculation label="Ampers"
+        Text item=Meter_Hz_soalar_and_hw_recirculation label="Line frequency Hz"
+        Text item=Meter_Reactive_soalar_and_hw_recirculation label="Reactive_power"
+        Text item=Meter_Apparent_soalar_and_hw_recirculation label="Apparent_power"
+        Text item=Meter_Power_factor_soalar_and_hw_recirculation label="Power_factor"
+        Text item=Meter_TotalKWh_soalar_and_hw_recirculation label="TotalKWh"
+        Text item=Meter_TotalKWhT1_soalar_and_hw_recirculation label="TotalKWh T1"
+        Text item=Meter_TotalKWhT2_soalar_and_hw_recirculation label="TotalKWh T2"
+        Text item=Meter_TotalKWhT3_soalar_and_hw_recirculation label="TotalKWh T3"
+        Text item=Meter_TotalKWhT4_soalar_and_hw_recirculation label="TotalKWh T4"
+        Text item=Meter_Totalkvarh_soalar_and_hw_recirculation label="Totalkvarh"
+        Text item=Meter_TotalkvarhT1_soalar_and_hw_recirculation label="Totalkvarh T1"
+        Text item=Meter_TotalkvarhT2_soalar_and_hw_recirculation label="Totalkvarh T2"
+        Text item=Meter_TotalkvarhT3_soalar_and_hw_recirculation label="Totalkvarh T3"
+        Text item=Meter_TotalkvarhT4_soalar_and_hw_recirculation label="Totalkvarh T4"
+
+    }
+
+
+
+
+
+}

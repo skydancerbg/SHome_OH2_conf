@@ -169,7 +169,7 @@ when
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_4.state as Number)< (HVAC_Room_Thermostat_Setpoint_4.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_4.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_2.state as Number)< (HVAC_Room_Thermostat_Setpoint_4.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_4.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
     // if(((Gr_HVAC_Room_Temperature_4.state as Number)< (HVAC_Room_Thermostat_Setpoint_4.state as Number)-1.0 )  && HVAC_Room_Enable_4.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_4.members.forEach[actuator|
@@ -184,7 +184,7 @@ then
 
         // logInfo("HVAC_OFFICE", "OFFICE UF ON")
         // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
-	}else if (((Gr_HVAC_Room_Temperature_4.state as Number) >= (HVAC_Room_Thermostat_Setpoint_4.state as Number)) || HVAC_Room_Enable_4.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+	}else if (((Gr_HVAC_Room_Temperature_2.state as Number) >= (HVAC_Room_Thermostat_Setpoint_4.state as Number)) || HVAC_Room_Enable_4.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
 
             HVAC_UF_Room_ACTUATORS_4.members.forEach[actuator|
                     
@@ -353,7 +353,8 @@ when
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_8.state as Number)< (HVAC_Room_Thermostat_Setpoint_8.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_8.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_8.state as Number)< (HVAC_Room_Thermostat_Setpoint_8.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_8.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_10.state as Number)< (HVAC_Room_Thermostat_Setpoint_8.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_8.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
     // if(((Gr_HVAC_Room_Temperature_8.state as Number)< (HVAC_Room_Thermostat_Setpoint_8.state as Number)-1.0 )  && HVAC_Room_Enable_8.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_8.members.forEach[actuator|
@@ -368,7 +369,7 @@ then
 
         // logInfo("HVAC_OFFICE", "OFFICE UF ON")
         // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
-	}else if (((Gr_HVAC_Room_Temperature_8.state as Number) >= (HVAC_Room_Thermostat_Setpoint_8.state as Number)) || HVAC_Room_Enable_8.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+	}else if (((Gr_HVAC_Room_Temperature_10.state as Number) >= (HVAC_Room_Thermostat_Setpoint_8.state as Number)) || HVAC_Room_Enable_8.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
 
             HVAC_UF_Room_ACTUATORS_8.members.forEach[actuator|
                     
@@ -399,7 +400,8 @@ when
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_9.state as Number)< (HVAC_Room_Thermostat_Setpoint_9.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_9.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_9.state as Number)< (HVAC_Room_Thermostat_Setpoint_9.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_9.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_10.state as Number)< (HVAC_Room_Thermostat_Setpoint_9.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_9.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
     // if(((Gr_HVAC_Room_Temperature_9.state as Number)< (HVAC_Room_Thermostat_Setpoint_9.state as Number)-1.0 )  && HVAC_Room_Enable_9.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_9.members.forEach[actuator|
@@ -414,7 +416,7 @@ then
 
         // logInfo("HVAC_OFFICE", "OFFICE UF ON")
         // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
-	}else if (((Gr_HVAC_Room_Temperature_9.state as Number) >= (HVAC_Room_Thermostat_Setpoint_9.state as Number)) || HVAC_Room_Enable_9.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+	}else if (((Gr_HVAC_Room_Temperature_10.state as Number) >= (HVAC_Room_Thermostat_Setpoint_9.state as Number)) || HVAC_Room_Enable_9.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
 
             HVAC_UF_Room_ACTUATORS_9.members.forEach[actuator|
                     
@@ -583,7 +585,8 @@ when
 then
             // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
 
-    if(((Gr_HVAC_Room_Temperature_13.state as Number)< (HVAC_Room_Thermostat_Setpoint_13.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_13.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    // if(((Gr_HVAC_Room_Temperature_13.state as Number)< (HVAC_Room_Thermostat_Setpoint_13.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_13.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
+    if(((Gr_HVAC_Room_Temperature_10.state as Number)< (HVAC_Room_Thermostat_Setpoint_13.state as Number)-(HVAC_Virtual_Thermostat_Delta_Temp.state as Number) )  && HVAC_Room_Enable_13.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
     // if(((Gr_HVAC_Room_Temperature_13.state as Number)< (HVAC_Room_Thermostat_Setpoint_13.state as Number)-1.0 )  && HVAC_Room_Enable_13.state == ON && (HVAC_HeatingCooling_Switch.state as Number) == 1.0) {
 
             HVAC_UF_Room_ACTUATORS_13.members.forEach[actuator|
@@ -598,7 +601,7 @@ then
 
         // logInfo("HVAC_OFFICE", "OFFICE UF ON")
         // logInfo("HVAC_OFFICE", Gr_HVAC_Room_Temperature_2.state.toString)
-	}else if (((Gr_HVAC_Room_Temperature_13.state as Number) >= (HVAC_Room_Thermostat_Setpoint_13.state as Number)) || HVAC_Room_Enable_13.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
+	}else if (((Gr_HVAC_Room_Temperature_10.state as Number) >= (HVAC_Room_Thermostat_Setpoint_13.state as Number)) || HVAC_Room_Enable_13.state == OFF || (HVAC_HeatingCooling_Switch.state  as Number) == 0 || (HVAC_HeatingCooling_Switch.state  as Number) == 2.0){
 
             HVAC_UF_Room_ACTUATORS_13.members.forEach[actuator|
                     
