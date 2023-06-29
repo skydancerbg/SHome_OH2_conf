@@ -7,7 +7,7 @@ String systems_WARNING_red "СИТЕМА НЕ ФУНКЦИОНИРА" <warning_t
 
 
 Switch GF_GR_MotionDetector1
-
+Switch Corridor_FL2_MotionDetector1
 // // // 
 // // //    T E S T                     ! ! ! ! !
 

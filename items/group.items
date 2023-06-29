@@ -24,7 +24,11 @@ Group Gr_Persist_On_Change_Restore_On_Startup
 // Къща БЕНКОВСКИ:
 // Групите в къщата ще са с главни букви!
 // За къщата групата всички светлини ще се казва:
-Group:Switch:OR(ON, OFF)    Gr_ALL_LIGHTS   "Осветление [%d ВКЛЮЧЕН(И)]"
+Group:Switch:OR(ON, OFF)    Gr_ALL_LIGHTS   "ОСВЕТЛЕНИЕ [%d ВКЛЮЧЕН(И)]"
+Group:Switch:OR(ON, OFF)    Gr_LIGHTS_FL1   "ОСВЕТЛЕНИЕ ет1 [%d ВКЛЮЧЕН(И)]"
+Group:Switch:OR(ON, OFF)    Gr_LIGHTS_FL2   "ОСВЕТЛЕНИЕ ет2 [%d ВКЛЮЧЕН(И)]"
+Group:Switch:OR(ON, OFF)    Gr_LIGHTS_FL3   "ОСВЕТЛЕНИЕ ет3 [%d ВКЛЮЧЕН(И)]"
+Group:Switch:OR(ON, OFF)    Gr_LIGHTS_STAIRCASE   "ОСВЕТЛЕНИЕ СТЪЛБИ [%d ВКЛЮЧЕН(И)]"
 // ??? Group:Switch:OR(ON, OFF)    Gr_GF_LIGHTS   "Осветление кухня [%d ON]"
 
 //// DOOR WINDOW SENSORS

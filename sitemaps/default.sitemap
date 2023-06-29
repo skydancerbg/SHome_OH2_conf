@@ -2,6 +2,15 @@
 // https://community.openhab.org/t/divide-number-when-displaying-in-sitemap/36577
 
 sitemap default label="НАШАТА КЪЩА" {
+ 
+        Frame label="ОСВЕТЛЕНИЕ" icon="light" {    
+            Switch item=Gr_ALL_LIGHTS icon="light" label="ОСВЕТЛЕНИЕ (ВСИЧКИ)"
+            Text item=none
+            Group item= Gr_LIGHTS_FL1
+            Group item= Gr_LIGHTS_FL2
+            Group item= Gr_LIGHTS_FL3
+            Group item= Gr_LIGHTS_STAIRCASE
+        }       
 
         Frame  {
         // Frame label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
@@ -28,7 +37,7 @@ sitemap default label="НАШАТА КЪЩА" {
             
             Text item=GF_HR_SENSORS_TEMP_hw_tank_top label="БОЙЛЕР [%.1f °C]" icon="water_heater_tank" 
 
-            Switch item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="ПОМПА РЕЦИРКУЛАЦЯ БГВ" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
+            Switch item=GF_HR_Relay_Ctrl_hw_recirculation_pump icon="circulation_pump" label="ПОМПА РЕЦИРКУЛАЦИЯ БГВ" mappings=[ON="ВКЛ.", OFF="ИЗКЛ."]
        
 
             Switch item=GF_HR_solar_pump_On_Off icon="solar_panel_house" label="СОЛАР" mappings=[ON="РАБОТИ"]  visibility=[GF_HR_solar_pump_On_Off==ON]
@@ -87,11 +96,15 @@ sitemap default label="НАШАТА КЪЩА" {
                 Switch item=Pir_6_Motion
             }
         }
-
-    Frame label="ОСВЕТЛЕНИЕ:" icon="light" {    
-        Switch item=Gr_ALL_LIGHTS icon="light" label="ОСВЕТЛЕНИЕ (ВСИЧКИ)"
-        Group item=Gr_ALL_LIGHTS
-    }
+ 
+        Frame label="ОСВЕТЛЕНИЕ" icon="light" {    
+            Switch item=Gr_ALL_LIGHTS icon="light" label="ОСВЕТЛЕНИЕ (ВСИЧКИ)"
+            Text item=none
+            Group item= Gr_LIGHTS_FL1
+            Group item= Gr_LIGHTS_FL2
+            Group item= Gr_LIGHTS_FL3
+            Group item= Gr_LIGHTS_STAIRCASE
+        }       
 
         Frame label="РОЗЕТКИ, КОНТАКТИ И РАЗКЛОНИТЕЛИ:" icon="groundfloor" {    
             Switch item=Gr_ALL_POWER icon="poweroutlet" label="КОНСУМАТОРИ (ВСИЧКИ)"
