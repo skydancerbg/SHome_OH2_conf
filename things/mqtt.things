@@ -222,6 +222,31 @@ Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secu
         Type switch : switchrfA "Switch rf A" [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/Backlog", on="RfSync 8080; RfLow 260; RfHigh 800; RfCode #7172648", off="RfSync 8080; RfLow 260; RfHigh 800; RfCode #7172648"]
         }
 
+	Thing topic sonoffrfbridge2  {
+	Channels:
+        Type string : reachable     "Reachable"            [ stateTopic="tele/sonoff_RF_Bridge_2/LWT" ]
+        Type string : recieveddata  "Received Data"        [ stateTopic="tele/sonoff_RF_Bridge_2/RESULT", transformationPattern="JSONPATH:$.RfReceived.Data"]
+        Type string : recievedsync  "Received Sync"        [ stateTopic="tele/sonoff_RF_Bridge_2/RESULT", transformationPattern="JSONPATH:$.RfReceived.Sync"]
+        Type string : recievedlow   "Received Low"         [ stateTopic="tele/sonoff_RF_Bridge_2/RESULT", transformationPattern="JSONPATH:$.RfReceived.Low"]
+        Type string : recievedhigh  "Received High"        [ stateTopic="tele/sonoff_RF_Bridge_2/RESULT", transformationPattern="JSONPATH:$.RfReceived.High"]
+        Type string : recievedrfkey "Received RfKey"       [ stateTopic="tele/sonoff_RF_Bridge_2/RESULT", transformationPattern="JSONPATH:$.RfReceived.RfKey"]
+        Type number : rssi          "WiFi Signal Strength" [ stateTopic="tele/sonoff_RF_Bridge_2/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+ 
+// Custom already programmed 16 buttons:
+
+        // Type switch : button1       "Button 1"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RfKey1", on="6", transformationPattern="JSONPATH:$.RfKey1" ]
+        // Type switch : button2       "Button 2"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RfKey2", on="6", transformationPattern="JSONPATH:$.RfKey2" ]
+
+        // Type switch : button1       "Button 1"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RfKey1", transformationPattern="JSONPATH:$.RfKey1" ]
+        // Type switch : button2       "Button 2"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RfKey2", transformationPattern="JSONPATH:$.RfKey2" ]
+        // Type switch : button3       "Button 3"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RFKEY3", transformationPattern="JSONPATH:$.RfKey3" ]
+        // Type switch : button4       "Button 4"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RFKEY4", transformationPattern="JSONPATH:$.RfKey4" ]
+        // Type switch : button5       "Button 5"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RFKEY5", transformationPattern="JSONPATH:$.RfKey5" ]
+        // Type switch : button6       "Button 6"             [ stateTopic="stat/sonoff_RF_Bridge_1/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_1/RFKEY6", transformationPattern="JSONPATH:$.RfKey6" ]
+            
+        // Type switch : switchrfA "Switch rf A" [ stateTopic="stat/sonoff_RF_Bridge_2/RESULT", commandTopic="cmnd/sonoff_RF_Bridge_2/Backlog", on="RfSync 8080; RfLow 260; RfHigh 800; RfCode #7172648", off="RfSync 8080; RfLow 260; RfHigh 800; RfCode #7172648"]
+        }
+
 
 //    // TASMOTA SONOFF DEVICES
 
