@@ -13,9 +13,9 @@ Group:Switch:OR(ON, OFF)        Lights      "All Lights [(%d)]"
 
 Group  GF_Sonoff_Dual           "Sonoff Dual"                   <group> (Sonoff_Dual)
 // String GF_Sonoff_Dual_Reachable "Reachable: [%s]"                   <contactable>   (GF_Sonoff_Dual, GF_Living, Lights)    ["Light"]    { channel="mqtt:topic:MyMQTTthing:sonoff_dual:reachable" }
-String GF_Sonoff_Dual_Reachable "Reachable: [%s]"               <presence>   (GF_Sonoff_Dual, GF_Living, Lights)        { channel="mqtt:topic:MyMQTTthing:sonoff_dual:reachable" }
+String GF_Sonoff_Dual_Reachable "Reachable: [%s]"          <presence>   (GF_Sonoff_Dual, GF_Living, Lights)        { channel="mqtt:topic:MyMQTTthing:sonoff_dual:reachable" }
 Switch GF_Sonoff_Dual_Power1     "Outside light"           <switch> (GF_Sonoff_Dual, Gr_ALL_LIGHTS) ["Lighting"] { channel="mqtt:topic:MyMQTTthing:sonoff_dual:power1" }       
-Switch GF_Sonoff_Dual_Power2     "Garrage light"                  <switch> (GF_Sonoff_Dual, Gr_ALL_LIGHTS) ["Lighting"]  { channel="mqtt:topic:MyMQTTthing:sonoff_dual:power2" }       
+Switch GF_Sonoff_Dual_Power2     "Garrage light"           <switch> (GF_Sonoff_Dual, Gr_ALL_LIGHTS) ["Lighting"]  { channel="mqtt:topic:MyMQTTthing:sonoff_dual:power2" }       
 Number GF_Sonoff_Dual_RSSI      "WiFi Signal Strength [%d %%]"  <network>          (GF_Sonoff_Dual, GF_Living, Lights)       { channel="mqtt:topic:MyMQTTthing:sonoff_dual:rssi" }
 
 
@@ -166,16 +166,16 @@ Switch GF_Sonoff_RF_Button_test       "Button test"                 <none>      
 
 /* RF Bridge 2*/
 // https://iot.formatx.net/sonoff-bridge-openhab/
-Group  GF_Sonoff_RF                "RF Bridge"                      <sonoff_rf>     (Sonoff_RF)
-String GF_Sonoff_RF_Reachable      "Reachable: [%s]"                <contactable>   (GF_Sonoff_RF) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:reachable" }
-String GF_Sonoff_RF_Received_Data  "Received Data: [%s]"            <none>          (GF_Sonoff_RF) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recieveddata" }
+Group  GF_Sonoff_RF_2                "RF Bridge"                        <sonoff_rf>     (Sonoff_RF_2)
+String GF_Sonoff_RF_2_Reachable      "Reachable: [%s]"                  <contactable>   (GF_Sonoff_RF_2) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:reachable" }
+String GF_Sonoff_RF_2_Received_Data  "Received Data: [%s]"              <none>          (GF_Sonoff_RF_2) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recieveddata" }
 // Next is with shorter name for RF rules: 
-String rf_rcv_data                 "Received Data: [%s]"            <none>                         { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recieveddata" }
-String GF_Sonoff_RF_Received_Sync  "Received Sync: [%s]"            <none>          (GF_Sonoff_RF) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recievedsync" }
-String GF_Sonoff_RF_Received_Low   "Received Low: [%s]"             <none>          (GF_Sonoff_RF) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recievedlow" }
-String GF_Sonoff_RF_Received_High  "Received High: [%s]"            <none>          (GF_Sonoff_RF) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recievedhigh" }
-String GF_Sonoff_RF_Received_RfKey "Received RfKey: [%s]"           <none>          (GF_Sonoff_RF) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recievedrfkey" }
-Number GF_Sonoff_RF_RSSI           "WiFi Signal Strength [%d %%]"   <wifi>          (GF_Sonoff_RF) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:rssi" }
+String rf2_rcv_data                 "Received Data: [%s]"               <none>                           { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recieveddata" }
+String GF_Sonoff_RF_2_Received_Sync  "Received Sync: [%s]"              <none>          (GF_Sonoff_RF_2) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recievedsync" }
+String GF_Sonoff_RF_2_Received_Low   "Received Low: [%s]"               <none>          (GF_Sonoff_RF_2) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recievedlow" }
+String GF_Sonoff_RF_2_Received_High  "Received High: [%s]"              <none>          (GF_Sonoff_RF_2) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recievedhigh" }
+String GF_Sonoff_RF_2_Received_RfKey "Received RfKey: [%s]"             <none>          (GF_Sonoff_RF_2) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:recievedrfkey" }
+Number GF_Sonoff_RF_2_RSSI           "WiFi Signal Strength [%d %%]"     <wifi>          (GF_Sonoff_RF_2) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge2:rssi" }
 // Single buttons mapped
 // Switch GF_Sonoff_RF_Button_1       "Button 1"                       <none>          (GF_Sonoff_RF) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge1:button1", autoupdate="false"}
 // Switch GF_Sonoff_RF_Button_2       "Button 2"                       <none>          (GF_Sonoff_RF) { channel="mqtt:topic:MyMQTTthing:sonoffrfbridge1:button2", autoupdate="false"}

@@ -1,0 +1,71 @@
+
+// // 1 BUTTON RF SWITCH 1
+// // BUTTON 079EA2
+// var rfcode_wallsw_1btn_1_btn = "079EA2"
+
+
+// // 1 BUTTON RF SWITCH 2 // КОТЕЛНО БЕНКОВСКИ
+// // BUTTON 6D7228
+// var rfcode_wallsw_1btn_2_btn = "6D7228"
+
+// // 2 BUTTON RF SWITCH 1
+// // LEFT 
+// var rfcode_wallsw_2btn_1_left = "0F90A4"
+// // RIGHT 
+// var rfcode_wallsw_2btn_1_right = "0F90A1"
+
+// // 3 BUTTON RF SWITCH 1
+// // LEFT 0BE4E4
+// var rfcode_wallsw_3btn_1_left = "0BE4E4"
+// // MIDDLE 0BE4E2
+// var rfcode_wallsw_3btn_1_middle = "0BE4E2"
+// // RIGHT 0BE4E1
+// var rfcode_wallsw_3btn_1_right = "0BE4E1"
+
+// // 3 BUTTON RF SWITCH Green Lights 4 
+// // LEFT C26602
+// var rfcode_wallsw_3btn_4_left = "C26602"
+// // MIDDLE C26608
+// var rfcode_wallsw_3btn_4_middle = "C26608"
+// // RIGHT C26604
+// var rfcode_wallsw_3btn_4_right = "C26604"
+
+
+
+
+// rule "Sonof RF Bridge 2 codes processing"
+// when
+//     Item rf2_rcv_data received update // Need received update if Data has not change but button still pressed
+// then
+// //! // // // // // // // // // // //
+// // ОСВЕТЛЕНИЕ КОМБИНИРАНО ВКЛЮЧВАНЕ КОРИДОР И СКЛАД ГАРАЖ   // // //
+// //               +++++++++++++++++++++++++++               // // //
+
+// //! Switched by:
+// //rfcode_wallsw_3btn_1_middle // УПРАВЛЯВА И КОРИДОР ГАРАЖ ЕДНОВРЕМЕННО
+
+//      if ( rf_rcv_data.state == rfcode_wallsw_3btn_1_middle
+//                 || rf_rcv_data.state == rfcode_wallsw_3btn_4_middle
+//                 )
+//         {
+//             if (GF_TR_Sonoff_4CH_2_Power2.state == OFF)  
+//                                     { 
+//                                         GF_TR_Sonoff_4CH_2_Power2.sendCommand(ON)
+//                                     }
+//             if ( GF_TR_Sonoff_4CH_2_Power2.state == ON) 
+//                                     {
+//                                         GF_TR_Sonoff_4CH_2_Power2.sendCommand(OFF)
+//                                     }            
+//             if (GF_TR_Sonoff_4CH_1_Power4.state == OFF)  
+//                                     { 
+//                                         GF_TR_Sonoff_4CH_1_Power4.sendCommand(ON)
+//                                     }
+//             if ( GF_TR_Sonoff_4CH_1_Power4.state == ON) 
+//                                     {
+//                                         GF_TR_Sonoff_4CH_1_Power4.sendCommand(OFF)
+//                                     }
+
+
+// // // // // END
+//         }
+// end

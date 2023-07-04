@@ -40,6 +40,33 @@ var rfcode_wallsw_3btn_1_middle = "0BE4E2"
 // RIGHT 0BE4E1
 var rfcode_wallsw_3btn_1_right = "0BE4E1"
 
+// 3 BUTTON RF SWITCH Green Lights 4 
+// LEFT C26602
+var rfcode_wallsw_3btn_4_left = "C26602"
+// MIDDLE C26608
+var rfcode_wallsw_3btn_4_middle = "C26608"
+// RIGHT C26604
+var rfcode_wallsw_3btn_4_right = "C26604"
+
+// 3 BUTTON RF SWITCH Green Lights 5 
+// LEFT ХОЛ
+var rfcode_wallsw_3btn_5_left = "52C262"
+// MIDDLE NC
+var rfcode_wallsw_3btn_5_middle = "52C268"
+// RIGHT NC
+var rfcode_wallsw_3btn_5_right = "52C268"
+
+// 3 BUTTON RF SWITCH Green Lights 6 
+// LEFT Коридор ет.1
+var rfcode_wallsw_3btn_6_left = "72E502"
+// MIDDLE
+//TODO Външна лампа 
+var rfcode_wallsw_3btn_6_middle = "72E508"
+// RIGHT 
+//TODO Изгаси всички лампи 
+// TODO: Външната лампа на таймер 5 мин
+var rfcode_wallsw_3btn_6_right = "72E504"
+
 
 // // // // // // // //  // // // // // // //
 // // // // KEYCHAIN REMOTES   // // // // // 
@@ -240,9 +267,9 @@ then
         logInfo("security_system", "PIR6 off")
 
 
-// // // // // // // // // // // // // //
-// // // ИЗГАСИ ЦЯЛОТО ОСВЕТЛЕНИЕ  // // //
-// // // ALL LIGHTS OFF            // // //
+//! // // // // // // // // // // //
+// ИЗГАСИ ЦЯЛОТО ОСВЕТЛЕНИЕ  // // //
+// ALL LIGHTS OFF            // // //
 
 // Switched by:
 //wall switch 3btn 1 right
@@ -257,9 +284,9 @@ then
             
             Gr_ALL_LIGHTS.sendCommand(OFF)
 
-// // // // // // // // // // // // // //
-// // // ВКЛЮЧИ АЛАРМАТА         // // //
-// // // SECURITY SYSTEM ON      // // //
+//! // // // // // // // // // // //
+// ВКЛЮЧИ АЛАРМАТА         // // //
+// SECURITY SYSTEM ON      // // //
 
 // Switched by:
 //keychain 1 A
@@ -277,9 +304,9 @@ then
     
             Alarm_Arm_Disarm_Switch.sendCommand(1)
 
-// // // // // // // // // // // // // //
-// // // ИЗКЛЮЧИ АЛАРМАТА        // // //
-// // // SECURITY SYSTEM OFF     // // //
+//! // // // // // // // // // // //
+// ИЗКЛЮЧИ АЛАРМАТА        // // //
+// SECURITY SYSTEM OFF     // // //
 
 // Switched by:
 //keychain 1 C
@@ -297,9 +324,9 @@ then
     
             Alarm_Arm_Disarm_Switch.sendCommand(0)
 
-// // // // // // // // // // // // // //
-// // // ВКЛЮЧИ ЦЯЛОТО ОСВЕТЛЕНИЕ  // // //
-// // // ALL LIGHTS ON             // // //
+//! // // // // // // // // // // //
+// ВКЛЮЧИ ЦЯЛОТО ОСВЕТЛЕНИЕ  // // //
+// ALL LIGHTS ON             // // //
 
 // Switched by:
 //keychain 1 B
@@ -318,9 +345,9 @@ then
             Gr_ALL_LIGHTS.sendCommand(ON)
 
 
-// // // // // // // // // // // // // //
-// // // ИЗГАСИ ВСИЧКИ КОНСУМАТОРИ И ОСВЕТЛЕНИЕТО  // // //
-// // // ALL POWERED DEVICES AND LIGHTS OFF        // // //
+//! // // // // // // // // // // //
+// ИЗГАСИ ВСИЧКИ КОНСУМАТОРИ И ОСВЕТЛЕНИЕТО  // // //
+// ALL POWERED DEVICES AND LIGHTS OFF        // // //
 
 // Switched by:
 //wall switch 3btn 1 MIDDLE
@@ -339,9 +366,9 @@ then
             Gr_ALL_POWER.sendCommand(OFF)
             Gr_ALL_LIGHTS.sendCommand(OFF)
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ РАБОТИЛНИЦА  // // //
-// // // WORKSHOP LIGHT          // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ РАБОТИЛНИЦА  // // //
+// WORKSHOP LIGHT          // // //
 
 //! Switched by:
 ///////wall switch 3btn 1 left
@@ -364,9 +391,9 @@ then
                                         GF_TR_Sonoff_4CH_1_Power1.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ КОРИДОР ГАРАЖ   // // //
-// // // CODDIDOR GARAGE LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ КОРИДОР ГАРАЖ   // // //
+// CODDIDOR GARAGE LIGHT      // // //
 
 //! Switched by:
 //rfcode_8chan_1_5
@@ -385,9 +412,9 @@ then
                                     }
 
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ СКЛАД ГАРАЖ   // // //
-// // // GARAGE STORAGE LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ СКЛАД ГАРАЖ   // // //
+// GARAGE STORAGE LIGHT      // // //
 
 //! Switched by:
 //rfcode_8chan_1_7
@@ -405,14 +432,16 @@ then
                                         GF_TR_Sonoff_4CH_1_Power4.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ КОМБИНИРАНО ВКЛЮЧВАНЕ КОРИДОР И СКЛАД ГАРАЖ   // // //
-// // //               +++++++++++++++++++++++++++               // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ КОМБИНИРАНО ВКЛЮЧВАНЕ КОРИДОР И СКЛАД ГАРАЖ   // // //
+//               +++++++++++++++++++++++++++               // // //
 
 //! Switched by:
 //rfcode_wallsw_3btn_1_middle // УПРАВЛЯВА И КОРИДОР ГАРАЖ ЕДНОВРЕМЕННО
 
-    } else if ( rf_rcv_data.state == rfcode_wallsw_3btn_1_middle)
+    } else if ( rf_rcv_data.state == rfcode_wallsw_3btn_1_middle
+                || rf_rcv_data.state == rfcode_wallsw_3btn_4_middle
+                )
         {
             if (GF_TR_Sonoff_4CH_2_Power2.state == OFF)  
                                     { 
@@ -432,9 +461,9 @@ then
                                     }
 
 
-// // // // // // // // // // // // // 
-// // // ОСВЕТЛЕНИЕ ГАРАЖ   // // //
-// // // GARAGE LIGHT      // // //
+//! // // // // // // // // // // 
+// ОСВЕТЛЕНИЕ ГАРАЖ   // // //
+// GARAGE LIGHT      // // //
 
 // Switched by:
 //rfcode_8chan_1_4
@@ -453,15 +482,16 @@ then
     //                                 }
 
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ КОРИДОР ЕТАЖ 1   // // //
-// // // CODDIDOR GROUND FLOOR LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ КОРИДОР ЕТАЖ 1   // // //
+// CODDIDOR GROUND FLOOR LIGHT      // // //
 
 //! Switched by:
 //rfcode_8chan_1_1
 //rfcode_8chan_2_1
 
-    } else if (rf_rcv_data.state == rfcode_8chan_1_1
+    } else if ( rf_rcv_data.state == rfcode_wallsw_3btn_6_left
+                || rf_rcv_data.state == rfcode_8chan_1_1
                 || rf_rcv_data.state == rfcode_8chan_2_1)
         {
             if (GF_TR_Sonoff_4CH_2_Power1.state == OFF)  
@@ -474,9 +504,9 @@ then
                                     }
 
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ БАНЯ/ТОАЛЕТНА ЕТАЖ 1   // // //
-// // // BATHROOM GROUND FLOOR LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ БАНЯ/ТОАЛЕТНА ЕТАЖ 1   // // //
+// BATHROOM GROUND FLOOR LIGHT      // // //
 
 //! Switched by:
 // //rfcode_8chan_1_2
@@ -485,6 +515,7 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_1_2 
                 || rf_rcv_data.state == rfcode_wallsw_3btn_1_left
+                || rf_rcv_data.state == rfcode_wallsw_3btn_4_left
                 || rf_rcv_data.state == rfcode_8chan_2_2)
         {
             if (GF_TR_Sonoff_4CH_1_Power3.state == OFF)  
@@ -497,15 +528,16 @@ then
                                     }
 
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ ХОЛ ЕТАЖ 1   // // //
-// // // LIVINGROOM GROUND FLOOR LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ ХОЛ ЕТАЖ 1   // // //
+// LIVINGROOM GROUND FLOOR LIGHT      // // //
 
 //! Switched by:
 //rfcode_8chan_1_3
 //rfcode_8chan_2_3
 
-    } else if (rf_rcv_data.state == rfcode_8chan_1_3 
+    } else if (rf_rcv_data.state == rfcode_wallsw_3btn_5_left
+                || rf_rcv_data.state == rfcode_8chan_1_3 
                 || rf_rcv_data.state == rfcode_8chan_2_3)
         {
             if (GF_TR_Sonoff_4CH_2_Power3.state == OFF)  
@@ -518,16 +550,18 @@ then
                                     }
 
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ ОФИС ЕТАЖ 1   // // //
-// // // OFFICE GROUND FLOOR LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ ОФИС ЕТАЖ 1   // // //
+// OFFICE GROUND FLOOR LIGHT      // // //
 
 //! Switched by:
 //rfcode_8chan_1_4
 //rfcode_8chan_2_4
 
     } else if (rf_rcv_data.state == rfcode_8chan_1_4 
-                || rf_rcv_data.state == rfcode_8chan_2_4)
+                || rf_rcv_data.state == rfcode_8chan_2_4
+                || rf_rcv_data.state == rfcode_wallsw_1btn_1_btn
+                )
         {
             if (GF_TR_Sonoff_4CH_1_Power2.state == OFF)  
                                     { 
@@ -538,9 +572,9 @@ then
                                         GF_TR_Sonoff_4CH_1_Power2.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ КОТЕЛНО   // // //
-// // // TECHNICAL ROOM (HEATING) LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ КОТЕЛНО   // // //
+// TECHNICAL ROOM (HEATING) LIGHT      // // //
 
 // Switched by:
 //rfcode_wallsw_1btn_2_btn
@@ -558,14 +592,14 @@ then
 
 
 
-///////////////////////////////////////////////
-///////////////// Е Т А Ж 2 ///////////////////
-///////////////////////////////////////////////
+//! ///////////////////////////////
+/// Е Т А Ж 2 ///////////////////
+//! ///////////////////////////////
 
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ КОРИДОР ЕТАЖ 2   // // //
-// // // CORRIDOR FLOOR 2 LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ КОРИДОР ЕТАЖ 2   // // //
+// CORRIDOR FLOOR 2 LIGHT      // // //
 
 //! Switched by:
 // //rfcode_8chan_3_1
@@ -574,7 +608,9 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_1
                 || rf_rcv_data.state == rfcode_8chan_4_1
-                || rf_rcv_data.state == rfcode_wallsw_3btn_1_right)
+                || rf_rcv_data.state == rfcode_wallsw_3btn_1_right
+                || rf_rcv_data.state == rfcode_wallsw_3btn_4_right
+                )
                 
         {
             if (GF_TR_Sonoff_4CH_4_Power1.state == OFF)  
@@ -586,9 +622,9 @@ then
                                         GF_TR_Sonoff_4CH_4_Power1.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ БАНЯ МАЛКА/ТОАЛЕТНА ЕТАЖ 2   // // //
-// // // SMALL BATHROOM FLOOR 2 LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ БАНЯ МАЛКА/ТОАЛЕТНА ЕТАЖ 2   // // //
+// SMALL BATHROOM FLOOR 2 LIGHT      // // //
 
 //! Switched by:
 // //rfcode_8chan_3_2
@@ -610,9 +646,9 @@ then
                                     }
 
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ БАНЯ ГОЛЯМА/ТОАЛЕТНА ЕТАЖ 2   // // //
-// // // LARGE BATHROOM FLOOR 2 LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ БАНЯ ГОЛЯМА/ТОАЛЕТНА ЕТАЖ 2   // // //
+// LARGE BATHROOM FLOOR 2 LIGHT      // // //
 
 //! Switched by:
 // //rfcode_8chan_3_3
@@ -633,9 +669,9 @@ then
                                         GF_TR_Sonoff_4CH_PRO_1_Power3.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ ГАРДЕРОБНА ДЕСИ ЕТАЖ 2   // // //
-// // // DESSI'S WALK IN CLOSET FLOOR 2 LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ ГАРДЕРОБНА ДЕСИ ЕТАЖ 2   // // //
+// DESSI'S WALK IN CLOSET FLOOR 2 LIGHT      // // //
 
 //! Switched by:
 // //rfcode_8chan_3_4
@@ -657,9 +693,9 @@ then
                                         GF_TR_Sonoff_4CH_4_Power2.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ СТАЯ ДЕСИ ЕТАЖ 2   // // //
-// // // DESSI'S BEDROOM FLOOR 2 LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ СТАЯ ДЕСИ ЕТАЖ 2   // // //
+// DESSI'S BEDROOM FLOOR 2 LIGHT      // // //
 
 //! Switched by:
 // //rfcode_8chan_3_5
@@ -681,9 +717,9 @@ then
                                         GF_TR_Sonoff_4CH_PRO_1_Power1.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ СТАЯ ДЕСИ + ГАРДЕРОБНА ЕТАЖ 2   // // //
-// // // DESSI'S BEDROOM FLOOR 2 LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ СТАЯ ДЕСИ + ГАРДЕРОБНА ЕТАЖ 2   // // //
+// DESSI'S BEDROOM FLOOR 2 LIGHT      // // //
 
 //! Switched by:
 
@@ -709,9 +745,9 @@ then
                                         GF_TR_Sonoff_4CH_PRO_1_Power1.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ СРЕДНА СТАЯ ЕТАЖ 2   // // //
-// // // MIDDLE ROOM FLOOR 2 LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ СРЕДНА СТАЯ ЕТАЖ 2   // // //
+// MIDDLE ROOM FLOOR 2 LIGHT      // // //
 
 //! Switched by:
 // //rfcode_8chan_3_6
@@ -732,9 +768,9 @@ then
                                         GF_TR_Sonoff_4CH_4_Power3.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ СПАЛНЯ СТЕФАН ЕТАЖ 2   // // //
-// // // STEFAN'S BEDROOM FLOOR 2 LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ СПАЛНЯ СТЕФАН ЕТАЖ 2   // // //
+// STEFAN'S BEDROOM FLOOR 2 LIGHT      // // //
 
 //! Switched by:
 // //rfcode_8chan_3_7
@@ -755,9 +791,9 @@ then
                                         GF_TR_Sonoff_4CH_PRO_1_Power2.sendCommand(OFF)
                                     }
 
-// // // // // // // // // // // // // //
-// // // ОСВЕТЛЕНИЕ ПЕРАЛНО ЕТАЖ 2   // // //
-// // // LAUNDRY ROOM FLOOR 2 LIGHT      // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ ПЕРАЛНО ЕТАЖ 2   // // //
+// LAUNDRY ROOM FLOOR 2 LIGHT      // // //
 
 //! Switched by:
 // //rfcode_8chan_3_8
@@ -780,22 +816,22 @@ then
 
     // // Benkovski RF 1 gang switch LIVING ROOM / КЛЮЧ ХОЛ
    
-    // } else if (GF_Sonoff_RF_Received_Data.state == "079EA2")
-    } else if (rf_rcv_data.state == rfcode_wallsw_1btn_1_btn)
-        {
-            logInfo("LIVING ROOM", "poluchi koda")
-            if (GF_TR_Sonoff_4CH_2_Power3.state == OFF)  
-                                    { 
-                                        GF_TR_Sonoff_4CH_2_Power3.sendCommand(ON)
-                                        logInfo("LIVING ROOM", "dade on - ON")
-                                    }
+    // //} else if (GF_Sonoff_RF_Received_Data.state == "079EA2")
+    // } else if (rf_rcv_data.state == rfcode_wallsw_1btn_1_btn)
+    //     {
+    //         logInfo("LIVING ROOM", "poluchi koda")
+    //         if (GF_TR_Sonoff_4CH_2_Power3.state == OFF)  
+    //                                 { 
+    //                                     GF_TR_Sonoff_4CH_2_Power3.sendCommand(ON)
+    //                                     logInfo("LIVING ROOM", "dade on - ON")
+    //                                 }
     
-            else if ( GF_TR_Sonoff_4CH_2_Power3.state == ON) 
-                                    {
-                                        GF_TR_Sonoff_4CH_2_Power3.sendCommand(OFF)
+    //         else if ( GF_TR_Sonoff_4CH_2_Power3.state == ON) 
+    //                                 {
+    //                                     GF_TR_Sonoff_4CH_2_Power3.sendCommand(OFF)
                                       
-                                    logInfo("LIVING ROOM", "prati - OFF")
-                                    }
+    //                                 logInfo("LIVING ROOM", "prati - OFF")
+    //                                 }
 
 // // // // END
         }
