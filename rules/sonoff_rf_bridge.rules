@@ -17,27 +17,29 @@ var rfcode_pir_6 = "F3EB4E"
 // // // // // // // //  // // // // // // //
 // // // // WALL SWITCHES   // // // // // // 
 
-// 1 BUTTON RF SWITCH 1
+// 1 BUTTON RF SWITCH 1 - син - ОФИС на БЮРО
 // BUTTON 079EA2
 var rfcode_wallsw_1btn_1_btn = "079EA2"
 
 
-// 1 BUTTON RF SWITCH 2 // КОТЕЛНО БЕНКОВСКИ
+// 1 BUTTON RF SWITCH 2 - син - // КОТЕЛНО БЕНКОВСКИ
 // BUTTON 6D7228
 var rfcode_wallsw_1btn_2_btn = "6D7228"
 
 // 2 BUTTON RF SWITCH 1
-// LEFT 
+//TODO Make it on a timer
+// LEFT   - ОСВЕТЛЕНИЕ ВЪНШНО РАБОТИЛНИЦА
 var rfcode_wallsw_2btn_1_left = "0F90A4"
-// RIGHT 
+// RIGHT - ИЗГАСИ ЦЯЛОТО ОСВЕТЛЕНИЕ
 var rfcode_wallsw_2btn_1_right = "0F90A1"
 
-// 3 BUTTON RF SWITCH 1
-// LEFT 0BE4E4
+// 3 BUTTON RF SWITCH 1 - син - РАБОТИЛНИЦА
+// LEFT - РАБОТИЛНИЦА
 var rfcode_wallsw_3btn_1_left = "0BE4E4"
-// MIDDLE 0BE4E2
+//TODO ОСВЕТЛЕНИЕ БАНЯ РАБОТИЛНИЦА
+// MIDDLE 0BE4E2 -  ОСВЕТЛЕНИЕ БАНЯ РАБОТИЛНИЦА
 var rfcode_wallsw_3btn_1_middle = "0BE4E2"
-// RIGHT 0BE4E1
+// RIGHT  - ОСВЕТЛЕНИЕ ВЪНШНО РАБОТИЛНИЦА
 var rfcode_wallsw_3btn_1_right = "0BE4E1"
 
 /////////////
@@ -99,7 +101,7 @@ var rfcode_wallsw_3btn_9_right = "B56BA4"
 // 3 BUTTON RF SWITCH Green Lights 10 - Стая Средна 
 // LEFT Стая Средна
 var rfcode_wallsw_3btn_10_left = "741962"
-// MIDDLE  NC
+//! MIDDLE  NC
 var rfcode_wallsw_3btn_10_middle = "741968"
 // RIGHT Коридор ет.2
 var rfcode_wallsw_3btn_10_right = "741964"
@@ -108,7 +110,7 @@ var rfcode_wallsw_3btn_10_right = "741964"
 // 3 BUTTON RF SWITCH Green Lights 11 - Стая Стефан 
 // LEFT Стая Стефан
 var rfcode_wallsw_3btn_11_left = "4FE962"
-// MIDDLE  NC
+//! MIDDLE  NC
 var rfcode_wallsw_3btn_11_middle = "4FE968"
 // RIGHT Коридор ет.2
 var rfcode_wallsw_3btn_11_right = "4FE964"
@@ -117,12 +119,23 @@ var rfcode_wallsw_3btn_11_right = "4FE964"
 // 3 BUTTON RF SWITCH Green Lights 12 - Офис 
 // LEFT Офис
 var rfcode_wallsw_3btn_12_left = "509262"
-// MIDDLE  NC
+//! MIDDLE  NC
 var rfcode_wallsw_3btn_12_middle = "509268"
 // RIGHT Коридор ет.1
 var rfcode_wallsw_3btn_12_right = "509264"
 
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 13 - ОТВИН ДО ВХОДНАТА ВРТАТА 
+// LEFT  - ОСВЕТЛЕНИЕ ВЪНШНО РАБОТИЛНИЦА
+var rfcode_wallsw_3btn_13_left = "F7E602"
+//TODO   - ОСВЕТЛЕНИЕ ВЪНШНО РАБОТИЛНИЦА на таймер
+//! MIDDLE  NC
+var rfcode_wallsw_3btn_13_middle = "F7E608"
+// RIGHT  - ИЗГАСИ ЦЯЛОТО ОСВЕТЛЕНИЕ
+var rfcode_wallsw_3btn_13_right = "F7E604"
 
+
+//! ----------------------------------
 // // // // // // // //  // // // // // // //
 // // // // KEYCHAIN REMOTES   // // // // // 
     
@@ -335,7 +348,9 @@ then
     } else if (rf_rcv_data.state == rfcode_wallsw_2btn_1_right 
                 || rf_rcv_data.state == rfcode_keychain_1_D 
                 || rf_rcv_data.state == rfcode_keychain_2_D
-                || rf_rcv_data.state == rfcode_wallsw_3btn_6_right)
+                || rf_rcv_data.state == rfcode_wallsw_3btn_6_right
+                || rf_rcv_data.state == rfcode_wallsw_3btn_13_right
+                )
 
         {
             
@@ -437,7 +452,9 @@ then
     } else if (rf_rcv_data.state == rfcode_keychain_1_A 
                 || rf_rcv_data.state == rfcode_keychain_2_A
                 || rf_rcv_data.state == rfcode_8chan_1_6
-                || rf_rcv_data.state == rfcode_8chan_2_6)
+                || rf_rcv_data.state == rfcode_8chan_2_6
+                || rf_rcv_data.state == rfcode_wallsw_3btn_1_left
+                )
         {
             if (GF_TR_Sonoff_4CH_1_Power1.state == OFF)  
                                     { 
@@ -454,7 +471,9 @@ then
 
 //! Switched by:
 
-    } else if ( rf_rcv_data.state == rfcode_wallsw_3btn_6_middle)
+    } else if ( rf_rcv_data.state == rfcode_wallsw_2btn_1_left
+                || rf_rcv_data.state == rfcode_wallsw_3btn_13_left
+                )
         {
             if (GF_Sonoff_Dual_Power1.state == OFF)  
                                     { 
