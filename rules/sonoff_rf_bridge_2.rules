@@ -1,71 +1,108 @@
 
-// // 1 BUTTON RF SWITCH 1
-// // BUTTON 079EA2
-// var rfcode_wallsw_1btn_1_btn = "079EA2"
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 9 - Стая Деси 
+// LEFT Стая Деси
+var rfcode_wallsw_3btn_9_left = "B56BA2"
+// MIDDLE  Гардеробна
+var rfcode_wallsw_3btn_9_middle = "B56BA8"
+// RIGHT Коридор ет.2
+var rfcode_wallsw_3btn_9_right = "B56BA4"
 
-
-// // 1 BUTTON RF SWITCH 2 // КОТЕЛНО БЕНКОВСКИ
-// // BUTTON 6D7228
-// var rfcode_wallsw_1btn_2_btn = "6D7228"
-
-// // 2 BUTTON RF SWITCH 1
-// // LEFT 
-// var rfcode_wallsw_2btn_1_left = "0F90A4"
-// // RIGHT 
-// var rfcode_wallsw_2btn_1_right = "0F90A1"
-
-// // 3 BUTTON RF SWITCH 1
-// // LEFT 0BE4E4
-// var rfcode_wallsw_3btn_1_left = "0BE4E4"
-// // MIDDLE 0BE4E2
-// var rfcode_wallsw_3btn_1_middle = "0BE4E2"
-// // RIGHT 0BE4E1
-// var rfcode_wallsw_3btn_1_right = "0BE4E1"
-
-// // 3 BUTTON RF SWITCH Green Lights 4 
-// // LEFT C26602
-// var rfcode_wallsw_3btn_4_left = "C26602"
-// // MIDDLE C26608
-// var rfcode_wallsw_3btn_4_middle = "C26608"
-// // RIGHT C26604
-// var rfcode_wallsw_3btn_4_right = "C26604"
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 10 - Стая Средна 
+// LEFT Стая Средна
+var rfcode_wallsw_3btn_10_left = "741962"
+//! MIDDLE  NC
+var rfcode_wallsw_3btn_10_middle = "741968"
+// RIGHT Коридор ет.2
+var rfcode_wallsw_3btn_10_right = "741964"
 
 
 
+rule "Sonof RF Bridge 2 codes processing"
+when
+    Item rf2_rcv_data received update // Need received update if Data has not change but button still pressed
+then
 
-// rule "Sonof RF Bridge 2 codes processing"
-// when
-//     Item rf2_rcv_data received update // Need received update if Data has not change but button still pressed
-// then
-// //! // // // // // // // // // // //
-// // ОСВЕТЛЕНИЕ КОМБИНИРАНО ВКЛЮЧВАНЕ КОРИДОР И СКЛАД ГАРАЖ   // // //
-// //               +++++++++++++++++++++++++++               // // //
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ СТАЯ ДЕСИ ЕТАЖ 2   // // //
+// DESSI'S BEDROOM FLOOR 2 LIGHT      // // //
+//! Switched by:
+    if (rf_rcv_data.state == rfcode_wallsw_3btn_9_left
+                )
+        {
 
-// //! Switched by:
-// //rfcode_wallsw_3btn_1_middle // УПРАВЛЯВА И КОРИДОР ГАРАЖ ЕДНОВРЕМЕННО
+            if (GF_TR_Sonoff_4CH_PRO_1_Power1.state == OFF)  
+                                    { 
+                                        GF_TR_Sonoff_4CH_PRO_1_Power1.sendCommand(ON)
+                                    }
+            else if ( GF_TR_Sonoff_4CH_PRO_1_Power1.state == ON) 
+                                    {
+                                        GF_TR_Sonoff_4CH_PRO_1_Power1.sendCommand(OFF)
+                                    }
 
-//      if ( rf_rcv_data.state == rfcode_wallsw_3btn_1_middle
-//                 || rf_rcv_data.state == rfcode_wallsw_3btn_4_middle
-//                 )
-//         {
-//             if (GF_TR_Sonoff_4CH_2_Power2.state == OFF)  
-//                                     { 
-//                                         GF_TR_Sonoff_4CH_2_Power2.sendCommand(ON)
-//                                     }
-//             if ( GF_TR_Sonoff_4CH_2_Power2.state == ON) 
-//                                     {
-//                                         GF_TR_Sonoff_4CH_2_Power2.sendCommand(OFF)
-//                                     }            
-//             if (GF_TR_Sonoff_4CH_1_Power4.state == OFF)  
-//                                     { 
-//                                         GF_TR_Sonoff_4CH_1_Power4.sendCommand(ON)
-//                                     }
-//             if ( GF_TR_Sonoff_4CH_1_Power4.state == ON) 
-//                                     {
-//                                         GF_TR_Sonoff_4CH_1_Power4.sendCommand(OFF)
-//                                     }
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ ГАРДЕРОБНА ДЕСИ ЕТАЖ 2   // // //
+// DESSI'S WALK IN CLOSET FLOOR 2 LIGHT      // // //
+
+//! Switched by:
+// //rfcode_8chan_3_4
+// //rfcode_8chan_4_4
+// //rfcode_wallsw_2btn_1_left  УПРАВЛЯВА СПАЛНЯ ДЕСИ И ГАРДЕРОБНА
+
+
+    } else if (rf_rcv_data.state == rfcode_wallsw_3btn_9_middle
+                )
+        {
+            if (GF_TR_Sonoff_4CH_4_Power2.state == OFF)  
+                                    { 
+                                        GF_TR_Sonoff_4CH_4_Power2.sendCommand(ON)
+                                    }
+            else if ( GF_TR_Sonoff_4CH_4_Power2.state == ON) 
+                                    {
+                                        GF_TR_Sonoff_4CH_4_Power2.sendCommand(OFF)
+                                    }
+
+
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ СРЕДНА СТАЯ ЕТАЖ 2   // // //
+// MIDDLE ROOM FLOOR 2 LIGHT      // // //
+//! Switched by:
+    } else if ( rf_rcv_data.state == rfcode_wallsw_3btn_10_left
+                )
+        {
+            if (GF_TR_Sonoff_4CH_4_Power3.state == OFF)  
+                                    { 
+                                        GF_TR_Sonoff_4CH_4_Power3.sendCommand(ON)
+                                    }
+            else if ( GF_TR_Sonoff_4CH_4_Power3.state == ON) 
+                                    {
+                                        GF_TR_Sonoff_4CH_4_Power3.sendCommand(OFF)
+                                    }
+
+
+//! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ КОРИДОР ЕТАЖ 2   // // //
+// CORRIDOR FLOOR 2 LIGHT      // // //
+
+//! Switched by:
+
+    } else if (rf_rcv_data.state == rfcode_wallsw_3btn_9_right
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_10_right
+
+                )
+                
+        {
+            if (GF_TR_Sonoff_4CH_4_Power1.state == OFF)  
+                                    { 
+                                        GF_TR_Sonoff_4CH_4_Power1.sendCommand(ON)
+                                    }
+            else if ( GF_TR_Sonoff_4CH_4_Power1.state == ON) 
+                                    {
+                                        GF_TR_Sonoff_4CH_4_Power1.sendCommand(OFF)
+                                    }
 
 
 // // // // // END
-//         }
-// end
+        }
+end

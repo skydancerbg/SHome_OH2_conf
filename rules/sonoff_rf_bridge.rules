@@ -16,16 +16,17 @@ var rfcode_pir_6 = "F3EB4E"
 
 // // // // // // // //  // // // // // // //
 // // // // WALL SWITCHES   // // // // // // 
-
+//!
 // 1 BUTTON RF SWITCH 1 - син - ОФИС на БЮРО
 // BUTTON 079EA2
 var rfcode_wallsw_1btn_1_btn = "079EA2"
 
-
+//!
 // 1 BUTTON RF SWITCH 2 - син - // КОТЕЛНО БЕНКОВСКИ
 // BUTTON 6D7228
 var rfcode_wallsw_1btn_2_btn = "6D7228"
 
+//!
 // 2 BUTTON RF SWITCH 1
 //TODO Make it on a timer
 // LEFT   - ОСВЕТЛЕНИЕ ВЪНШНО РАБОТИЛНИЦА
@@ -33,6 +34,7 @@ var rfcode_wallsw_2btn_1_left = "0F90A4"
 // RIGHT - ИЗГАСИ ЦЯЛОТО ОСВЕТЛЕНИЕ
 var rfcode_wallsw_2btn_1_right = "0F90A1"
 
+//!
 // 3 BUTTON RF SWITCH 1 - син - РАБОТИЛНИЦА
 // LEFT - РАБОТИЛНИЦА
 var rfcode_wallsw_3btn_1_left = "0BE4E4"
@@ -88,24 +90,27 @@ var rfcode_wallsw_3btn_8_middle = "DC6328"
 // RIGHT Коридор ет.1
 var rfcode_wallsw_3btn_8_right = "DC6324"
 
-/////////////
+//! ///////////// MOVED TO RF BRIDGE 2
 // 3 BUTTON RF SWITCH Green Lights 9 - Стая Деси 
-// LEFT Стая Деси
-var rfcode_wallsw_3btn_9_left = "B56BA2"
-// MIDDLE  Гардеробна
-var rfcode_wallsw_3btn_9_middle = "B56BA8"
-// RIGHT Коридор ет.2
-var rfcode_wallsw_3btn_9_right = "B56BA4"
+// // LEFT Стая Деси
+// var rfcode_wallsw_3btn_9_left = "B56BA2"
+// // MIDDLE  Гардеробна
+// var rfcode_wallsw_3btn_9_middle = "B56BA8"
+// // RIGHT Коридор ет.2
+// var rfcode_wallsw_3btn_9_right = "B56BA4"
+//! ///////////// 
 
-/////////////
+//! ///////////// MOVED TO RF BRIDGE 2
 // 3 BUTTON RF SWITCH Green Lights 10 - Стая Средна 
-// LEFT Стая Средна
-var rfcode_wallsw_3btn_10_left = "741962"
-//! MIDDLE  NC
-var rfcode_wallsw_3btn_10_middle = "741968"
-// RIGHT Коридор ет.2
-var rfcode_wallsw_3btn_10_right = "741964"
+// // LEFT Стая Средна
+// var rfcode_wallsw_3btn_10_left = "741962"
+// //! MIDDLE  NC
+// var rfcode_wallsw_3btn_10_middle = "741968"
+// // RIGHT Коридор ет.2
+// var rfcode_wallsw_3btn_10_right = "741964"
+//! ///////////// 
 
+//!
 /////////////
 // 3 BUTTON RF SWITCH Green Lights 11 - Стая Стефан 
 // LEFT Стая Стефан
@@ -709,9 +714,9 @@ then
                 ||  rf_rcv_data.state == rfcode_wallsw_3btn_4_right
                 ||  rf_rcv_data.state == rfcode_wallsw_3btn_7_middle
                 ||  rf_rcv_data.state == rfcode_wallsw_3btn_8_middle
-                ||  rf_rcv_data.state == rfcode_wallsw_3btn_9_right
                 ||  rf_rcv_data.state == rfcode_wallsw_3btn_10_right
                 ||  rf_rcv_data.state == rfcode_wallsw_3btn_11_right
+                // ||  rf_rcv_data.state == rfcode_wallsw_3btn_9_right
 
                 )
                 
@@ -784,7 +789,7 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_4
                 || rf_rcv_data.state == rfcode_8chan_4_4
-                || rf_rcv_data.state == rfcode_wallsw_3btn_9_middle
+                // || rf_rcv_data.state == rfcode_wallsw_3btn_9_middle
                 )
         {
             if (GF_TR_Sonoff_4CH_4_Power2.state == OFF)  
@@ -807,7 +812,7 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_5
                 || rf_rcv_data.state == rfcode_8chan_4_5
-                || rf_rcv_data.state == rfcode_wallsw_3btn_9_left
+                //|| rf_rcv_data.state == rfcode_wallsw_3btn_9_left
                 )
         {
 
@@ -859,7 +864,7 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_6
                 || rf_rcv_data.state == rfcode_8chan_4_6
-                || rf_rcv_data.state == rfcode_wallsw_3btn_10_left
+                // || rf_rcv_data.state == rfcode_wallsw_3btn_10_left
                 )
         {
             if (GF_TR_Sonoff_4CH_4_Power3.state == OFF)  
