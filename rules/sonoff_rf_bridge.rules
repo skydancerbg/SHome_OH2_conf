@@ -40,7 +40,8 @@ var rfcode_wallsw_3btn_1_middle = "0BE4E2"
 // RIGHT 0BE4E1
 var rfcode_wallsw_3btn_1_right = "0BE4E1"
 
-// 3 BUTTON RF SWITCH Green Lights 4 
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 4  - Баня ет.1
 // LEFT C26602
 var rfcode_wallsw_3btn_4_left = "C26602"
 // MIDDLE C26608
@@ -48,7 +49,8 @@ var rfcode_wallsw_3btn_4_middle = "C26608"
 // RIGHT C26604
 var rfcode_wallsw_3btn_4_right = "C26604"
 
-// 3 BUTTON RF SWITCH Green Lights 5 
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 5 - Хол
 // LEFT ХОЛ
 var rfcode_wallsw_3btn_5_left = "52C262"
 // MIDDLE NC
@@ -56,16 +58,69 @@ var rfcode_wallsw_3btn_5_middle = "52C268"
 // RIGHT NC
 var rfcode_wallsw_3btn_5_right = "52C268"
 
-// 3 BUTTON RF SWITCH Green Lights 6 
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 6 - Входна врата къща
 // LEFT Коридор ет.1
 var rfcode_wallsw_3btn_6_left = "72E502"
-// MIDDLE
-//TODO Външна лампа 
+// MIDDLE Външна лампа работилница
 var rfcode_wallsw_3btn_6_middle = "72E508"
-// RIGHT 
-//TODO Изгаси всички лампи 
+// RIGHT Изгаси всички лампи
 // TODO: Външната лампа на таймер 5 мин
 var rfcode_wallsw_3btn_6_right = "72E504"
+
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 7 - Стълбище ет.1 
+// LEFT Коридор ет.1
+var rfcode_wallsw_3btn_7_left = "A2A7A2"
+// MIDDLE  Коридор ет.2
+var rfcode_wallsw_3btn_7_middle = "A2A7A8"
+// RIGHT Коридор гараж и склад
+var rfcode_wallsw_3btn_7_right = "A2A7A4"
+
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 8 - Малка баня ет.2 
+// LEFT Малка баня
+var rfcode_wallsw_3btn_8_left = "DC6322"
+// MIDDLE  Коридор ет.2
+var rfcode_wallsw_3btn_8_middle = "DC6328"
+// RIGHT Коридор ет.1
+var rfcode_wallsw_3btn_8_right = "DC6324"
+
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 9 - Стая Деси 
+// LEFT Стая Деси
+var rfcode_wallsw_3btn_9_left = "B56BA2"
+// MIDDLE  Гардеробна
+var rfcode_wallsw_3btn_9_middle = "B56BA8"
+// RIGHT Коридор ет.2
+var rfcode_wallsw_3btn_9_right = "B56BA4"
+
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 10 - Стая Средна 
+// LEFT Стая Средна
+var rfcode_wallsw_3btn_10_left = "741962"
+// MIDDLE  NC
+var rfcode_wallsw_3btn_10_middle = "741968"
+// RIGHT Коридор ет.2
+var rfcode_wallsw_3btn_10_right = "741964"
+
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 11 - Стая Стефан 
+// LEFT Стая Стефан
+var rfcode_wallsw_3btn_11_left = "4FE962"
+// MIDDLE  NC
+var rfcode_wallsw_3btn_11_middle = "4FE968"
+// RIGHT Коридор ет.2
+var rfcode_wallsw_3btn_11_right = "4FE964"
+
+/////////////
+// 3 BUTTON RF SWITCH Green Lights 12 - Офис 
+// LEFT Офис
+var rfcode_wallsw_3btn_12_left = "509262"
+// MIDDLE  NC
+var rfcode_wallsw_3btn_12_middle = "509268"
+// RIGHT Коридор ет.1
+var rfcode_wallsw_3btn_12_right = "509264"
 
 
 // // // // // // // //  // // // // // // //
@@ -279,7 +334,9 @@ then
 
     } else if (rf_rcv_data.state == rfcode_wallsw_2btn_1_right 
                 || rf_rcv_data.state == rfcode_keychain_1_D 
-                || rf_rcv_data.state == rfcode_keychain_2_D)
+                || rf_rcv_data.state == rfcode_keychain_2_D
+                || rf_rcv_data.state == rfcode_wallsw_3btn_6_right)
+
         {
             
             Gr_ALL_LIGHTS.sendCommand(OFF)
@@ -340,7 +397,7 @@ then
                rf_rcv_data.state == rfcode_keychain_3_B ||
                rf_rcv_data.state == rfcode_keychain_4_B)
         {
-            logInfo("rfcode_keychain_1_B", "Buton B!!!!!")
+            // logInfo("rfcode_keychain_1_B", "Buton B!!!!!")
     
             Gr_ALL_LIGHTS.sendCommand(ON)
 
@@ -392,6 +449,24 @@ then
                                     }
 
 //! // // // // // // // // // // //
+// ОСВЕТЛЕНИЕ ВЪНШНО РАБОТИЛНИЦА   // // //
+// WORKSOP OUTSIDE LIGHT      // // //
+
+//! Switched by:
+
+    } else if ( rf_rcv_data.state == rfcode_wallsw_3btn_6_middle)
+        {
+            if (GF_Sonoff_Dual_Power1.state == OFF)  
+                                    { 
+                                        GF_Sonoff_Dual_Power1.sendCommand(ON)
+                                    }
+            else if ( GF_Sonoff_Dual_Power1.state == ON) 
+                                    {
+                                        GF_Sonoff_Dual_Power1.sendCommand(OFF)
+                                    }
+
+
+//! // // // // // // // // // // //
 // ОСВЕТЛЕНИЕ КОРИДОР ГАРАЖ   // // //
 // CODDIDOR GARAGE LIGHT      // // //
 
@@ -441,6 +516,7 @@ then
 
     } else if ( rf_rcv_data.state == rfcode_wallsw_3btn_1_middle
                 || rf_rcv_data.state == rfcode_wallsw_3btn_4_middle
+                || rf_rcv_data.state == rfcode_wallsw_3btn_7_right
                 )
         {
             if (GF_TR_Sonoff_4CH_2_Power2.state == OFF)  
@@ -491,8 +567,12 @@ then
 //rfcode_8chan_2_1
 
     } else if ( rf_rcv_data.state == rfcode_wallsw_3btn_6_left
-                || rf_rcv_data.state == rfcode_8chan_1_1
-                || rf_rcv_data.state == rfcode_8chan_2_1)
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_7_left
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_8_right
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_12_right
+                ||  rf_rcv_data.state == rfcode_8chan_1_1
+                ||  rf_rcv_data.state == rfcode_8chan_2_1
+                )
         {
             if (GF_TR_Sonoff_4CH_2_Power1.state == OFF)  
                                     { 
@@ -561,6 +641,7 @@ then
     } else if (rf_rcv_data.state == rfcode_8chan_1_4 
                 || rf_rcv_data.state == rfcode_8chan_2_4
                 || rf_rcv_data.state == rfcode_wallsw_1btn_1_btn
+                || rf_rcv_data.state == rfcode_wallsw_3btn_12_left
                 )
         {
             if (GF_TR_Sonoff_4CH_1_Power2.state == OFF)  
@@ -602,14 +683,17 @@ then
 // CORRIDOR FLOOR 2 LIGHT      // // //
 
 //! Switched by:
-// //rfcode_8chan_3_1
-// //rfcode_8chan_4_1
-// //rfcode_wallsw_1btn_1_btn
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_1
-                || rf_rcv_data.state == rfcode_8chan_4_1
-                || rf_rcv_data.state == rfcode_wallsw_3btn_1_right
-                || rf_rcv_data.state == rfcode_wallsw_3btn_4_right
+                ||  rf_rcv_data.state == rfcode_8chan_4_1
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_1_right
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_4_right
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_7_middle
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_8_middle
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_9_right
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_10_right
+                ||  rf_rcv_data.state == rfcode_wallsw_3btn_11_right
+
                 )
                 
         {
@@ -633,7 +717,7 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_2 
                 || rf_rcv_data.state == rfcode_8chan_4_2
-                // || rf_rcv_data.state == rfcode_wallsw_3btn_1_left
+                || rf_rcv_data.state == rfcode_wallsw_3btn_8_left
                 )
         {
             if (GF_TR_Sonoff_4CH_PRO_1_Power4.state == OFF)  
@@ -681,7 +765,7 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_4
                 || rf_rcv_data.state == rfcode_8chan_4_4
-                // || rf_rcv_data.state == rfcode_wallsw_2btn_1_left
+                || rf_rcv_data.state == rfcode_wallsw_3btn_9_middle
                 )
         {
             if (GF_TR_Sonoff_4CH_4_Power2.state == OFF)  
@@ -704,7 +788,7 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_5
                 || rf_rcv_data.state == rfcode_8chan_4_5
-                // || rf_rcv_data.state == rfcode_wallsw_2btn_1_left
+                || rf_rcv_data.state == rfcode_wallsw_3btn_9_left
                 )
         {
 
@@ -725,25 +809,25 @@ then
 
 // //rfcode_wallsw_2btn_1_left УПРАВЛЯВА СПАЛНЯ ДЕСИ И ГАРДЕРОБНА
 
-    } else if (rf_rcv_data.state == rfcode_wallsw_2btn_1_left
-                )
-        {
-            if (GF_TR_Sonoff_4CH_4_Power2.state == OFF)  
-                                    { 
-                                        GF_TR_Sonoff_4CH_4_Power2.sendCommand(ON)
-                                    }
-            else if ( GF_TR_Sonoff_4CH_4_Power2.state == ON) 
-                                    {
-                                        GF_TR_Sonoff_4CH_4_Power2.sendCommand(OFF)
-                                    }            
-            else if (GF_TR_Sonoff_4CH_PRO_1_Power1.state == OFF)  
-                                    { 
-                                        GF_TR_Sonoff_4CH_PRO_1_Power1.sendCommand(ON)
-                                    }
-            else if ( GF_TR_Sonoff_4CH_PRO_1_Power1.state == ON) 
-                                    {
-                                        GF_TR_Sonoff_4CH_PRO_1_Power1.sendCommand(OFF)
-                                    }
+    // } else if (rf_rcv_data.state == rfcode_wallsw_2btn_1_left
+    //             )
+    //     {
+    //         if (GF_TR_Sonoff_4CH_4_Power2.state == OFF)  
+    //                                 { 
+    //                                     GF_TR_Sonoff_4CH_4_Power2.sendCommand(ON)
+    //                                 }
+    //         else if ( GF_TR_Sonoff_4CH_4_Power2.state == ON) 
+    //                                 {
+    //                                     GF_TR_Sonoff_4CH_4_Power2.sendCommand(OFF)
+    //                                 }            
+    //         else if (GF_TR_Sonoff_4CH_PRO_1_Power1.state == OFF)  
+    //                                 { 
+    //                                     GF_TR_Sonoff_4CH_PRO_1_Power1.sendCommand(ON)
+    //                                 }
+    //         else if ( GF_TR_Sonoff_4CH_PRO_1_Power1.state == ON) 
+    //                                 {
+    //                                     GF_TR_Sonoff_4CH_PRO_1_Power1.sendCommand(OFF)
+    //                                 }
 
 //! // // // // // // // // // // //
 // ОСВЕТЛЕНИЕ СРЕДНА СТАЯ ЕТАЖ 2   // // //
@@ -756,7 +840,7 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_6
                 || rf_rcv_data.state == rfcode_8chan_4_6
-                //|| rf_rcv_data.state == rfcode_wallsw_3btn_1_left
+                || rf_rcv_data.state == rfcode_wallsw_3btn_10_left
                 )
         {
             if (GF_TR_Sonoff_4CH_4_Power3.state == OFF)  
@@ -779,7 +863,7 @@ then
 
     } else if (rf_rcv_data.state == rfcode_8chan_3_7
                 || rf_rcv_data.state == rfcode_8chan_4_7
-                //|| rf_rcv_data.state == rfcode_wallsw_3btn_1_left
+                || rf_rcv_data.state == rfcode_wallsw_3btn_11_left
                 )
         {
             if (GF_TR_Sonoff_4CH_PRO_1_Power2.state == OFF)  
@@ -790,6 +874,7 @@ then
                                     {
                                         GF_TR_Sonoff_4CH_PRO_1_Power2.sendCommand(OFF)
                                     }
+
 
 //! // // // // // // // // // // //
 // ОСВЕТЛЕНИЕ ПЕРАЛНО ЕТАЖ 2   // // //
@@ -814,9 +899,10 @@ then
                                         GF_TR_Sonoff_4CH_4_Power4.sendCommand(OFF)
                                     }
 
-    // // Benkovski RF 1 gang switch LIVING ROOM / КЛЮЧ ХОЛ
+
+    // Benkovski RF 1 gang switch LIVING ROOM / КЛЮЧ ХОЛ
    
-    // //} else if (GF_Sonoff_RF_Received_Data.state == "079EA2")
+    //} else if (GF_Sonoff_RF_Received_Data.state == "079EA2")
     // } else if (rf_rcv_data.state == rfcode_wallsw_1btn_1_btn)
     //     {
     //         logInfo("LIVING ROOM", "poluchi koda")
